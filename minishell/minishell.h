@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:32 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 14:22:40 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:54:52 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@
 # include <termios.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <sys/stat.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 
-# define PROMPT ":\033[0;92mGa\033[0;33mla\033[0;91mzy\033[0;95mol\
-\033[0;34m</>\033[0m "
+# define HISTORY_FILE "/.isworld_history"
+# define PROMPT ":\033[0;34mIs\033[0;33mWorld\033[0;32m<$>\033[0m "
 
 typedef struct s_env
 {
@@ -52,7 +53,7 @@ typedef struct	s_isworld
 ////*initiation*////
 /*init_isworld_env.c*/
 int		set_isworld_shell (t_isworld **prompt, char ***envp);
-int		set_envlist(t_env	**envls,char ***envp);
+int		set_envlist(t_env	**envls,char **envp);
 t_env	*init_env(int envc, char ***env);
 int		key_and_value(char *str, char **key, char **value);
 int		check_valid(char *str, int *j);
@@ -64,6 +65,11 @@ int		pop(t_env **top, char *key);
 void	print_lst(t_env *top);
 void	free_lst(t_env **temp);
 int		clear_linklst(t_env **top);
+char	*seach_lst(t_env *top, char *key);
+/*prompt_n_history.c*/
+void	get_prompt(t_isworld	**prompt);
+void	wr_history(char *line, t_isworld *prompt);
+void	rd_history(t_isworld *prompt);
 
 ////*parentheses*////
 
