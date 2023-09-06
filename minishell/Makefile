@@ -6,7 +6,7 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 14:29:25 by pnopjira          #+#    #+#              #
-#    Updated: 2023/09/05 15:00:44 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/09/06 04:03:21 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,20 +21,18 @@ INC		=	minishell.h
 LIBMI	=	libminishell.a
 
 SRC			=	main.c
-#INIT_SRC	= $(wildcard init/*.c)
-# 			./minishell.c
-# UTILS_SRC	= $(wildcard utils/*.c)
-# PIPEX_SRC	= $(wildcard pipe/*.c)
-# PARSER_SRC	= $(wildcard parser/*.c)
+INIT_SRC	= $(wildcard initiation/*.c)
+# UTILS_SRC	= $(wildcard utiles/*.c)
+# PIPEX_SRC	= $(wildcard pipeline/*.c)
+# PARSER_SRC= $(wildcard parser/*.c)
 # SIGN_SRC	= $(wildcard signals/*.c)
 # READ_SRC	= $(wildcard readline/*.c)
-# COMM_SRC	= $(wildcard buildin/*.c)
-# EXP_SRC		= $(wildcard expansions/*.c)
-# RED_SRC		= $(wildcard redirection/*.c)
-# PAR_SRC		= $(wildcard parentheses/*.c)
+# COMM_SRC	= $(wildcard bin/*.c)
+# EXP_SRC	= $(wildcard expansion/*.c)
+# RED_SRC	= $(wildcard redirection/*.c)
+# PAR_SRC	= $(wildcard parentheses/*.c)
 
-OBJ		=	$(SRC:%.c=%.o)
-#			$(INIT_SRC:%.c=%.o)
+OBJ		=	$(SRC:%.c=%.o) $(INIT_SRC:%.c=%.o)
 #			$(PARSER_SRC:%.c=%.o)
 #			$(PIPEX_SRC:%.c=%.o)
 #			$(UTILS_SRC:%.c=%.o)
@@ -55,9 +53,9 @@ LIBFT_LINK = $(LIBFT_DIR)/libft.a
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_LINK) $(LIBMI)
-	@ar rcs $(LIBMI) *.o 
-# init/*.o buildin/*.o expansions/*.o  parentheses/*.o parser/*.o\
-# pipe/*.o readline/*.o redirection/*.o signals/*.o utils/*.o
+	@ar rcs $(LIBMI) *.o initiation/*.o
+# utiles/*.o pipeline/*.o parser/*.o\
+	 signals/*.o readline/*.o bin/*.o expansion/*.o parentheses/*.o redirection/*.o
 	@echo " "
 	@echo " Make libminishell.a "
 	@echo " "
@@ -67,7 +65,7 @@ $(NAME): $(OBJ)
 #	-L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -L./ -lminishell -L /usr/local/opt/readline/lib
 
 all: $(NAME)
-                                   
+
 	@echo "  ___   __        __         _     _ "
 	@echo " |_ _|__\ \      / /__  _ __| | __| |"
 	@echo "  | |/ __\ \ /\ / / _ \| '__| |/ _  |"
@@ -80,8 +78,8 @@ bonus:
 clean:
 	make clean -C $(LIBFT_DIR)
 	@rm -f *.o
-	@rm -rf buildin/*.o expansions/*.o init/*.o parentheses/*.o parser/*.o\
-	pipe/*.o readline/*.o redirection/*.o signals/*.o utils/*.o
+	@rm -rf initiation/*.o utiles/*.o pipeline/*.o parser/*.o signals/*.o\
+	 readline/*.o bin/*.o expansion/*.o parentheses/*.o redirection/*.o
 	@echo " "
 	@echo "* clean compleate "
 	@echo " "
