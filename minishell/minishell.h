@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:32 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 04:10:12 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:22:40 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,29 @@ typedef struct s_env
 
 typedef struct	s_isworld
 {
-	t_env	*envls;
-	char	cmdline[1024];
-	int		*exit_status;
+	t_env	*envls; // usefor builtin: env, export, unset
+	int		*exit_status; // usefor exit status when "echo $?" or "echo $? | cat -e"
 
+	char	cmdline[1024]; // usefor readline() or gercwd()
 }	t_isworld;
+
 ////*expansion*////
 
 ////*initiation*////
 /*init_isworld_env.c*/
 int		set_isworld_shell (t_isworld **prompt, char ***envp);
 int		set_envlist(t_env	**envls,char ***envp);
-int		count_env(char	**envp);
 t_env	*init_env(int envc, char ***env);
 int		key_and_value(char *str, char **key, char **value);
-/*envls_manage.c*/
 int		check_valid(char *str, int *j);
+/*env_oparation1.c*/
 void	push(t_env **top, char **key, char **value);
-void	print_list(t_env *top);
+int		is_empty(t_env **top);
+int		pop(t_env **top, char *key);
+/*env_oparation2.c*/
+void	print_lst(t_env *top);
+void	free_lst(t_env **temp);
+int		clear_linklst(t_env **top);
 
 ////*parentheses*////
 

@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   envls_manage.c                                     :+:      :+:    :+:   */
+/*   env_oparation1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 03:46:59 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 04:13:28 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:20:56 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int		check_valid(char *str, int *j);
 void	push(t_env **top, char **key, char **value);
-void	print_list(t_env *top);
-
-int		check_valid(char *str, int *j)
-{
-	int valid_str;
-
-	valid_str = 0;
-	*j = 0;
-	 while (str[*j] != '\0')
-	{
-		(*j)++;
-		if (str[*j] == '=')
-		{
-			valid_str = 1;
-			break ;
-		}
-	}
-	return (valid_str);
-}
+int		is_empty(t_env **top);
+int		pop(t_env **top, char *key);
 
 void	push(t_env **top, char **key, char **value)
 {
@@ -58,16 +40,54 @@ void	push(t_env **top, char **key, char **value)
 	temp = NULL;
 }
 
-void	print_list(t_env *top)
+int	is_empty(t_env **top)
 {
-	t_env	*ptr;
-
-	ptr = top;
-	while (ptr)
-	{
-		if (ptr->key && ptr->value)
-			printf("%s=%s\n", ptr->key, ptr->value);
-		ptr = ptr->next;
-	}
+	if (*top == NULL)
+		return (1);
+	else
+		return (0);
 }
+
+int    pop(t_env **top, char *key)
+{
+    t_env	*temp;
+    t_env	*ptr1;
+	t_env	*ptr2;
+
+    if (!is_empty(top))
+    {
+		temp = *top;
+		ptr1 = NULL;
+		ptr2 = NULL;
+        while (ft_strncmp(temp->key, key, ft_strlen(key)) != 0)
+		{
+			ptr1 = temp;
+            temp = temp->next;
+		}
+        if (temp == NULL)
+		{	printf("NOT MATCH");
+            return (1);}
+		if (ft_strlen(key) == ft_strlen(temp->key))
+		{	if (ptr1 == NULL)
+				*top = temp->next;
+			else
+			{
+				if (temp->next == NULL)
+					ptr1->next = NULL;
+				else
+				{
+					ptr2 = temp->next;
+					ptr1->next = ptr2;
+				}
+			}
+			free_lst(&temp);}
+		else
+			return (1);
+        ptr1 = NULL;
+		ptr2 = NULL;
+		return (EXIT_SUCCESS);
+    }
+}
+
+
 

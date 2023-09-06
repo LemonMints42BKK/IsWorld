@@ -6,13 +6,13 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 14:29:25 by pnopjira          #+#    #+#              #
-#    Updated: 2023/09/06 04:03:21 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/09/06 14:00:21 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC		=	gcc
 
-FLAGS	=	-Wall -Wextra -Werror --sanitize-recover=leak
+FLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	minishell
 
@@ -53,14 +53,14 @@ LIBFT_LINK = $(LIBFT_DIR)/libft.a
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_LINK) $(LIBMI)
-	@ar rcs $(LIBMI) *.o initiation/*.o
+	ar rcs $(LIBMI) *.o initiation/*.o
 # utiles/*.o pipeline/*.o parser/*.o\
 	 signals/*.o readline/*.o bin/*.o expansion/*.o parentheses/*.o redirection/*.o
 	@echo " "
 	@echo " Make libminishell.a "
 	@echo " "
 
-	@cc $(FLAGS) $(OBJ) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -lreadline -o $(NAME)
+	cc $(FLAGS) $(OBJ) $(INC) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -lreadline -o $(NAME)
 #	@$(CC) $(FLAGS) $(OBJ) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -L /usr/local/opt/readline/include -lreadline  -o $(NAME)
 #	-L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -L./ -lminishell -L /usr/local/opt/readline/lib
 

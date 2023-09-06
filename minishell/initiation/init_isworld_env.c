@@ -6,25 +6,26 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 03:47:03 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 04:15:13 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:23:55 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 int		set_isworld_shell (t_isworld **prompt, char ***envp);
 int		set_envlist(t_env	**envls,char ***envp);
-int		count_env(char	**envp);
 t_env	*init_env(int envc, char ***env);
 int		key_and_value(char *str, char **key, char **value);
+int		check_valid(char *str, int *j);
 
 int		set_isworld_shell (t_isworld **prompt, char ***envp)
 {
 	//all valuables in t_isworld first inited here
 	(*prompt)->envls = NULL;
 	(*prompt)->exit_status = NULL;
-	//enable key to block or interrupt signal
-	//enable_signals(&(*prompt)->exit_status);
-	//init evnp into sturc of t_evn (singer linklist)
+	// enable key to block or interrupt signal
+	// enable_signals(&(*prompt)->exit_status);
+	// init evnp into sturc of t_evn (singer linklist)
 	if(!set_envlist(&(*prompt)->envls, envp))
 		return(EXIT_FAILURE);
 	return(EXIT_SUCCESS);
@@ -34,21 +35,13 @@ int		set_envlist(t_env	**envls,char ***envp)
 {
 	int	envc;
 
-	envc = count_env(*envp);
+	envc = 0;
+	while (envp[envc])
+		envc++;
 	if(!(*envls = init_env(envc, envp)))
 		return(EXIT_FAILURE);
 	else
 		return(EXIT_SUCCESS);
-}
-
-int		count_env(char	**envp)
-{
-	int i;
-
-	i = 0;
-	while (envp[i])
-		i++;
-	return (i);
 }
 
 t_env	*init_env(int envc, char ***env)
@@ -92,4 +85,22 @@ int		key_and_value(char *str, char **key, char **value)
 		ft_strlcpy(*value, (str + j + 1), (len - j + 2));
 	}
 	return (EXIT_SUCCESS);
+}
+
+int		check_valid(char *str, int *j)
+{
+	int valid_str;
+
+	valid_str = 0;
+	*j = 0;
+	 while (str[*j] != '\0')
+	{
+		(*j)++;
+		if (str[*j] == '=')
+		{
+			valid_str = 1;
+			break ;
+		}
+	}
+	return (valid_str);
 }
