@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:13:39 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 21:41:08 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/06 22:33:34 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	print_lst(t_env *top);
 void	free_lst(t_env **temp);
 int		clear_linklst(t_env **top);
-// sort_lst(t_env **top);
 char	*seach_lst(t_env *top, char *key);
+//void	sort_lst(t_env **top);
 
 void	print_lst(t_env *top)
 {
@@ -68,7 +68,6 @@ char	*seach_lst(t_env *top, char *key)
 	ptr = top;
 	while (ptr)
 	{
-//		printf("HERE\n");
 		if (ft_strncmp(ptr->key, key, ft_strlen(key)) == 0 && ptr->value)
 			if (ft_strlen( ptr->key) == ft_strlen(key))
 				return (ptr->value);
