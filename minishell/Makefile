@@ -6,7 +6,7 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 14:29:25 by pnopjira          #+#    #+#              #
-#    Updated: 2023/09/06 16:09:14 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/09/07 17:44:01 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,13 +64,13 @@ $(NAME): $(OBJ)
 #	@$(CC) $(FLAGS) $(OBJ) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -L /usr/local/opt/readline/include -lreadline  -o $(NAME)
 #	-L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -L./ -lminishell -L /usr/local/opt/readline/lib
 
-all: $(NAME)
-
 	@echo "\033[0;34m   _   _      _ _         ___   __        __         _     _ "
 	@echo "\033[0;34m  | | | | ___| | | ___   |_ _|__\ \      / /__  _ __| | __| |"
 	@echo "\033[0;34m  | |_| |/ _ \ | |/ _ \   | |/ __\ \ /\ / / _ \| '__| |/ _  |"
 	@echo "\033[0;33m  |  _  |  __/ | | (_) |  | |\__ \  V  V / (_) | |  | | (_| |"
 	@echo "\033[0;33m  |_| |_|\___|_|_|\___/  |___|___/ \_/\_/ \___/|_|  |_|\__,_|"
+
+all: $(NAME)
 
 bonus:
 	@echo "Hello Bonus"

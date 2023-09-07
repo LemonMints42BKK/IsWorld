@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 03:47:03 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 22:26:03 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:45:44 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		set_isworld_shell (t_isworld **prompt, char ***envp)
 	(*prompt)->envls = NULL;
 	(*prompt)->exit_status = NULL;
 	/* read_history from file .isworld_history then add to history*/
-//	rd_history(*prompt);
+	rd_history(*prompt);
 	/* enable key to block or interrupt signal*/
 // 	enable_signals(&(*prompt)->exit_status);
 	/* init evnp into sturc of t_evn (singer linklist)*/

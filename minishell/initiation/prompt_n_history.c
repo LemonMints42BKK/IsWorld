@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:47:25 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 21:56:12 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:38:03 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_prompt(t_isworld	**prompt)
 	{
 		ft_strlcpy(buffer, line, 1024);
 		add_history(line);
-//		wr_history(line, *prompt);
+		wr_history(line, *prompt);
 	}
 	free(line);
 }

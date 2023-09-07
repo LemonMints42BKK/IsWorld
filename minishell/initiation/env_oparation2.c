@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:13:39 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 22:33:34 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:43:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_lst(t_env *top);
 void	free_lst(t_env **temp);
-int		clear_linklst(t_env **top);
+void	*clear_linklst(t_env **top);
 char	*seach_lst(t_env *top, char *key);
 //void	sort_lst(t_env **top);
 
@@ -44,7 +44,7 @@ void  free_lst(t_env **temp)
 	return ;
 }
 
-int	clear_linklst(t_env **top) //cannot clear all linklist yet ****
+void	*clear_linklst(t_env **top) //cannot clear all linklist yet ****
 {
 	t_env	*ptr1;
 	t_env	*ptr2;
@@ -58,7 +58,7 @@ int	clear_linklst(t_env **top) //cannot clear all linklist yet ****
 		ptr1 = ptr2;
 		ptr2 = NULL;
 	}
-	return(EXIT_SUCCESS);
+	return(NULL);
 }
 
 char	*seach_lst(t_env *top, char *key)

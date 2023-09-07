@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:32 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/06 22:44:44 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:40:26 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		pop(t_env **top, char *key); // pop env data from stack:- unset
 /*env_oparation2.c*/
 void	print_lst(t_env *top); // print all env data in stack:- env, export
 void	free_lst(t_env **temp); // free env data node in stack, just one node
-int		clear_linklst(t_env **top); // free all env data in stack;
+void	*clear_linklst(t_env **top); // free all env data in stack;
 char	*seach_lst(t_env *top, char *key); // search env data in stack, use key to search for value:- export {arg}, unset {arg}, pwd, echo $USER
 /*prompt_n_history.c*/
 void	get_prompt(t_isworld	**prompt); // get user input(readline) to prompt->cmdline and add to history:
