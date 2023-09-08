@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/06 14:47:25 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/07 17:38:03 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/08 17:24:58 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,21 @@ void	get_prompt(t_isworld	**prompt)
 {
 	char	*line;
 	char	*buffer;
+	char	*prompt_str;
 
 	buffer = (*prompt)->cmdline;
 	if (!(line = (char *)malloc(sizeof(char) * 1024)))
 		return ;
-	line = readline(PROMPT);
-	if (line && (ft_strncmp(line, " ", 1) != 0))
+	prompt_str = ft_strjoin(seach_lst((*prompt)->envls, "PWD"), PROMPT);
+	line = readline(prompt_str);
+	free(prompt_str);
+	if (line && ft_strncmp(line, " ", 1) != 0 && (ft_strncmp(line, "\0", 1)))
 	{
 		ft_strlcpy(buffer, line, 1024);
 		add_history(line);
+		printf("add_history\n");
 		wr_history(line, *prompt);
+		printf("wr_history\n");
 	}
 	free(line);
 }
@@ -41,6 +46,7 @@ void	wr_history(char *line, t_isworld *prompt)
 	char	*his;
 
 	his = seach_lst(prompt->envls, "PWD");
+	printf("%s\n", his);
 	his = ft_strjoin(his, HISTORY_FILE);
 	fd = open(his, O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR);
 	free (his);

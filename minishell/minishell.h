@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:32 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/07 17:40:26 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/07 19:18:46 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ typedef struct s_env
 
 typedef struct	s_isworld
 {
+	struct sigaction	act_noting; // usefor signal
+	struct sigaction	act_int; // usefor signal
+	struct sigaction	act_quit; // usefor signal
 	t_env	*envls; // usefor builtin: env, export, unset
-	int		*exit_status; // usefor exit status when "echo $?" or "echo $? | cat -e"
+	int		exit_status; // usefor exit status when "echo $?" or "echo $? | cat -e"
 
 	char	cmdline[1024]; // usefor readline() or gercwd()
 }	t_isworld;
@@ -64,12 +67,14 @@ int		pop(t_env **top, char *key); // pop env data from stack:- unset
 /*env_oparation2.c*/
 void	print_lst(t_env *top); // print all env data in stack:- env, export
 void	free_lst(t_env **temp); // free env data node in stack, just one node
-void	*clear_linklst(t_env **top); // free all env data in stack;
+int		clear_linklst(t_env **top); // free all env data in stack;
 char	*seach_lst(t_env *top, char *key); // search env data in stack, use key to search for value:- export {arg}, unset {arg}, pwd, echo $USER
 /*prompt_n_history.c*/
 void	get_prompt(t_isworld	**prompt); // get user input(readline) to prompt->cmdline and add to history:
 void	wr_history(char *line, t_isworld *prompt); // write history to file .isworld_history ***underconstruction***
 void	rd_history(t_isworld *prompt); // read history from file .isworld_history ***underconstruction***
+/*signal.c*/
+int	enable_signals(t_isworld **prompt ,int	*exit_status); // enable key to block or interrupt signal
 
 ////*parentheses*////
 

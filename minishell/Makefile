@@ -6,7 +6,7 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 14:29:25 by pnopjira          #+#    #+#              #
-#    Updated: 2023/09/07 17:44:01 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/09/07 22:51:38 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ $(NAME): $(OBJ)
 	@echo " Make libminishell.a "
 	@echo " "
 
-	cc $(FLAGS) $(OBJ) $(INC) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -lreadline -o $(NAME)
+	@cc $(FLAGS) $(OBJ) $(INC) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -lreadline -o $(NAME)
 #	@$(CC) $(FLAGS) $(OBJ) -I./ -L./ -lminishell -L /usr/local/opt/readline/lib -L /usr/local/opt/readline/include -lreadline  -o $(NAME)
 #	-L ~/.brew/opt/readline/lib -I ~/.brew/opt/readline/include -L./ -lminishell -L /usr/local/opt/readline/lib
 
