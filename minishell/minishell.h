@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 14:38:32 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/09/07 19:18:46 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/09/10 01:07:35 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,19 @@ typedef struct s_env
 
 typedef struct	s_isworld
 {
-	struct sigaction	act_noting; // usefor signal
-	struct sigaction	act_int; // usefor signal
-	struct sigaction	act_quit; // usefor signal
+	// struct sigaction	act_int; // usefor signal
+	// struct sigaction	act_quit; // usefor signal
 	t_env	*envls; // usefor builtin: env, export, unset
 	int		exit_status; // usefor exit status when "echo $?" or "echo $? | cat -e"
 
 	char	cmdline[1024]; // usefor readline() or gercwd()
 }	t_isworld;
+
+////*bin*////
+/*exit*/
+void	clean_exit(int code_error, t_isworld **data); // exit minishell
+void	isworld_exit(int ac, char **av, t_isworld **prompt_data); // exit with or without argument
+/*pwd*/
 
 ////*expansion*////
 
@@ -74,7 +79,7 @@ void	get_prompt(t_isworld	**prompt); // get user input(readline) to prompt->cmdl
 void	wr_history(char *line, t_isworld *prompt); // write history to file .isworld_history ***underconstruction***
 void	rd_history(t_isworld *prompt); // read history from file .isworld_history ***underconstruction***
 /*signal.c*/
-int	enable_signals(t_isworld **prompt ,int	*exit_status); // enable key to block or interrupt signal
+void	enable_signals(void); // enable key to block or interrupt signal
 
 ////*parentheses*////
 
@@ -90,5 +95,4 @@ int	enable_signals(t_isworld **prompt ,int	*exit_status); // enable key to block
 
 ////*utiles*////
 
-////*bin*////
 #endif

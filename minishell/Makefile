@@ -6,7 +6,7 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/05 14:29:25 by pnopjira          #+#    #+#              #
-#    Updated: 2023/09/07 22:51:38 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/09/09 23:57:38 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,23 +20,22 @@ INC		=	minishell.h
 
 LIBMI	=	libminishell.a
 
-SRC			=	main.c
+SRC			=main.c
 INIT_SRC	= $(wildcard initiation/*.c)
+COMM_SRC	= $(wildcard bin/*.c)
 # UTILS_SRC	= $(wildcard utiles/*.c)
 # PIPEX_SRC	= $(wildcard pipeline/*.c)
 # PARSER_SRC= $(wildcard parser/*.c)
 # SIGN_SRC	= $(wildcard signals/*.c)
 # READ_SRC	= $(wildcard readline/*.c)
-# COMM_SRC	= $(wildcard bin/*.c)
 # EXP_SRC	= $(wildcard expansion/*.c)
 # RED_SRC	= $(wildcard redirection/*.c)
 # PAR_SRC	= $(wildcard parentheses/*.c)
 
-OBJ		=	$(SRC:%.c=%.o) $(INIT_SRC:%.c=%.o)
+OBJ		=	$(SRC:%.c=%.o) $(INIT_SRC:%.c=%.o) $(COMM_SRC:%.c=%.o)
 #			$(PARSER_SRC:%.c=%.o)
 #			$(PIPEX_SRC:%.c=%.o)
 #			$(UTILS_SRC:%.c=%.o)
-#			$(COMM_SRC:%.c=%.o)
 #			$(EXP_SRC:%.c=%.o)
 #			$(SIGN_SRC:%.c=%.o)
 #			$(PAR_SRC:%.c=%.o)
@@ -53,9 +52,9 @@ LIBFT_LINK = $(LIBFT_DIR)/libft.a
 $(NAME): $(OBJ)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_LINK) $(LIBMI)
-	ar rcs $(LIBMI) *.o initiation/*.o
+	ar rcs $(LIBMI) *.o initiation/*.o bin/*.o
 # utiles/*.o pipeline/*.o parser/*.o\
-	 signals/*.o readline/*.o bin/*.o expansion/*.o parentheses/*.o redirection/*.o
+#	 signals/*.o readline/*.o expansion/*.o parentheses/*.o redirection/*.o
 	@echo " "
 	@echo " Make libminishell.a "
 	@echo " "
