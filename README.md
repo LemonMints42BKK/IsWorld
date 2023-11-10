@@ -1,2 +1,2 @@
 # IsWorld
-miniShell project 
+cud3D project 
