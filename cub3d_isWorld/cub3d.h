@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/12 12:03:02 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/12 13:59:01 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
 
-typedef struct s_metatag
+typedef struct s_meta
 {
 	char	*no;
 	char	*so;
@@ -34,10 +34,11 @@ typedef struct s_metatag
 	char	*ea;
 	char	*f;
 	char	*c;
-}	t_metatag;
+}	t_meta;
 
 typedef struct s_map
 {
+	t_meta	*elem;
 	char	**map;
 	int		row;
 	int		col;
