@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/11 13:43:50 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/12 12:03:02 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,18 @@ typedef struct s_map
 	int		col;
 }	t_map;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
 /*pnopjira_utils*/
 char	*get_next_line(int fd);
+int		check_invalid_mapfile(char *maps_path);
+int		explicit_error(int stage);
 int		invalid_filepath(char *maps_path, char *path, char *format);
 int		invalid_mapdata(char *maps_path);
 void	ck_data_format(char *tmp, int *err);
