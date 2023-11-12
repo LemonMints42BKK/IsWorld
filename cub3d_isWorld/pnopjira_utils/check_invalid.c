@@ -6,11 +6,35 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/11 06:08:58 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/12 11:31:05 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+int	check_invalid_mapfile(char *maps_path)
+{
+	if (invalid_filepath(maps_path, "maps/", ".cub"))
+        return (ft_putstr_fd(GREEN"Used: maps/<filename>.cub\n"RESET, 2)\
+        , 1);
+    if (explicit_error(invalid_mapdata(maps_path)))
+        return (1);
+	return (0);
+}
+
+int	explicit_error(int stage)
+{
+    if (stage != 0)
+        ft_putstr_fd(RED"error\n"RESET, 2);
+    if (stage == 1)
+        ft_putstr_fd(RED":empty file\n"RESET, 2);
+    else if (stage == 2)
+        ft_putstr_fd(RED":the type identifier is invalid\n"RESET, 2);
+    else if (stage == 3)
+        ft_putstr_fd(RED":the map is invalid\n"RESET, 2);
+    else if (stage != 0)
+        ft_putstr_fd(RED":unindentify\n"RESET, 2);
+    return (stage);
+}
 
 int	invalid_filepath(char *maps_path, char *path, char *format)
 {

@@ -1,5 +1,9 @@
-<h1>cud3d</h1>
-<h2>-ภาคบังคับ-<a href="https://github.com/LemonMints42BKK/42Projects/blob/1360cedce734dfe0ab88df36f24d7280e82f67ac/Rank04/cub3D/en.subject.pdf">English</a></h2>
+<h1>cub3d</h1>
+<div>
+    <a href="#">project tasks</a><br>
+    <a href="#subject">cub3d subject(ภาษาไทย)</a>
+</div>
+<h2 class="subject">-ภาคบังคับ-<a href="https://github.com/LemonMints42BKK/42Projects/blob/1360cedce734dfe0ab88df36f24d7280e82f67ac/Rank04/cub3D/en.subject.pdf">English</a></h2>
     <p> พฤษจิกายน ๒๕๖๖ <p>
     <div>
       <ul>
