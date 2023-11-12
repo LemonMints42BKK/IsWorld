@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/12 12:03:02 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/12 15:09:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		invalid_mapdata(char *maps_path);
 void	ck_data_format(char *tmp, int *err);
 
 /*ptungbun_utils*/
-
+void    mlx_raycaster();
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 #endif
 
