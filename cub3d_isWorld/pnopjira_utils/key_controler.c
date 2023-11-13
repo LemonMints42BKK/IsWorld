@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 17:58:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/12 21:09:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/13 11:47:28 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,20 @@
 // 	return (0);
 // }
 
-int	key_handler(int keycode, t_map *scene)
+int	key_handler(int keycode, t_frame *scene)
 {
-    if (keycode == KEY_ESC)
-    {
-        free_on_exit(keycode, (*scene).vars);
-	    exit(0);
-    }
-    else if (keycode == KEY_A_LEFT)
-       { printf("%d :\n", keycode); (*scene).player.px -= 5; printf("%d :\n", (*scene).player.px); }
-    else if (keycode == KEY_D_RIGHT)
-       { printf("%d :\n", keycode); (*scene).player.px += 5; printf("%d :\n", (*scene).player.px); }
+   if (keycode == KEY_ESC)
+   {
+     free_on_exit(keycode, (*scene).vars);
+	   exit(0);
+   }
+   else if (keycode == KEY_A_LEFT)
+      { printf("%d :\n", keycode); (*scene).player.px -= 5; printf("%d :\n", (*scene).player.px); }
+   else if (keycode == KEY_D_RIGHT)
+      { printf("%d :\n", keycode); (*scene).player.px += 5; printf("%d :\n", (*scene).player.px); }
+   else if (keycode == KEY_W_UP)
+      { printf("%d :\n", keycode); (*scene).player.py -= 5; printf("%d :\n", (*scene).player.px); }
+   else if (keycode == KEY_S_DOWN)
+      { printf("%d :\n", keycode); (*scene).player.py += 5; printf("%d :\n", (*scene).player.px); }
 	return (0);
 }

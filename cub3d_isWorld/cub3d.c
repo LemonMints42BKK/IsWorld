@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/12 21:19:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/13 12:25:03 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,22 @@
 void    raycaster()
 {
     t_var  vars;
-    t_map   scene;
+    t_frame   scene;
 
-    scene.vars = &vars;
-    //call graphic system and prepare img frame
+    //call graphic system and init img frame
 	vars.mlx = mlx_init();
     vars.win = mlx_new_window(vars.mlx, 1024, 512, "isWorld-cub3D");
-    //allocat img canvas and get canvas address
-    // img.img = mlx_new_image(mlx, 1024, 512);
-    // img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-    // &img.line_length, &img.endian);
-    init((long)vars.mlx, &scene);
-    //Keep file texture to img to viewpoint struct
-    /*Drawing*/
-        //test drawing
-    display(&scene);
-        //minimap2D
-        //Draw 3D Walls
-	mlx_put_image_to_window(vars.mlx, vars.win, scene.img.img, 0, 0);
-    
-    //Hooking into events
+    // init vars.mlx and vars.win into t_map struct
+    scene.vars = &vars;
+    //init cavas in to frame
+   init(&scene);
+    //Keep file texture to img to struct of t_frame type
+
+    /*windon controller*/
     mlx_hook(vars.win, 17, 0L, free_on_exit, &vars); //DestroyNotify, NoEventMask
-    mlx_loop_hook(vars.mlx, display, &scene);
     mlx_key_hook(vars.win, key_handler, &scene); //KeyPress, KeyPressMask
-    printf("px=%d\n", scene.player.px);
-    printf("py=%d\n", scene.player.py);
-	// mlx_loop_hook() Don't sure can used on texture or not
+    /*loop to call display into the frame*/
+    mlx_loop_hook(vars.mlx, display, &scene);// loop scene into the frame ->displaing draws set
 
     //It is an infinite loop that waits for an event
     mlx_loop(vars.mlx);

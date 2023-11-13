@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/12 21:16:50 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/13 10:07:38 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_pos
 	int	py;
 }	t_pos;
 
-typedef struct s_map
+typedef struct s_frame
 {
 	t_meta	*info;
 	char	**map;
@@ -69,7 +69,7 @@ typedef struct s_map
 	int		col;
 	t_data	img;
 	t_var	*vars;
-}	t_map;
+}	t_frame;
 
 /*pnopjira_utils*/
 char	*get_next_line(int fd);
@@ -78,15 +78,15 @@ int		explicit_error(int stage);
 int		invalid_filepath(char *maps_path, char *path, char *format);
 int		invalid_mapdata(char *maps_path);
 void	ck_data_format(char *tmp, int *err);
-int		key_handler(int keycode,t_map *scene);
+int		key_handler(int keycode,t_frame *scene);
 int		free_on_exit(int keycode, t_var *vars);
 
 /*ptungbun_utils*/
 void    raycaster();
-void	init(long mlx, t_map *scene);
-int    display(t_map *scene);
+void	init(t_frame *scene);
+int    display(t_frame *scene);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // test drawing
-void    draw_player(t_map mini);
+void    draw_player(t_frame *mini);
 #endif
 
