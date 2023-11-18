@@ -6,15 +6,12 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/18 20:00:04 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:28:08 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_SETUP_H
 # define GAME_SETUP_H
-
-typedef float			t_glfoat;
-typedef unsigned int	t_gluint;
 
 typedef struct s_color
 {

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/18 20:01:16 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:43:13 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ int map[120] =
     1,1,1,1,1,1,1,1,1,1
 };
 
+void    init_frame(t_frame *scene)
+{
+    (*scene).w = 1280;
+    (*scene).h = 720;
+    (*scene).p.mx = 6;
+    (*scene).p.my = 3;
+    (*scene).map->mapx = 10;
+    (*scene).map->mapy = 12;
+    (*scene).map->maps = 32;
+    (*scene).map->map = map;
+}
+
 void    raycaster(void)
 {
     t_var       vars;
@@ -39,14 +51,7 @@ void    raycaster(void)
     vars.bgimg = &bgimg;
     vars.scene = &scene;
     vars.mini_img = &mini;
-    scene.w = 1280;
-    scene.h = 720;
-    // scene.p.x = 5;
-    // scene.p.y = 6;
-    scene.map.mapx = 10;
-    scene.map.mapy = 12;
-    scene.map.maps = 32;
-    scene.map.map = map;
+    init_frame(&scene);
     //deploy mlx instance and allocated window frame
 	vars.mlx = mlx_init();
     vars.win = mlx_new_window(vars.mlx, scene.w, scene.h, "isWorld-cub3D");
