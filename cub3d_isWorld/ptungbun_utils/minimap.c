@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:27:40 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/18 21:01:08 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 21:37:20 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ void    minimap(t_var *vars, unsigned int color)
     t_point end;
     t_point p;
 
-    w = 320;
-    h = 384;
+    w = 592;
+    h = 224;
     set_point(&upper_left, 0, 0, 0);
     set_point(&lower_right, w, h, 0);
     print_bg((*vars).mini_img, upper_left, lower_right, color);
     x = 0;
     y = 0;
-    mapx = 10;
-    mapy = 12; 
-    maps = 32; 
+    mapx = 37;
+    mapy = 14; 
+    maps = 16; 
 
     while (y < mapy)    
     {
@@ -59,7 +59,7 @@ void    minimap(t_var *vars, unsigned int color)
                 print_bg((*vars).mini_img, begin, end, 0x66AEB6BF );
             if (x == (*vars).scene->p.mx && y == (*vars).scene->p.my)
             {   
-                set_point(&p, (xo +( maps / 2) - 5 ), (yo +( maps / 2) - 5), 10); 
+                set_point(&p, (xo + ( maps / 2) - 3), (yo +( maps / 2) - 3), 6); 
                 print_square_point((*vars).mini_img, p, 0x66F1C40F);
             }
             x++;
