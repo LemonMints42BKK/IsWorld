@@ -6,31 +6,60 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/13 12:25:03 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:01:16 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "game_setup.h"
+ 
+int map[120] = 
+{  
+    -1,-1,-1,1,1,1,1,1,1,1,
+    -1,-1,-1,1,0,0,0,0,0,1,
+    -1,-1,-1,1,0,0,0,0,0,1,
+    1,1,1,1,1,1,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,1,1,1,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,
+    1,0,0,0,0,0,0,0,0,1,
+    1,1,1,1,1,1,1,1,1,1
+};
 
-void    raycaster()
+void    raycaster(void)
 {
-    t_var  vars;
-    t_frame   scene;
+    t_var       vars;
+    t_data      bgimg;
+    t_data      mini;
+    t_frame     scene;
 
-    //call graphic system and init img frame
+    vars.bgimg = &bgimg;
+    vars.scene = &scene;
+    vars.mini_img = &mini;
+    scene.w = 1280;
+    scene.h = 720;
+    // scene.p.x = 5;
+    // scene.p.y = 6;
+    scene.map.mapx = 10;
+    scene.map.mapy = 12;
+    scene.map.maps = 32;
+    scene.map.map = map;
+    //deploy mlx instance and allocated window frame
 	vars.mlx = mlx_init();
-    vars.win = mlx_new_window(vars.mlx, 1024, 512, "isWorld-cub3D");
-    // init vars.mlx and vars.win into t_map struct
-    scene.vars = &vars;
+    vars.win = mlx_new_window(vars.mlx, scene.w, scene.h, "isWorld-cub3D");
     //init cavas in to frame
-   init(&scene);
-    //Keep file texture to img to struct of t_frame type
+    scene_init(&vars);
+    minimap_init(&vars);
 
+    //Keep file texture to img to struct of t_frame type
     /*windon controller*/
-    mlx_hook(vars.win, 17, 0L, free_on_exit, &vars); //DestroyNotify, NoEventMask
-    mlx_key_hook(vars.win, key_handler, &scene); //KeyPress, KeyPressMask
+    mlx_hook(vars.win, 17, 0, free_on_exit, &vars); //DestroyNotify, NoEventMask
+    mlx_key_hook(vars.win, bottons, &vars); //KeyPress, KeyPressMask
     /*loop to call display into the frame*/
-    mlx_loop_hook(vars.mlx, display, &scene);// loop scene into the frame ->displaing draws set
+    mlx_loop_hook(vars.mlx, display, &vars);// loop scene into the frame ->displaing draws set
 
     //It is an infinite loop that waits for an event
     mlx_loop(vars.mlx);

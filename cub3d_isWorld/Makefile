@@ -6,13 +6,13 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2023/11/10 20:23:46 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/11/18 13:17:22 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= cub3d
 CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror -fsanitize=address -g
 M		:= make
 
 SRC		:= cub3d.c

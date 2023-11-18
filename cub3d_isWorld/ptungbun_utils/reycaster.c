@@ -6,36 +6,37 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/13 11:51:14 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:36:57 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+#include "../game_setup.h"
 
-void    init(t_frame *scene)
+void    scene_init(t_var *vars)
 {
-    void    *mlx;
     t_data  *img;
-    t_pos   *player;
-
-    mlx = (*scene).vars->mlx;
-    img = &(*scene).img;
-    player = &(*scene).player;
-    img->img = mlx_new_image((void *)mlx, 1024, 512);
-    img->addr = mlx_get_data_addr(img->img, \
-    &img->bits_per_pixel, &img->line_length, &img->endian);
-    player->px = 300;
-    player->py = 300;
+    t_frame *scene;
+         
+    img = (*vars).bgimg;
+    scene = (*vars).scene;
+    scene->bgc = 0x0034495E; 
+    img->img = mlx_new_image((*vars).mlx, scene->w, scene->h);
+    img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);
 }
 
-int    display(t_frame *scene)
+void    minimap_init(t_var *vars)
 {
-    t_var   *vars;
-    t_data  img;
+    t_data  *img;
+         
+    img = (*vars).mini_img;
+    img->img = mlx_new_image((*vars).mlx, 320, 384);
+    img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);    
+}
 
-    vars = (*scene).vars;
-    img = (*scene).img;
-    draw_player(scene);
-    mlx_put_image_to_window(vars->mlx, vars->win, img.img, 0, 0);
+int    display(t_var *vars)
+{
+    background(vars, (*vars).scene->bgc);
+    minimap(vars, 0xCCBFC9CA);
     return (0);
 }

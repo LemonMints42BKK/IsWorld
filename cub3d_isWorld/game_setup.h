@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/13 09:13:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:00:04 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,59 @@
 typedef float			t_glfoat;
 typedef unsigned int	t_gluint;
 
-typedef struct s_mlx_img_list
+typedef struct s_color
 {
-	int						width;
-	int						length;
-	char					*buffer;
-	t_glfoat				vertexes[8];
-	struct s_mlx_img_list	*next;
-}	t_mlx_img_list;
+	int	r;
+	int	g;
+	int	b;
+}	t_color;
 
-typedef struct s_mlx_img_ctx
+typedef struct s_point
 {
-	t_gluint				texture;
-	t_gluint				vbuffer;
-	t_mlx_img_list			*img;
-	struct s_mlx_img_ctx	*next;
-}	t_mlx_img_ctx;
+	int	x;
+	int	y;
+	int s; //size
+}	t_point;
 
-typedef struct s_mlx_win_list
+typedef struct s_pos
 {
-	void					*winid;
-	t_mlx_img_ctx			*img_list;
-	int						nb_flush;
-	int						pixmgt;
-	struct s_mlx_win_list	*next;
-}	t_mlx_win_list;
+	int	mx;
+	int	my;
+}	t_pos;
 
-typedef struct s_mlx_ptr
+typedef struct s_data
 {
-	void			*appid;
-	t_mlx_win_list	*win_list;
-	t_mlx_img_list	*img_list;
-	void			(*loop_hook)(void *);
-	void			*loop_hook_data;
-	void			*lop_timer;
-	t_mlx_img_list	*font;
-	int				main_loop_active;
-}	t_mlx_ptr;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		llen;
+	int		endian;
+}	t_data;
 
-typedef struct	s_var {
-	void	*mlx;
-	void	*win;
+typedef struct s_map
+{
+	int	mapx;
+	int	mapy;
+	int maps;
+	int	*map;
+}	t_map;
+
+typedef struct s_frame
+{
+	int	w;//width
+	int	h;//height
+	t_pos	p;//player position
+	unsigned int	bgc; //backgound color
+	t_map	*map;
+}	t_frame; 
+
+typedef struct t_var
+{
+	void	*mlx; //mlx_init()
+	void	*win; //mlx_new_window()
+	t_data	*bgimg; //mlx_new_image()
+	t_data	*mini_img;
+	t_frame *scene;
 }	t_var;
+
 #endif

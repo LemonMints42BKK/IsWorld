@@ -6,13 +6,14 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/13 10:07:38 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:37:03 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <math.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -36,41 +37,6 @@
 # define KEY_D_RIGHT 2
 # define KEY_W_UP 13
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}	t_data;
-
-typedef struct s_meta
-{
-	char	*no;
-	char	*so;
-	char	*we;
-	char	*ea;
-	char	*f;
-	char	*c;
-}	t_meta;
-
-typedef struct s_pos
-{
-	int	px;
-	int	py;
-}	t_pos;
-
-typedef struct s_frame
-{
-	t_meta	*info;
-	char	**map;
-	t_pos	player;
-	int		row;
-	int		col;
-	t_data	img;
-	t_var	*vars;
-}	t_frame;
-
 /*pnopjira_utils*/
 char	*get_next_line(int fd);
 int		check_invalid_mapfile(char *maps_path);
@@ -78,15 +44,21 @@ int		explicit_error(int stage);
 int		invalid_filepath(char *maps_path, char *path, char *format);
 int		invalid_mapdata(char *maps_path);
 void	ck_data_format(char *tmp, int *err);
-int		key_handler(int keycode,t_frame *scene);
-int		free_on_exit(int keycode, t_var *vars);
+int		bottons(int keycode,t_var *vars);
+int		free_on_exit(t_var *vars);
 
 /*ptungbun_utils*/
-void    raycaster();
-void	init(t_frame *scene);
-int    display(t_frame *scene);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void    raycaster(void);
+void	scene_init(t_var *vars);
+void    minimap_init(t_var *vars);
+int		display(t_var *vars);
+void	background(t_var *vars, unsigned int color);
+void    minimap(t_var *vars, unsigned int color);
+// void    print_bg(t_data *img, int x, int y, unsigned int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+int     color3f(int r, int g, int b);
+// void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // test drawing
-void    draw_player(t_frame *mini);
+// void    draw_player(t_frame *mini);
 #endif
 
