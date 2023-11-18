@@ -6,13 +6,13 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2023/11/15 18:38:43 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/11/16 10:06:25 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= sample
 CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror
+CFLAGS	:= -Wall -Wextra -Werror -g -fsanitize=address -fsanitize=undefined 
 M		:= make
 
 SRC		:= sample.c
