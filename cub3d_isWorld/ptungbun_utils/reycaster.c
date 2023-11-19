@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/19 15:39:48 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/19 20:15:35 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void    minimap_init(t_var *vars)
 
     map = (*vars).scene->map; 
     img = (*vars).mini_img;
-    // img->img = mlx_new_image((*vars).mlx, 592, 224);
     img->img = mlx_new_image((*vars).mlx, map->mapx * map->maps, map->mapy * map->maps);
     img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);    
 }

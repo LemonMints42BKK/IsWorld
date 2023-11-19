@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/19 16:25:41 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:30:18 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct s_point
 
 typedef struct s_pos
 {
-	int	mx;
-	int	my;
-	int ms;
+	t_point	*mapp;
+	t_point *pos;
+	int		ms;
 }	t_pos;
 
 typedef struct s_data

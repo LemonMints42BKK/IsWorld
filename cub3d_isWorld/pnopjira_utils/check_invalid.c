@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/19 16:39:34 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:47:27 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@ int	check_invalid_mapfile(char *maps_path)
 {
 	if (invalid_filepath(maps_path, "maps/", ".cub"))
         return (ft_putstr_fd(GREEN"Used: maps/<filename>.cub\n"RESET, 2)\
-        , 1);
+        , EXIT_FAILURE);
     if (explicit_error(invalid_mapdata(maps_path)))
-        return (1);
-	return (0);
+        return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int	explicit_error(int stage)

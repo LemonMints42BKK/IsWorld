@@ -22,9 +22,11 @@ void    minimap(t_var *vars, unsigned int color)
     int yo;
     t_point begin;
     t_point end;
+    t_pos   *pos;
     t_point p;
 
     map = (*vars).scene->map;
+    pos = (*vars).scene->p;
     x = 0;
     y = 0;
     set_point(&begin, 0, 0, 0);
@@ -45,10 +47,9 @@ void    minimap(t_var *vars, unsigned int color)
                 print_bg((*vars).mini_img, begin, end, 0x66000000);
             else if ((*vars).scene->map->map[y * map->mapx + x] == -1)
                 print_bg((*vars).mini_img, begin, end, 0x66AEB6BF );
-            if (x == (*vars).scene->p->mx && y == (*vars).scene->p->my)
+            if ((x+1) == pos->mapp->x && (y+1) == pos->mapp->y)
             {   
-                set_point(&p, (xo + ( map->maps / 2) - ((*vars).scene->p->ms /2)), (yo +( map->maps / 2) - ((*vars).scene->p->ms /2)), (*vars).scene->p->ms); 
-                // set_point(&p, (xo + ( map->maps / 2) - 2), (yo +( map->maps / 2) - 2), 5); 
+                set_point(&p, pos->pos->x, pos->pos->y, pos->ms); 
                 print_square_point((*vars).mini_img, p, 0x66F1C40F);
             }
             x++;
