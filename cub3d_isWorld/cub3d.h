@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/18 20:35:09 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/19 14:32:09 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		free_on_exit(t_var *vars);
 
 /*ptungbun_utils*/
 //cub3d
-void    raycaster(void);
+void    raycaster(t_var *vars);
 //reycaster
 void	scene_init(t_var *vars);
 void    minimap_init(t_var *vars);
