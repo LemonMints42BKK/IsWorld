@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/12 11:31:05 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:39:34 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ int	check_invalid_mapfile(char *maps_path)
 
 int	explicit_error(int stage)
 {
-    if (stage != 0)
-        ft_putstr_fd(RED"error\n"RESET, 2);
+	if (stage != 0)
+		perror(RED"Error\n"RESET);
     if (stage == 1)
         ft_putstr_fd(RED":empty file\n"RESET, 2);
     else if (stage == 2)
         ft_putstr_fd(RED":the type identifier is invalid\n"RESET, 2);
     else if (stage == 3)
         ft_putstr_fd(RED":the map is invalid\n"RESET, 2);
+	else if (stage == 4)
+		ft_putstr_fd(RED":the map is too big or too small\n"RESET, 2);
     else if (stage != 0)
         ft_putstr_fd(RED":unindentify\n"RESET, 2);
     return (stage);

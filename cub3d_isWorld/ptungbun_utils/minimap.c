@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap->c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:27:40 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/18 21:37:20 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:26:24 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,40 @@
 
 void    minimap(t_var *vars, unsigned int color)
 {   
-    int w;
-    int h;
+    t_map   *map;
     int x;
-    int y;
-    
+    int y;    
     int xo;
     int yo;
-    int mapx;
-    int mapy;
-    int maps;
-    t_point upper_left;
-    t_point lower_right;
     t_point begin;
     t_point end;
     t_point p;
 
-    w = 592;
-    h = 224;
-    set_point(&upper_left, 0, 0, 0);
-    set_point(&lower_right, w, h, 0);
-    print_bg((*vars).mini_img, upper_left, lower_right, color);
+    map = (*vars).scene->map;
     x = 0;
     y = 0;
-    mapx = 37;
-    mapy = 14; 
-    maps = 16; 
-
-    while (y < mapy)    
+    set_point(&begin, 0, 0, 0);
+    set_point(&end, map->mapx * map->maps, map->mapy * map->maps, 0);
+    print_bg((*vars).mini_img, begin, end, color);
+    while (y < map->mapy)    
     {
         x = 0;
-        while (x < mapx)
+        while (x < map->mapx)
         {
-            xo = x * maps;
-            yo = y * maps;
+            xo = x * map->maps;
+            yo = y * map->maps;
             set_point(&begin, xo +1 , yo + 1, 0);
-            set_point(&end, xo + maps -1 , yo + maps -1, 0);
-            if ((*vars).scene->map->map[y * mapx + x] == 1)
+            set_point(&end, xo + map->maps -1 , yo + map->maps -1, 0);
+            if ((*vars).scene->map->map[y * map->mapx + x] == 1)
                 print_bg((*vars).mini_img, begin, end, 0x66FFFFFF);
-            else if ((*vars).scene->map->map[y * mapx + x] == 0)
+            else if ((*vars).scene->map->map[y * map->mapx + x] == 0)
                 print_bg((*vars).mini_img, begin, end, 0x66000000);
-            else if ((*vars).scene->map->map[y * mapx + x] == -1)
+            else if ((*vars).scene->map->map[y * map->mapx + x] == -1)
                 print_bg((*vars).mini_img, begin, end, 0x66AEB6BF );
-            if (x == (*vars).scene->p.mx && y == (*vars).scene->p.my)
+            if (x == (*vars).scene->p->mx && y == (*vars).scene->p->my)
             {   
-                set_point(&p, (xo + ( maps / 2) - 3), (yo +( maps / 2) - 3), 6); 
+                set_point(&p, (xo + ( map->maps / 2) - ((*vars).scene->p->ms /2)), (yo +( map->maps / 2) - ((*vars).scene->p->ms /2)), (*vars).scene->p->ms); 
+                // set_point(&p, (xo + ( map->maps / 2) - 2), (yo +( map->maps / 2) - 2), 5); 
                 print_square_point((*vars).mini_img, p, 0x66F1C40F);
             }
             x++;
