@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   raycaster.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 13:03:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/24 11:07:07 by pnopjira         ###   ########.fr       */
+/*   Created: 2023/11/15 18:09:34 by pnopjira          #+#    #+#             */
+/*   Updated: 2023/11/15 18:25:02 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef RAYCASTER_H
+# define RAYCASTER_H
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*tmp;
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <math.h>
+# include <OpenGL/gl3.h>
+# include "mlx/mlx.h"
 
-	tmp = *lst;
-	while (*lst != NULL)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
-}
+
+
+#endif

@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   mlx_png.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
+/*   By: pnopjira <pnopjira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 13:03:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/24 11:07:07 by pnopjira         ###   ########.fr       */
+/*   Created: 2023/04/11 15:35:41 by pnopjira          #+#    #+#             */
+/*   Updated: 2023/04/11 15:35:48 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_lstclear(t_list **lst, void (*del)(void *))
-{
-	t_list	*tmp;
-
-	tmp = *lst;
-	while (*lst != NULL)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
-}
+void	*mlx_png_file_to_image(void *xvar, char *file, int *width, int *height);

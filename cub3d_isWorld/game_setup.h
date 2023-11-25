@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/19 18:30:18 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/25 06:56:11 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 
 typedef struct s_map
 {
+	t_list	*iden;
+	bool	map_begin;
 	int	mapx;
 	int	mapy;
 	int maps;
@@ -55,10 +57,10 @@ typedef struct s_frame
 {
 	int	w;//width
 	int	h;//height
-	t_pos	*p;//player position
 	unsigned int	bgc; //backgound color
+	t_pos	*p;//player position
 	t_map	*map;
-}	t_frame; 
+}	t_frame;
 
 typedef struct t_var
 {
