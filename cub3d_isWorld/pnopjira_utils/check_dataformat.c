@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/25 06:51:06 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/25 07:27:26 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,10 @@ void ck_data_format(char *tmp, int *err, t_var *vars)
 {
 	if (tmp[0] == '\n' && tmp[1] == '\0')
 	{
-		printf("newline\n"); //for test
-		*err = 0;
+		if ((*vars).scene->map->map_begin == true)
+			*err = 5;
+		else
+			*err = 0;
 	}
 	else if ( !ft_strncmp( tmp, "NO ", 3) || !ft_strncmp( tmp, "SO ", 3) \
 	|| !ft_strncmp( tmp, "WE ", 3) || !ft_strncmp( tmp, "EA ", 3))
@@ -93,8 +95,5 @@ void ck_data_format(char *tmp, int *err, t_var *vars)
 		*err = 0;
 	}
 	else
-	{
-		printf(RED"ERROR"RESET"%s", tmp); //for test
 		*err = -1;
-	}
 }

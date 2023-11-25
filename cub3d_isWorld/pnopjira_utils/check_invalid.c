@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/25 06:55:05 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/25 07:20:42 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	explicit_error(int stage)
     if (stage == 1)
         ft_putstr_fd(RED":empty file\n"RESET, 2);
     else if (stage == 2)
-        ft_putstr_fd(RED":the identity type is invalid\n"RESET, 2);
+        ft_putstr_fd(RED":the identity type is invalid or lost\n"RESET, 2);
     else if (stage == 3)
         ft_putstr_fd(RED":the file path is invalid\n"RESET, 2);
 	else if (stage == 4)
@@ -31,6 +31,23 @@ int	explicit_error(int stage)
     else if (stage != 0)
         ft_putstr_fd(RED":unindentify\n"RESET, 2);
     return (stage);
+}
+
+int	ck_inden(int *err, t_list *iden)
+{
+	t_list	*tmp;
+
+	tmp = iden;
+	while(tmp)
+	{
+		if (ft_strlen(tmp->content) == 0)
+		{
+			*err = 2;
+			return (EXIT_FAILURE);
+		}
+		tmp = tmp->next;
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	rd_mapdata(char *maps_path, t_var *vars)
@@ -45,9 +62,9 @@ int	rd_mapdata(char *maps_path, t_var *vars)
 	line = get_next_line(fd);
 	while (line)
 	{
-		// if ((*vars).scene->map->map_begin == 1)
-		// 	if (ck_inden(line, &err, vars))
-		// 		break;
+		if ((*vars).scene->map->map_begin == 1)
+			if (ck_inden(&err, vars->scene->map->iden))
+				break;
 		tmp = ft_strtrim(line, " ");
 		free(line);
 		line = NULL;
@@ -98,13 +115,8 @@ int	invalid_color_code(char *rgb)
 
 	i = 0;
 	color = ft_split(rgb, ',');
-	printf("%s\n", rgb);
 	while (color[i])
-	{	//printf("%s\n", color[i]);
-		i++;}
-	printf("%d\n", i);
-	// printf("%s\n", color[1]);
-	// printf("%s\n", color[3]);
+		i++;
 	if (i > 3)
 		return (perror(RED"Error: Invalid color code "RESET), 1);
 	else if (ft_strlen(rgb) < 7)

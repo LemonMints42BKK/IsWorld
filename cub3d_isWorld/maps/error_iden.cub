@@ -1,4 +1,4 @@
-NO ./texture/blue.xpm
+NO ./textures/blue.xpm
 SO ./textures/brick.xpm
 WE ./textures/grey.xpm
 EA ./textures/wood.xpm
