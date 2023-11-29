@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 12:34:04 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:39:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	init_player(t_pos *player)
 	p_pos->y = -1;
 	(*player).pos = NULL;
 	(*player).p_pos = p_pos;
+	(*player).one_player = false;
 	(*player).dir = 'N';
 	(*player).ms = 0;
 }

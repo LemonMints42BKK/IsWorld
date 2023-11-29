@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 07:45:14 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:32:43 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	init_map(t_frame *scene);
 int		mapsize(t_map *m);
 //01map_setup
 void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p);
+//02map_setup
+
 //free_allocated
 void	del(void *lst);
 void	free_scene(t_frame **scene);

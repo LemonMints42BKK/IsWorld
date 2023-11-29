@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 16:30:12 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:41:17 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@ void	del_nl(char **line)
 	}
 }
 
+int	setup_pos(char *dir,int x, int y, t_pos **p)
+{
+	if ((*p)->one_player == false)
+		(*p)->one_player = true;
+	else
+		return (EXIT_FAILURE);
+	if ((*p)->p_pos)
+		set_point((*p)->p_pos, x, y, 0);
+	(*p)->dir = *dir;
+	return (EXIT_SUCCESS);
+}
+
 int	setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p)
 {
 	int		x;
@@ -39,10 +51,8 @@ int	setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p)
 	{
 		if (mapdata[j][x] == 'N' || mapdata[j][x] == 'S' || mapdata[j][x] == 'W' || mapdata[j][x] == 'E')
 		{
-			if ((*p)->p_pos)
-				set_point((*p)->p_pos, x, j, 0);
-			(*p)->dir = mapdata[j][x];
-			mapdata[j][x] = '0';
+			if (setup_pos(&mapdata[j][x], x, j, p))
+				return (5);
 		}
 		else if (!(mapdata[j][x] == '0' || mapdata[j][x] == '1' || mapdata[j][x] == ' '))
 			return (5);
@@ -85,9 +95,8 @@ void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p)
 	(*map)->map_original = mapdata;
 	if ((*p)->p_pos->x == -1 && (*p)->p_pos->y == -1)
 		*err = 5;
-	printf("pmx: %d, pmy: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
-	printf("mapx: %d, mapy: %d line map:%d\n", (*map)->mapx, (*map)->mapy, (*map)->line_map_begin);
-	printf("map original: %p\n", (*map)->map_original);
+	printf("px: %d, py: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
+	printf("mapx: %d, mapy: %d\n", (*map)->mapx, (*map)->mapy);
 	if(line)
 		free(line);
 	close(fd2);
