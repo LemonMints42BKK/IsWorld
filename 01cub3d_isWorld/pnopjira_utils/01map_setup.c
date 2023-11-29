@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 12:56:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:30:12 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p)
 			(*p)->dir = mapdata[j][x];
 			mapdata[j][x] = '0';
 		}
+		else if (!(mapdata[j][x] == '0' || mapdata[j][x] == '1' || mapdata[j][x] == ' '))
+			return (5);
 		x++;
 	}
 	if ((int)ft_strlen(mapdata[j]) > (*map)->mapx)
@@ -64,7 +66,7 @@ void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p)
 	if (!mapdata)
 		mapdata = NULL;
 	line = get_next_line(fd2);
-	while (line)
+	while (line && *err == 0)
 	{
 		if (i++ < ((*map)->line_map_begin - 1))
 			free(line);
@@ -80,13 +82,13 @@ void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p)
 		line = get_next_line(fd2);
 	}
 	mapdata[j] = NULL;
-	(*map)->mapy = j;
+	(*map)->map_original = mapdata;
+	if ((*p)->p_pos->x == -1 && (*p)->p_pos->y == -1)
+		*err = 5;
 	printf("pmx: %d, pmy: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
 	printf("mapx: %d, mapy: %d line map:%d\n", (*map)->mapx, (*map)->mapy, (*map)->line_map_begin);
-	(*map)->map_original = mapdata;
 	printf("map original: %p\n", (*map)->map_original);
 	if(line)
 		free(line);
 	close(fd2);
-	*err = 0;
 }
