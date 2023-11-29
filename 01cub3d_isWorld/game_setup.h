@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/27 22:37:18 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:31:26 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,15 @@
 
 # include "libft/libft.h"
 # include <stdbool.h>
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		llen;
+	int		endian;
+}	t_data;
 
 typedef struct s_color
 {
@@ -27,24 +36,16 @@ typedef struct s_point
 {
 	int	x;
 	int	y;
-	int s; //size
+	int s;
 }	t_point;
 
 typedef struct s_pos
 {
-	t_point	*mapp;
+	t_point	*p_pos;
 	t_point *pos;
+	char	dir;
 	int		ms;
 }	t_pos;
-
-typedef struct s_data
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		llen;
-	int		endian;
-}	t_data;
 
 typedef struct s_map
 {
@@ -55,7 +56,7 @@ typedef struct s_map
 	int	mapy;
 	int maps;
 	int	*map;
-	char	**map1;
+	char	**map_original;
 }	t_map;
 
 typedef struct s_frame

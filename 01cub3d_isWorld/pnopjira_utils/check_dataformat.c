@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/27 21:09:35 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/28 22:30:14 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,28 @@ void	ck_data_format(char *tmp, int *err, t_map **map)
 		*err = ck_map_info(map);
 	else
 		*err = -1;
+}
+
+void	ck_invalid_data(int *err, int fd1, t_map **map)
+{
+	char	*line;
+	char	*tmp;
+	
+	line = get_next_line(fd1);
+	while (line)
+	{
+		if (before_map(map, err))
+			break ;
+		tmp = ft_strtrim(line, " ");
+		free(line);
+		line = NULL;
+		ck_data_format(tmp, err, map);
+		free(tmp);
+		if (*err != 0)
+			break ;
+		line = get_next_line(fd1);
+	}
+	if (line)
+		free(line);
+	close(fd1);
 }

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/27 22:27:59 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/29 07:45:14 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,28 +40,31 @@
 
 /*cub3d*/
 int     raycaster(t_var *vars);
-int		check_invalid_filedata(char *maps_path, t_map **map);
+int		check_invalid_filedata(char *maps_path, t_map **map, t_pos **p);
 /*pnopjira_utils*/
 //check_invalid
 int		explicit_error(int stage);
 int		invalid_filepath(char *maps_path, char *path, char *format);
 int		invalid_color_code(char *rgb);
 int		ck_identify(int *err, t_list *iden);
-int		rd_mapdata(char *maps_path, t_map **map);
+int		before_map(t_map **map, int *err);
 //check_dataformat
 int		init_content(t_list **iden, char **dst, char **src, char *key);
 int		ck_no_so_we_ea(char *tmp, t_list **iden);
 int		ck_f_c_color(char *tmp, t_list **iden);
 void	ck_data_format(char *tmp, int *err, t_map **map);
+void	ck_invalid_data(int *err, int fd1, t_map **map);
 //00map_setup
+int		rd_mapdata(char *maps_path, t_map **map, t_pos **p);
 void	key_to_content(void **iden, char *key, char *content);
 void    iden_list(t_list **iden);
 void	init_map(t_frame *scene);
 int		mapsize(t_map *m);
 //01map_setup
-int		rd_mapdata_only(char *maps_path, t_map **map);
+void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p);
 //free_allocated
 void	del(void *lst);
+void	free_scene(t_frame **scene);
 int		free_on_exit(t_var *vars);
 //get_next_line
 char	*get_next_line(int fd);
