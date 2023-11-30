@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 09:28:56 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:03:32 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,13 @@ int		setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p);
 void	before_map_line(int fd2, int map_begin, char **line);
 void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p);
 //02map_setup
+void	print_map_original(char **map_original, t_map **map, t_pos **p);
 int		mapsize(t_map *m);
 void	key_to_content(void **iden, char *key, char *content);
+//03map_setup
+int		char_to_int_map(char **o_map, t_map **plan);
+void	print_new_map(int ***map, int j, int i);
+
 //free_allocated
 void	del(void *lst);
 void	free_scene(t_frame **scene);

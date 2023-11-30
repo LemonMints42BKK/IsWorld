@@ -6,11 +6,22 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 09:25:07 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:21:17 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	print_map_original(char **map_original, t_map **map, t_pos **p)
+{
+	char	**show_map;
+
+	show_map = map_original;
+	while (*show_map)
+		printf("%s\n", *(show_map++));
+	printf("px: %d, py: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
+	printf("mapx: %d, mapy: %d\n", (*map)->mapx, (*map)->mapy);
+}
 
 int	mapsize(t_map *m)
 {

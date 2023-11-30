@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 09:19:06 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 10:09:38 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_map
 	int		mapx;
 	int		mapy;
 	int 	maps;
-	int		*map;
+	int		**map;
 }	t_map;
 
 typedef struct s_frame

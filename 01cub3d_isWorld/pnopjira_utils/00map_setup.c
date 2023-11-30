@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 09:25:03 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:10:15 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)
 	int		fd1;
 	int		fd2;
 	int		err;
-	char	**show_map;
 	
 	err = 1;
 	fd1 = open(maps_path, O_RDONLY);
@@ -27,13 +26,12 @@ int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)
 	if (err == 0)
 		ck_invalid_map(&err, fd2, map, p);
 	if (err == 0)
+		err = char_to_int_map((*map)->map_original, map);
+	if (err == 0)
 	{	
-		show_map = (*map)->map_original;
-		while (*show_map)
-			printf("%s\n", *(show_map++));
+		print_map_original((*map)->map_original, map, p);
+		print_new_map(&(*map)->map, (*map)->mapy, (*map)->mapx);
 	}
-	printf("px: %d, py: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
-	printf("mapx: %d, mapy: %d\n", (*map)->mapx, (*map)->mapy);
 	return (err);
 }
 
