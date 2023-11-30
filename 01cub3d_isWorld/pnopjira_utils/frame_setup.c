@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:38:38 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 12:21:34 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:24:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	init_frame(t_frame *scene)
 		p->ms = 6;
 	else if (m->maps == 36)
 		p->ms = 12;
-//	printf("pmx: %d, pmy: %d dir:%c\n", p->p_pos->x, p->p_pos->y, p->dir);
 	set_player(p, p->p_pos->x, p->p_pos->y, p->ms, m->maps);  //set player position on map; (t_point) p_pos.x, p_pos.y)
 	m->map = map;
 	return (EXIT_SUCCESS);
 }
+

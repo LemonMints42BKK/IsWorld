@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 16:34:37 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:19:06 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_point
 
 typedef struct s_pos
 {
-	t_point	*p_pos;
 	t_point *pos;
+	t_point	*p_pos;
 	bool	one_player;
 	char	dir;
 	int		ms;
@@ -52,21 +52,21 @@ typedef struct s_map
 {
 	t_list	*iden;
 	bool	map_begin;
-	int	line_map_begin;
-	int	mapx;
-	int	mapy;
-	int maps;
-	int	*map;
+	int		line_map_begin;
 	char	**map_original;
+	int		mapx;
+	int		mapy;
+	int 	maps;
+	int		*map;
 }	t_map;
 
 typedef struct s_frame
 {
-	int	w;//width
-	int	h;//height
+	int				w;//width
+	int				h;//height
 	unsigned int	bgc; //backgound color
-	t_pos	*p;//player position
-	t_map	*map;
+	t_pos			*p;//player position
+	t_map			*map;
 }	t_frame; 
 
 typedef struct t_var

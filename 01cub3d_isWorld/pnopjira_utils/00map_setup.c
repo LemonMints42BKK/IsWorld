@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 16:39:00 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:25:03 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,23 @@ int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)
 	int		fd1;
 	int		fd2;
 	int		err;
-
+	char	**show_map;
+	
 	err = 1;
 	fd1 = open(maps_path, O_RDONLY);
 	fd2 = open(maps_path, O_RDONLY);
 	ck_invalid_data(&err, fd1, map);
 	if (err == 0)
 		ck_invalid_map(&err, fd2, map, p);
-	return (err);
-}
-
-void	key_to_content(void **iden, char *key, char *content)
-{
-	t_list	*tmp;
-
-	tmp = *iden;
-	while (tmp)
-	{
-		if (ft_strncmp(tmp->key, key, ft_strlen(key)) == 0)
-		{
-			if (tmp->content)
-				free(tmp->content);
-			tmp->content = ft_strdup(content);
-			return ;
-		}
-		tmp = tmp->next;
+	if (err == 0)
+	{	
+		show_map = (*map)->map_original;
+		while (*show_map)
+			printf("%s\n", *(show_map++));
 	}
+	printf("px: %d, py: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
+	printf("mapx: %d, mapy: %d\n", (*map)->mapx, (*map)->mapy);
+	return (err);
 }
 
 void	iden_list(t_list **iden)
@@ -61,11 +52,11 @@ void	init_plan(t_map *plan)
 	(*plan).iden = NULL;
 	(*plan).map_begin = false;
 	(*plan).line_map_begin = 0;
+	(*plan).map_original = NULL;
 	(*plan).mapx = 0;
 	(*plan).mapy = 0;
 	(*plan).maps = 0;
 	(*plan).map = NULL;
-	(*plan).map_original = NULL;
 }
 
 void	init_player(t_pos *player)
@@ -91,45 +82,9 @@ void	init_map(t_frame *scene)
 
 	plan = malloc(sizeof(t_map) * 1);
 	player = malloc(sizeof(t_pos) *1);
-	
-	//map plan
 	init_plan(plan);
-	// (*plan).iden = NULL;
-	// (*plan).map_begin = false;
-	// (*plan).line_map_begin = 0;
-	// (*plan).mapx = 0;
-	// (*plan).mapy = 0;
-	// (*plan).maps = 0;
-	// (*plan).map = NULL;
-	// (*plan).map1 = NULL;
-	//player
 	init_player(player);
-	// (*player).pos = NULL;
-	// (*player).p_pos = NULL;
-	// (*player).dir = 'N';
-	// (*player).ms = 0;
-	
 	(*scene).p = player;
 	iden_list(&(*plan).iden);
 	(*scene).map = plan;
-}
-
-int	mapsize(t_map *m)
-{
-	if (((*m).mapx > 12 || (*m).mapy > 12) && \
-	((*m).mapx >= 3 && (*m).mapy >= 3))
-	{
-		if ((*m).mapx <= 38 && (*m).mapy <= 38)
-			(*m).maps = 18;
-		else
-			return (EXIT_FAILURE);
-	}
-	else
-	{
-		if ((*m).mapx < 3 || (*m).mapy < 3)
-			return (EXIT_FAILURE);
-		else
-			(*m).maps = 36;
-	}
-	return (EXIT_SUCCESS);
 }

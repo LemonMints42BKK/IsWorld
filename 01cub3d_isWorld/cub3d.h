@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 19:32:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:28:56 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 /*cub3d*/
 int     raycaster(t_var *vars);
 int		check_invalid_filedata(char *maps_path, t_map **map, t_pos **p);
+
 /*pnopjira_utils*/
 //check_invalid
 int		explicit_error(int stage);
@@ -56,14 +57,19 @@ void	ck_data_format(char *tmp, int *err, t_map **map);
 void	ck_invalid_data(int *err, int fd1, t_map **map);
 //00map_setup
 int		rd_mapdata(char *maps_path, t_map **map, t_pos **p);
-void	key_to_content(void **iden, char *key, char *content);
 void    iden_list(t_list **iden);
+void	init_plan(t_map *plan);
+void	init_player(t_pos *player);
 void	init_map(t_frame *scene);
-int		mapsize(t_map *m);
 //01map_setup
+void	del_nl(char **line);
+int		setup_pos(char *dir,int x, int y, t_pos **p);
+int		setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p);
+void	before_map_line(int fd2, int map_begin, char **line);
 void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p);
 //02map_setup
-
+int		mapsize(t_map *m);
+void	key_to_content(void **iden, char *key, char *content);
 //free_allocated
 void	del(void *lst);
 void	free_scene(t_frame **scene);
