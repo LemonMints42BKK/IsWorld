@@ -32,12 +32,12 @@ void	draw_minimap(t_var *vars, t_map **plan, t_point *begin, t_point *end)
             yo = y * (*plan)->maps;
             set_point(begin, xo +1 , yo + 1, 0);
             set_point(end, xo + (*plan)->maps -1 , yo + (*plan)->maps -1, 0);
-            // if ((*plan)->map[y * (*plan)->mapx + x] == 1)
-            //     print_bg((*vars).mini_img, *begin, *end, 0x66FFFFFF);
-            // else if ((*plan)->map[y * (*plan)->mapx + x] == 0)
-            //     print_bg((*vars).mini_img, *begin, *end, 0x66000000);
-            // else if ((*plan)->map[y * (*plan)->mapx + x] == -1)
-            //     print_bg((*vars).mini_img, *begin, *end, 0x66AEB6BF );
+            if ((*plan)->map[y][x] == 1)
+                print_bg((*vars).mini_img, *begin, *end, 0x66FFFFFF);
+            else if ((*plan)->map[y][x] == 0)
+                print_bg((*vars).mini_img, *begin, *end, 0x66000000);
+            else if ((*plan)->map[y][x] == -1)
+                print_bg((*vars).mini_img, *begin, *end, 0x66AEB6BF );
             x++;
         }
         y++;

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 16:07:03 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:26:38 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,21 @@ int	char_to_int_map(char **o_map, t_map **plan)
 	return (EXIT_SUCCESS);
 }
 
+int	ck_map_info(t_map **map)
+{
+	if ((*map)->map_begin == 0)
+	{
+		(*map)->map_begin = 1;
+		(*map)->mapy++;
+	}
+	else
+	{
+		(*map)->mapy++;
+	}
+	return (EXIT_SUCCESS);
+}
+
+//for test
 void print_new_map(int ***map, int j, int i)
 {
 	int x;

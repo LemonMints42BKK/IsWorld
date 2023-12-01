@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/28 22:30:14 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:26:20 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,6 @@ int	ck_f_c_color(char *tmp, t_list **iden)
 	if (ft_strncmp(str2, "C ", 2) == 0)
 		if (init_content(iden, &str1, &str2, "C"))
 			return (free(str1), 6);
-	return (EXIT_SUCCESS);
-}
-
-int	ck_map_info(t_map **map)
-{
-	if ((*map)->map_begin == 0)
-	{
-		(*map)->map_begin = 1;
-		(*map)->mapy++;
-	}
-	else
-	{
-		(*map)->mapy++;
-	}
 	return (EXIT_SUCCESS);
 }
 

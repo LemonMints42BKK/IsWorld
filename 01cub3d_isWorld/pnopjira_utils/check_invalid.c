@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/28 22:30:56 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:27:45 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,32 +109,3 @@ int before_map(t_map **map, int *err)
 		++(*map)->line_map_begin;
 	return (EXIT_SUCCESS);
 }
-
-// int	rd_mapdata(char *maps_path, t_map **map)
-// {
-// 	char	*line;
-// 	char	*tmp;
-// 	int		fd1;
-// 	int		err;
-
-// 	err = 1;
-// 	fd1 = open(maps_path, O_RDONLY);
-// 	line = get_next_line(fd1);
-// 	while (line)
-// 	{
-// 		if (before_map(map, &err))
-// 			break ;
-// 		tmp = ft_strtrim(line, " ");
-// 		free(line);
-// 		line = NULL;
-// 		ck_data_format(tmp, &err, map);
-// 		free(tmp);
-// 		if (err != 0)
-// 			break ;
-// 		line = get_next_line(fd1);
-// 	}
-// 	if (line)
-// 		free(line);
-// 	close(fd1);
-// 	return (err);
-// }

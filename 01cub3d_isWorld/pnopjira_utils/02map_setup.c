@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 10:21:17 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 11:51:37 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_map_original(char **map_original, t_map **map, t_pos **p)
 	printf("mapx: %d, mapy: %d\n", (*map)->mapx, (*map)->mapy);
 }
 
-int	mapsize(t_map *m)
+int	mapsize(t_map *m, t_pos *p)
 {
 	if (((*m).mapx > 12 || (*m).mapy > 12) && \
 	((*m).mapx >= 3 && (*m).mapy >= 3))
@@ -40,6 +40,10 @@ int	mapsize(t_map *m)
 		else
 			(*m).maps = 36;
 	}
+	if ((*m).maps == 18)
+		(*p).ms = 6;
+	else if ((*m).maps == 36)
+		(*p).ms = 12;
 	return (EXIT_SUCCESS);
 }
 

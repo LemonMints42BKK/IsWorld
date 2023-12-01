@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 16:07:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:32:54 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ int	check_invalid_filedata(char *maps_path, t_map **map, t_pos **p)
 		EXIT_FAILURE);
 	if (explicit_error(rd_mapdata(maps_path, map, p)))
 		return (EXIT_FAILURE);
-	// if ((*map)->map_begin == true)
-	// {
-	// 	rd_mapdata_only(maps_path, map);
-	// }
 	return (EXIT_SUCCESS);
 }
 
@@ -38,13 +34,6 @@ int	raycaster(t_var *vars)
 	(*vars).mlx = mlx_init();
 	(*vars).win = mlx_new_window((*vars).mlx, (*vars).scene->w, \
 	(*vars).scene->h, "isWorld-cub3D");
-	// t_list	*temp;
-	// temp = (*vars).scene->map->iden;
-	// while (temp)
-	// {
-	// 	printf("%s:%s\n", temp->key, temp->content);
-	// 	temp = temp->next;
-	// }
 	//init cavas in to frame
 	scene_init(vars);
 	minimap_init(vars);
@@ -79,9 +68,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	else
-	{
 		if (raycaster(&vars))
 			return (EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }

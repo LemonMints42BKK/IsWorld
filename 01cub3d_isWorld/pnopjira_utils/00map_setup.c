@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 16:10:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 10:30:50 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)
 	if (err == 0)
 	{	
 		print_map_original((*map)->map_original, map, p);
-		print_new_map(&(*map)->map, (*map)->mapy, (*map)->mapx);
+		// print_new_map(&(*map)->map, (*map)->mapy, (*map)->mapx); // for test
 	}
 	return (err);
 }
