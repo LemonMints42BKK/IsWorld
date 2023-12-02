@@ -60,7 +60,8 @@ void	draw_player(t_var *vars, t_map **plan, t_pos **p)
 			if ((x+1) == (*p)->p_pos->x && (y+1) == (*p)->p_pos->y)
         	{   
             	set_point(&py, (*p)->pos->x, (*p)->pos->y, (*p)->ms); 
-            	print_square_point((*vars).mini_img, py, 0x66F1C40F);
+ //           	print_square_point((*vars).mini_img, py, 0x66F1C40F);
+				print_player_charater((*vars).mini_img, py, 0x66F1C40F);
         	}
 			x++;
 		}

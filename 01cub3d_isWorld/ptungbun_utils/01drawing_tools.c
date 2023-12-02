@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:27:31 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/28 22:43:56 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:15:38 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,34 @@ void	set_point(t_point *p,int x, int y, int s)
 	(*p).x = x;
 	(*p).y = y;
 	(*p).s = s;
+}
+
+void	print_player_charater(t_data *img, t_point p, unsigned int color)
+{
+	int i;
+	int j;
+	int s;
+
+	i = 0;
+	j = 0;
+	s = p.s;
+	if (color == 0)
+		color = 0x0059515E;
+	if (s < 1)
+		s = 1;
+	while (j < s)
+	{
+		i = 0;
+		while (i < s)
+		{
+			if (j < ((s * 2) / 3) && i >= (s / 3) && i < ((s * 2) / 3))
+				my_mlx_pixel_put(img, p.x + i, p.y + j, color);
+			if (j >= ((s * 2) / 3))
+				my_mlx_pixel_put(img, p.x + i, p.y + j, color);
+			i++;
+		}
+		j++;
+	}
 }
 
 void	print_square_point(t_data *img, t_point p, unsigned int color)
