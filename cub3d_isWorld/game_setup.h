@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 10:09:38 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:09:59 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 
 # include "libft/libft.h"
 # include <stdbool.h>
+
+typedef struct s_coor //coordinate
+{
+	double	x;
+	double	y;
+}	t_coor;
+
+typedef struct s_ray //raycasting
+{
+	double	ray_dist_on_cam;
+	t_coor	*ray_coor;
+	t_coor	*init_ray_dist;
+	t_coor	*ray_dist;
+}	t_ray;
 
 typedef struct s_data
 {
@@ -71,11 +85,21 @@ typedef struct s_frame
 
 typedef struct t_var
 {
-	void	*mlx; //mlx_init()
-	void	*win; //mlx_new_window()
-	t_data	*bgimg; //mlx_new_image()
+	void	*mlx; //main_mlx
+	void	*win; //main_window
+	t_data	*bgimg; //main_image
 	t_data	*mini_img;
 	t_frame *scene;
 }	t_var;
 
+typedef struct s_main
+{
+	t_var	*vars;
+	t_ray	*ray;
+	int		n_ray;
+	double	cur_time;
+	double	old_time;
+	bool	one_player;
+	int		ms;
+}	t_main;	
 #endif
