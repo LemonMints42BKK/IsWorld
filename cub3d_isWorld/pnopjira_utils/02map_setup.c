@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 11:51:37 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:55:38 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	mapsize(t_map *m, t_pos *p)
 			(*m).maps = 36;
 	}
 	if ((*m).maps == 18)
-		(*p).ms = 6;
+		(*p).ms = 6; //px
 	else if ((*m).maps == 36)
-		(*p).ms = 12;
+		(*p).ms = 12; //px
 	return (EXIT_SUCCESS);
 }
 
