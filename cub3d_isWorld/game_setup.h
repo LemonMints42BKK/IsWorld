@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/15 14:09:59 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/15 22:03:28 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,21 @@ typedef struct t_var
 	t_frame *scene;
 }	t_var;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_data	*img;
+}	t_mlx;
+
 typedef struct s_main
 {
-	t_var	*vars;
+	t_mlx 	*main_mlx;
+	t_map	*map;
+	t_pos	*player;
 	t_ray	*ray;
 	int		n_ray;
 	double	cur_time;
 	double	old_time;
-	bool	one_player;
-	int		ms;
 }	t_main;	
 #endif
