@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 10:32:54 by pnopjira         ###   ########.fr       */
+/*   Updated: 2023/12/15 21:49:32 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,59 @@ int	raycaster(t_var *vars)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	is_invalid_input(char *argv, t_main *main_struc)
 {
 	t_var	vars;
 	t_data	bgimg;
 	t_data	mini;
 	t_frame	scene;
 
+	(void)main_struc;
 	vars.bgimg = &bgimg;
 	vars.mini_img = &mini;
 	vars.scene = &scene;
 	init_map(&scene);
-	if (argc != 2)
-		return (perror(GREEN"USED: ./cud3d maps/<filename>.cub"RESET), \
-		EXIT_FAILURE);
-	if (check_invalid_filedata(argv[1], &scene.map, &scene.p))
+	
+	if (check_invalid_filedata(argv, &scene.map, &scene.p))
 	{
 		free_scene(&vars.scene);
 		return (EXIT_FAILURE);
 	}
-	else
-		if (raycaster(&vars))
-			return (EXIT_FAILURE);
+	else if (raycaster(&vars))
+		return (EXIT_FAILURE);
+	main_struc->map = scene.map;
+	return (EXIT_SUCCESS);
+}
+
+void	init_main_struct(t_main *main_struc)
+{
+	main_struc->main_mlx = NULL;
+	main_struc->map = NULL;
+	main_struc->player = NULL;
+	main_struc->ray = NULL;
+	main_struc->n_ray = 0;
+	main_struc->cur_time = 0;
+	main_struc->old_time = 0;
+	main_struc->one_player = false;	
+}
+
+void	cub3d_exit(t_main *main_struc)
+{
+	(void)main_struc;
+	exit(EXIT_SUCCESS);
+}
+
+int	main(int argc, char **argv)
+{
+	t_main	main_struc;
+	
+	init_main_struct(&main_struc);
+	if (argc != 2)
+		return (perror(GREEN"USED: ./cud3d maps/<filename>.cub"RESET), \
+		EXIT_FAILURE);
+	if(is_invalid_input(argv[1], &main_struc))
+		return (cub3d_exit(&main_struc), EXIT_FAILURE);
+	// if (reycaster_loop(&main_struc))
+	// 	return (cub3d_exit(&main_struc), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
