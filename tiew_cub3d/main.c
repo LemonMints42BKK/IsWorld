@@ -9,6 +9,7 @@ void	init_main_struct(t_main *main_struc)
 
 
 	t_map	*viewmap = malloc(sizeof(t_map));
+	int		**mmap = malloc(sizeof(int *) * 5);
 	t_pos	*player = malloc(sizeof(t_pos));
 	t_ray	*ray = malloc(sizeof(t_ray));
 
@@ -30,7 +31,8 @@ void	init_main_struct(t_main *main_struc)
 	viewmap->mapy = 5;
 	viewmap->maps = 12;
 	int map[5][5] = {{1,1,1,1,1}, {1,0,0,0,1}, {1,0,0,0,1}, {1,0,0,0,1}, {1,1,1,1,1}};
-	viewmap->map = &map[0][0];
+	mmap = (int **)map;
+	viewmap->map = mmap;
 	main_struc->map = viewmap;
 
 	//player
@@ -66,19 +68,42 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 	*(unsigned int*)dst = color;
 }
 
+void    print_bg(t_data *img, t_coor begin, t_coor end, unsigned int color)
+{
+    int i;
+    int j;
 
-// void	draw_minimap(t_main main_struc, unsigned int color)
+    i = begin.x;
+    j = begin.y;
+    while (j < end.y)
+    {
+        i = begin.x;
+        while (i < end.x)
+        {    my_mlx_pixel_put(img, i++, j, color);}
+        j++;
+    }
+}
+
+void	set_point(t_coor *p,double x, double y)
+{
+	(*p).x = x;
+	(*p).y = y;
+}
+
+// void	draw_minimap(t_main *main_struc, unsigned int color)
 // {
-// 	t_mlx	*main_mlx = main_struc.main_mlx;
+// 	t_mlx	*main_mlx = main_struc->main_mlx;
 // 	t_data	*mini_img = main_mlx->mini_img;
-// 	t_map	*viewmap = main_struc.map;
-// 	t_pos	*player = main_struc.player;
+// 	t_map	*viewmap = main_struc->map;
+// 	t_pos	*player = main_struc->player;
 // 	t_coor begin;
 // 	t_coor end;
 // 	int x;
 // 	int y;
 // 	int xo;
 // 	int yo;
+// 	(void)color;
+// 	(void)player;
 
 // 	x = 0;
 // 	y = 0;
@@ -89,8 +114,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 // 		{
 // 			xo = x * viewmap->maps;
 // 			yo = y * viewmap->maps;
-// 			set_point(&begin, xo +1 , yo + 1, 0);
-// 			set_point(&end, xo + viewmap->maps -1 , yo + viewmap->maps -1, 0);
+// 			set_point(&begin, xo +1 , yo + 1);
+// 			set_point(&end, xo + viewmap->maps -1 , yo + viewmap->maps -1);
 // 			if (viewmap->map[y][x] == 1)
 // 				print_bg(mini_img, begin, end, 0x66FFFFFF);
 // 			else if (viewmap->map[y][x] == 0)
@@ -101,34 +126,28 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 // 		}
 // 		y++;
 // 	}
+
+// 	mlx_put_image_to_window(main_mlx->mlx, main_mlx->win, mini_img->img, 10, 10);
 // }
 
 void	draw_background(t_main *main_struc, int color)
 {
 	t_mlx	*main_mlx = main_struc->main_mlx;
 	t_data	*main_img = main_mlx->img;
-	int x;
-	int y;
+	t_coor	begin;
+	t_coor	end;
 
-	x = 0;
-	y = 0;
-	while (y < 810)
-	{
-		x = 0;
-		while (x < 1440)
-		{
-			my_mlx_pixel_put(main_img, x, y, color);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(main_mlx->mlx, main_mlx->win, main_img->img, 0, 0);
+	set_point(&begin, 0, 0);
+	set_point(&end, 1440, 810);
+	print_bg(main_img, begin, end, color);
+//	mlx_put_image_to_window(main_mlx->mlx, main_mlx->win, main_img->img, 0, 0);
 }
 
 int	display(t_main *main_struc)
 {
-	//draw_minimap(main_struc, 0xCCBFC9CA);
+//	draw_minimap(main_struc, 0xCCBFC9CA);
 	draw_background(main_struc, 0x0034495E);
+	
 	return (EXIT_SUCCESS);
 }
 
@@ -177,6 +196,6 @@ int	main(int argc, char **argv)
 	// if(is_invalid_input(argv[1], &main_struc))
 	// 	return (cub3d_exit(&main_struc), EXIT_FAILURE);
 	if (reycaster_loop(&main_struc))
-		return (EXIT_FAILURE);
+		return (cub3d_exit(&main_struc), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
