@@ -29,7 +29,7 @@ typedef struct s_map
 	int		mapx;
 	int		mapy;
 	int 	maps;
-	int		**map;
+	int		*map;
 }	t_map;
 
 typedef struct s_data
@@ -45,7 +45,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	t_data	*main_img;
+	t_data	*img;
 	t_data	*mini_img;
 }	t_mlx;
 

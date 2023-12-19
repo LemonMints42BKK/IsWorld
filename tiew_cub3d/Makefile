@@ -6,14 +6,14 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2023/12/15 22:57:50 by pnopjira         ###   ########.fr        #
+#    Updated: 2023/12/19 18:20:10 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= cub3d
 CC		:= gcc
-CFLAGS	:= -Wall -Wextra -Werror -fsanitize=address -g
-#CFLAGS	:= -Wall -Wextra -Werror -g
+#CFLAGS	:= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS	:= -Wall -Wextra -Werror -g
 M		:= make
 
 SRC		:= main.c
