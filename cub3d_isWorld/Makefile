@@ -6,7 +6,7 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2024/01/14 07:47:24 by pnopjira         ###   ########.fr        #
+#    Updated: 2024/01/14 10:05:49 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,11 @@ MLX         = ./mlx/libmlx.a
 INC         = cub3d.h
 
 M       	= make
+
+#	for linux
+# OPENDIR			=	-I./libft -I$(INCS_DIR) -L./libft -Lmlx_linux -L/usr/lib
+# LIBLINK			=	-lft -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
+#	for mac
 OPENDIR		= -I./libft -I$(INCS_DIR) -L./libft -Lmlx -L/usr/lib
 LIBLINK		= -lft -lmlx -Imlx  -framework OpenGL -framework AppKit
 
