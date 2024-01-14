@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 21:33:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:57:56 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	check_invalid_filedata(char *maps_path, t_map **map, t_pos **p)
 	return (EXIT_SUCCESS);
 }
 
-int	raycaster(t_var *vars)
+int	raycaster(t_vp *vars)
 {
-	t_point	pos;
+	t_coor	pos;
 
 	(*vars).scene->p->pos = &pos;
 	if (explicit_error(init_frame((*vars).scene)))
@@ -50,9 +50,9 @@ int	raycaster(t_var *vars)
 
 int	is_invalid_input(char *argv, t_main *main_struc)
 {
-	t_var	vars;
-	t_data	bgimg;
-	t_data	mini;
+	t_vp	vars;
+	t_imgdata	bgimg;
+	t_imgdata	mini;
 	t_frame	scene;
 
 	(void)main_struc;
@@ -74,11 +74,11 @@ int	is_invalid_input(char *argv, t_main *main_struc)
 
 void	init_main_struct(t_main *main_struc)
 {
-	main_struc->main_mlx = NULL;
+	main_struc->viewport = NULL;
 	main_struc->map = NULL;
 	main_struc->player = NULL;
 	main_struc->ray = NULL;
-	main_struc->n_ray = 0;
+	main_struc->wall_strip_width = 0;
 	main_struc->cur_time = 0;
 	main_struc->old_time = 0;
 }

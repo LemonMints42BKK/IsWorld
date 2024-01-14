@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:38:38 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:56:37 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 08:54:45 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int	set_player(t_pos *p, t_map *m)
 {
-	t_point	*pos;
-	t_point	*mpos;
+	t_coor	*pos;
+	t_coor	*mpos;
 
 	pos = (*p).pos;
 	mpos = (*p).p_pos;
 	set_point(pos, ((mpos->x + 1) * m->maps) - (m->maps / 2) - (p->ms / 2), \
-	((mpos->y + 1) * m->maps) - (m->maps / 2) - (p->ms / 2), p->ms);
+	((mpos->y + 1) * m->maps) - (m->maps / 2) - (p->ms / 2));
+	
 	return (EXIT_SUCCESS);
 }
 

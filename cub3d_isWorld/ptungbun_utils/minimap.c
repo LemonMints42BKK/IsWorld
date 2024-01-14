@@ -13,7 +13,7 @@
 #include "../include/cub3d.h"
 #include "../include/game_setup.h"
 
-void	draw_minimap(t_var *vars, t_map **plan, t_point *begin, t_point *end)
+void	draw_minimap(t_vp *vars, t_map **plan, t_coor *begin, t_coor *end)
 {
 	int x;
     int y;    
@@ -30,8 +30,8 @@ void	draw_minimap(t_var *vars, t_map **plan, t_point *begin, t_point *end)
         {
             xo = x * (*plan)->maps;
             yo = y * (*plan)->maps;
-            set_point(begin, xo +1 , yo + 1, 0);
-            set_point(end, xo + (*plan)->maps -1 , yo + (*plan)->maps -1, 0);
+            set_point(begin, xo +1 , yo + 1);
+            set_point(end, xo + (*plan)->maps -1 , yo + (*plan)->maps -1);
             if ((*plan)->map[y][x] == 1)
                 print_bg((*vars).mini_img, *begin, *end, 0x66FFFFFF);
             else if ((*plan)->map[y][x] == 0)
@@ -44,9 +44,9 @@ void	draw_minimap(t_var *vars, t_map **plan, t_point *begin, t_point *end)
     }
 }
 
-void	draw_player(t_var *vars, t_map **plan, t_pos **p)
+void	draw_player(t_vp *vars, t_map **plan, t_pos **p)
 {
-	t_point py;
+	t_coor py;
 	int x;
     int y;  
 
@@ -59,8 +59,8 @@ void	draw_player(t_var *vars, t_map **plan, t_pos **p)
         {
 			if ((x+1) == (*p)->p_pos->x && (y+1) == (*p)->p_pos->y)
         	{   
-            	set_point(&py, (*p)->pos->x, (*p)->pos->y, (*p)->ms); 
- //           	print_square_point((*vars).mini_img, py, 0x66F1C40F);
+            	set_point(&py, (*p)->pos->x, (*p)->pos->y); 
+            	print_square_point((*vars).mini_img, py, 0x66F1C40F);
 				print_player_charater((*vars).mini_img, py, 0x66F1C40F);
         	}
 			x++;
@@ -69,18 +69,18 @@ void	draw_player(t_var *vars, t_map **plan, t_pos **p)
 	}
 }
 
-void    minimap(t_var *vars, unsigned int color)
+void    minimap(t_vp *vars, unsigned int color)
 {   
     t_map   *map;
-    t_point begin;
-    t_point end;
+    t_coor begin;
+    t_coor end;
     t_pos   *pos;
 
     map = (*vars).scene->map;
     pos = (*vars).scene->p;
 
-    set_point(&begin, 0, 0, 0);
-    set_point(&end, map->mapx * map->maps, map->mapy * map->maps, 0);
+    set_point(&begin, 0, 0);
+    set_point(&end, map->mapx * map->maps, map->mapy * map->maps);
     print_bg((*vars).mini_img, begin, end, color);
 
 	draw_minimap(vars, &map, &begin, &end);

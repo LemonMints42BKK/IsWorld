@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:55:53 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:03:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	setup_pos(char *dir,int x, int y, t_pos **p)
 	else
 		return (EXIT_FAILURE);
 	if ((*p)->p_pos)
-		set_point((*p)->p_pos, x, y, 0);
+		set_point((*p)->p_pos, x, y);
 	(*p)->dir = *dir;
 	return (EXIT_SUCCESS);
 }

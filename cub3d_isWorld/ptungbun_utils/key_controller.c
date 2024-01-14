@@ -6,14 +6,14 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:26:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:57:37 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:44:04 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include "../include/game_setup.h"
 
-int	bottons(int keycode, t_var *vars)
+int	bottons(int keycode, t_vp *vars)
 {
    t_pos    *p;
    t_frame  *s;
@@ -34,7 +34,7 @@ int	bottons(int keycode, t_var *vars)
             if (p->pos->x < (p->p_pos->x * s->map->maps) && p->pos->x < ((p->p_pos->x - 1) * s->map->maps) && (p->p_pos->x > 1))
                p->p_pos->x -= 1;
          }
-         printf("pmx: %d, pmy: %d, pms: %d\n", p->p_pos->x, p->p_pos->y, p->p_pos->s);
+         printf("pmx: %f, pmy: %f\n", p->p_pos->x, p->p_pos->y);
       }
    else if (keycode == KEY_D_RIGHT) //
       {  
@@ -44,7 +44,7 @@ int	bottons(int keycode, t_var *vars)
             if ((p->pos->x + p->ms) > (p->p_pos->x * s->map->maps) && (p->p_pos->x <= s->map->mapx))
                p->p_pos->x += 1;
          }
-         printf("pmx: %d, pmy: %d, pms: %d\n", p->p_pos->x, p->p_pos->y, p->p_pos->s);
+         printf("pmx: %f, pmy: %f\n", p->p_pos->x, p->p_pos->y);
       }
    else if (keycode == KEY_W_UP)//
       {  
@@ -54,7 +54,7 @@ int	bottons(int keycode, t_var *vars)
             if (p->pos->y < (p->p_pos->y * s->map->maps) && p->pos->y < ((p->p_pos->y - 1) * s->map->maps) && (p->p_pos->y > 1))
                p->p_pos->y -= 1;
          }
-         printf("pmx: %d, pmy: %d, pms: %d\n", p->p_pos->x, p->p_pos->y, p->p_pos->s);
+         printf("pmx: %f, pmy: %f\n", p->p_pos->x, p->p_pos->y);
       }
    else if (keycode == KEY_S_DOWN)//
       {  
@@ -64,7 +64,7 @@ int	bottons(int keycode, t_var *vars)
             if ((p->pos->y + p->ms) > (p->p_pos->y * s->map->maps) && (p->p_pos->y <= s->map->mapy))
                p->p_pos->y += 1;
          }
-         printf("pmx: %d, pmy: %d, pms: %d\n", p->p_pos->x, p->p_pos->y, p->p_pos->s);
+         printf("pmx: %f, pmy: %f\n", p->p_pos->x, p->p_pos->y);
       }
    else if (keycode == KEY_LEFT)
       {}

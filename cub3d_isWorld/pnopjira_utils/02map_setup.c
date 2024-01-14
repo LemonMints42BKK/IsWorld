@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:55:59 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:03:21 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_map_original(char **map_original, t_map **map, t_pos **p)
 	show_map = map_original;
 	while (*show_map)
 		printf("%s\n", *(show_map++));
-	printf("px: %d, py: %d dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
+	printf("px: %f, py: %f dir:%c\n", (*p)->p_pos->x, (*p)->p_pos->y, (*p)->dir);
 	printf("mapx: %d, mapy: %d\n", (*map)->mapx, (*map)->mapy);
 }
 

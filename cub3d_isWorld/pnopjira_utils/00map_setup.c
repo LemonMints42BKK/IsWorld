@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:55:32 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 08:45:13 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	init_plan(t_map *plan)
 
 void	init_player(t_pos *player)
 {
-	t_point	*p_pos = NULL;
+	t_coor	*p_pos = NULL;
 	
-	p_pos = (t_point *)malloc(sizeof(t_point) * 1);
+	p_pos = (t_coor *)malloc(sizeof(t_coor) * 1);
 	if (!p_pos)
 		p_pos = NULL;
 	p_pos->x = -1;

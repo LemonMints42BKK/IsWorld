@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/14 08:03:56 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 10:00:33 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "../libft/libft.h"
 # include <stdbool.h>
 
-typedef struct s_data
+typedef struct s_imgdata
 {
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		llen;
 	int		endian;
-}	t_data;
+}	t_imgdata;
 
 typedef struct s_color
 {
@@ -38,13 +38,6 @@ typedef struct s_coor //coordinate
 	double	y;
 }	t_coor;
 
-typedef struct s_point /**/
-{
-	int	x;
-	int	y;
-	int s;
-}	t_point;
-
 typedef struct s_player
 {
 	int		map_x; //x position in map
@@ -54,10 +47,10 @@ typedef struct s_player
 	t_coor	cam_plane; //the coordinate of the center of the camera plane
 }	t_player;
 
-typedef struct s_pos /**/
+typedef struct s_pos /* pos -> player*/
 {
-	t_point *pos;
-	t_point	*p_pos;
+	t_coor	*pos;
+	t_coor	*p_pos;
 	bool	one_player;
 	char	dir;
 	int		ms;
@@ -105,54 +98,29 @@ typedef struct s_frame
 	t_map			*map;
 }	t_frame; 
 
-typedef struct t_var /**/
-{
-	void	*mlx; //main_mlx
-	void	*win; //main_window
-	t_data	*bgimg; //main_image
-	t_data	*mini_img;
-	t_frame *scene;
-}	t_var;
-
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*win;
-	t_data	*img;
-}	t_mlx;
-
-// typedef struct s_mlx
+// typedef struct s_viewport
 // {
-// 	void	*mlx; //mlx_init()
-// 	void	*win; //mlx_new_window()
-// 	t_data	*bgimg; //mlx_new_image()
-// 	t_data	*mini_img;
-// 	t_frame *scene;
-// }	t_mlx;
+// 	void		*mlx_ptr; //-> mlx
+// 	void		*win_ptr; //-> win
+// 	t_imgdata	img;	//-> bgimg
+// }	t_vp;
 
-typedef struct s_image
+typedef struct s_viewport /*t_mlx -> t_vp*/
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_image;
-
-typedef struct s_viewport
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_image	img;
+	void	*mlx; //mlx_init()
+	void	*win; //mlx_new_window()
+	t_imgdata	*bgimg; //mlx_new_image()
+	t_imgdata	*mini_img;
+	t_frame *scene;
 }	t_vp;
 
 typedef struct s_main
 {
-	t_mlx 	*main_mlx;
+	t_vp 	*viewport;
 	t_map	*map;
-	t_pos	*player;
+	t_pos	*player; //->t_player *player
 	t_ray	*ray;
-	int		n_ray;
+	int		wall_strip_width; // = main_struc->viewport.img.line_len / (N_RAY - 1)
 	double	cur_time;
 	double	old_time;
 }	t_main;	
@@ -160,15 +128,15 @@ typedef struct s_main
 // typedef struct s_main
 // {
 // 	t_vp		viewport;
-// 	t_image		mini_map;
-// 	int			**map;
+// 	t_image		mini_map; //->viewport.mini_img // unused
+// 	int			**map; //->map->map
 // 	int			wall_strip_width;
 // 	t_player	*player;
 // 	t_ray		*ray;
 // 	double		cur_time;
 // 	double		old_time;
-// 	bool		one_player;
-// 	int			ms;
+// 	bool		one_player; //->player->one_player
+// 	int			ms; //->player->ms
 // }	t_main;
 
 #endif

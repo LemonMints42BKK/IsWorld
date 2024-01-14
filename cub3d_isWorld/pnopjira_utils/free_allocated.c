@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:42:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:57:00 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:43:35 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_scene(t_frame **scene)
 	s->p = NULL;
 }
 
-int	free_on_exit(t_var *vars)
+int	free_on_exit(t_vp *vars)
 {
 	mlx_destroy_image((*vars).mlx, (*vars).bgimg->img);
 	mlx_destroy_image((*vars).mlx, (*vars).mini_img->img);

@@ -6,16 +6,16 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/13 20:57:46 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:44:23 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include "../include/game_setup.h"
 
-void    scene_init(t_var *vars)
+void    scene_init(t_vp *vars)
 {
-    t_data  *img;
+    t_imgdata  *img;
     t_frame *scene;
          
     img = (*vars).bgimg;
@@ -25,9 +25,9 @@ void    scene_init(t_var *vars)
     img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);
 }
 
-void    minimap_init(t_var *vars)
+void    minimap_init(t_vp *vars)
 {
-    t_data  *img;
+    t_imgdata  *img;
     t_map   *map;
 
     map = (*vars).scene->map; 
@@ -36,7 +36,7 @@ void    minimap_init(t_var *vars)
     img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);    
 }
 
-int    display(t_var *vars)
+int    display(t_vp *vars)
 {
     background(vars, (*vars).scene->bgc);
     minimap(vars, 0xCCBFC9CA);
