@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 16:51:54 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 07:52:12 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include <string.h>
 # include <stdbool.h>
 # include <OpenGL/gl3.h>
-# include "mlx/mlx.h"
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include "game_setup.h"
 
 # define GREEN "\033[0;32m"
@@ -37,6 +37,7 @@
 # define KEY_S_DOWN 1
 # define KEY_D_RIGHT 2
 # define KEY_W_UP 13
+# define RATIO_RPC 10
 
 /*cub3d*/
 int		check_invalid_filedata(char *maps_path, t_map **map, t_pos **p);

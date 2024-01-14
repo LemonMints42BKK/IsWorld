@@ -6,12 +6,12 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:27:31 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 17:15:38 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:57:21 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-#include "../game_setup.h"
+#include "../include/cub3d.h"
+#include "../include/game_setup.h"
 
 //Fountion to convert RGB values to a hexadecimal integer
 int     color3f(int r, int g, int b)

@@ -6,11 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 13:26:20 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:56:13 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 
 int	init_content(t_list **iden, char **dst, char **src, char *key)
 {

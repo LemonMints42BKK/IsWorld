@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-#include "../game_setup.h"
+#include "../include/cub3d.h"
+#include "../include/game_setup.h"
 
 void	draw_minimap(t_var *vars, t_map **plan, t_point *begin, t_point *end)
 {

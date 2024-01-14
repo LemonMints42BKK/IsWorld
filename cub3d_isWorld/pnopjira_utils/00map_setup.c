@@ -6,11 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 10:30:50 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:55:32 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 
 int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)

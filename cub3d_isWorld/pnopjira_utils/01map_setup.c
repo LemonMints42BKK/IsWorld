@@ -6,11 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 09:26:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:55:53 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 
 void	del_nl(char **line)
 {

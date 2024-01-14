@@ -6,12 +6,12 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 16:26:11 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/18 20:55:47 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:57:33 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-#include "../game_setup.h"
+#include "../include/cub3d.h"
+#include "../include/game_setup.h"
 
 void	background(t_var *vars, unsigned int color)
 {

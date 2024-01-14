@@ -6,11 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:38:38 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 12:04:29 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:56:37 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 
 int	set_player(t_pos *p, t_map *m)
 {

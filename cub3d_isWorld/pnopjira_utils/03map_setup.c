@@ -6,11 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 13:26:38 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:56:06 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 
 int	char_to_int_map(char **o_map, t_map **plan)
 {

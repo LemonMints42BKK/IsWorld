@@ -6,12 +6,12 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:26:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/29 12:50:47 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:57:37 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-#include "../game_setup.h"
+#include "../include/cub3d.h"
+#include "../include/game_setup.h"
 
 int	bottons(int keycode, t_var *vars)
 {

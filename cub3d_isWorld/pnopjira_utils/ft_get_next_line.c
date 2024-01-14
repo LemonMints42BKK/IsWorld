@@ -6,11 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 20:58:05 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/10/14 21:06:01 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:57:10 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../include/get_next_line.h"
 
 void	read_next(t_vars *v)
 {
