@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/14 21:49:57 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/15 09:16:57 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ int	check_invalid_filedata(char *maps_path, t_map **map, t_player **p)
 int	raycaster_loop(t_main *main)
 {
 	t_vp	*vars;
-	t_coor	pos;
 
 	vars = (*main).viewport;
 	if (explicit_error(init_frame(vars->scene)))
 	 	return (EXIT_FAILURE);
 	(*main).wall_strip_width = vars->bgimg->llen / (N_RAY - 1);
-	vars->scene->p->pos = &pos;
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->scene->w, \
 	vars->scene->h, "isWorld-cub3D");
