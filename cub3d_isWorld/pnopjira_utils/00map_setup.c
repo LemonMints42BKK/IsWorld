@@ -6,14 +6,14 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 10:30:50 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 23:30:57 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
 #include "../libft/libft.h"
 
-int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)
+int	rd_mapdata(char *maps_path, t_map **map, t_player **p)
 {
 	int		fd1;
 	int		fd2;
@@ -30,7 +30,6 @@ int	rd_mapdata(char *maps_path, t_map **map, t_pos **p)
 	if (err == 0)
 	{	
 		print_map_original((*map)->map_original, map, p);
-		// print_new_map(&(*map)->map, (*map)->mapy, (*map)->mapx); // for test
 	}
 	return (err);
 }
@@ -57,32 +56,26 @@ void	init_plan(t_map *plan)
 	(*plan).map = NULL;
 }
 
-void	init_player(t_pos *player)
+void	init_player(t_player *player)
 {
-	t_point	*p_pos = NULL;
-	
-	p_pos = (t_point *)malloc(sizeof(t_point) * 1);
-	if (!p_pos)
-		p_pos = NULL;
-	p_pos->x = -1;
-	p_pos->y = -1;
+	(*player).map_x = -1;
+	(*player).map_y = -1;
 	(*player).pos = NULL;
-	(*player).p_pos = p_pos;
+	(*player).dir.x = 0;
+	(*player).dir.y = 0;
+	(*player).cam_plane.x = 0;
+	(*player).cam_plane.y = 0;
 	(*player).one_player = false;
-	(*player).dir = 'N';
-	(*player).ms = 0;
+	(*player).D = 'N';
+	(*player).psize = 1;
 }
 
-void	init_map(t_frame *scene)
+void	init_scene(t_frame *scene)
 {
-	t_map	*plan;
-	t_pos	*player;
-
-	plan = malloc(sizeof(t_map) * 1);
-	player = malloc(sizeof(t_pos) *1);
-	init_plan(plan);
-	init_player(player);
-	(*scene).p = player;
-	iden_list(&(*plan).iden);
-	(*scene).map = plan;
+	(*scene).map = malloc(sizeof(t_map) * 1);
+	(*scene).map->iden = malloc(sizeof(t_list) * 1);
+	(*scene).p = malloc(sizeof(t_player) *1);
+	init_plan((*scene).map);
+	init_player((*scene).p);
+	iden_list(&(*scene).map->iden);
 }

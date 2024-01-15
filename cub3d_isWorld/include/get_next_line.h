@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:43:02 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/10/14 20:51:44 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 09:43:25 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_vars
 	size_t	tok_len;
 }				t_vars;
 
- char	*get_next_line(int fd);
-// void	consume_token(t_vars *v, char *str);
-// void	get_nlbyte(t_vars *v);
-// void	read_next(t_vars *v);
+char	*get_next_line(int fd);
+void	consume_token(t_vars *v, char *str);
+void	get_nlbyte(t_vars *v);
+void	read_next(t_vars *v);
 #endif

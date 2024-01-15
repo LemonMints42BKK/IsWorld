@@ -6,11 +6,45 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/11/30 09:26:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 21:50:12 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../include/cub3d.h"
+
+void	init_main_struct(t_main *main_struc)
+{
+	main_struc->viewport = NULL;
+	main_struc->map = NULL;
+	main_struc->player = NULL;
+	main_struc->ray = NULL;
+	main_struc->wall_strip_width = 0;
+	main_struc->cur_time = 0;
+	main_struc->old_time = 0;
+}
+
+int	is_invalid_input(char *argv, t_main *main)
+{
+	t_vp		*vars;
+
+	(*main).viewport = (t_vp*)malloc(sizeof(t_vp));
+	vars = (*main).viewport;
+	vars->scene = (t_frame*)malloc(sizeof(t_frame));
+	vars->bgimg = (t_imgdata*)malloc(sizeof(t_imgdata));
+	vars->mini_img = (t_imgdata*)malloc(sizeof(t_imgdata));
+	if (vars == NULL || vars->scene == NULL || vars->bgimg == NULL || \
+	vars->mini_img == NULL)
+		return (EXIT_FAILURE);
+	init_scene(vars->scene);
+	if (check_invalid_filedata(argv, &vars->scene->map, &vars->scene->p))
+	{
+		free_scene(&vars->scene);
+		return (EXIT_FAILURE);
+	}
+	main->player = vars->scene->p;
+	main->map = vars->scene->map;
+	return (EXIT_SUCCESS);
+}
 
 void	del_nl(char **line)
 {
@@ -30,19 +64,19 @@ void	del_nl(char **line)
 	}
 }
 
-int	setup_pos(char *dir,int x, int y, t_pos **p)
+int	setup_pos(char *dir,int x, int y, t_player **p)
 {
 	if ((*p)->one_player == false)
 		(*p)->one_player = true;
 	else
 		return (EXIT_FAILURE);
-	if ((*p)->p_pos)
-		set_point((*p)->p_pos, x, y, 0);
-	(*p)->dir = *dir;
+	(*p)->map_x= x;
+	(*p)->map_y = y;
+	(*p)->D = *dir;
 	return (EXIT_SUCCESS);
 }
 
-int	setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p)
+int	setup_pos_mapx(char **mapdata, int j, t_map **map, t_player **p)
 {
 	int		x;
 	
@@ -61,43 +95,4 @@ int	setup_pos_mapx(char **mapdata, int j, t_map **map, t_pos **p)
 	if ((int)ft_strlen(mapdata[j]) > (*map)->mapx)
 		(*map)->mapx = ft_strlen(mapdata[j]);
 	return (EXIT_SUCCESS);	
-}
-
-void before_map_line(int fd2, int map_begin, char **line)
-{
-	int i;
-	
-	i = 1;
-	while (i++ < map_begin)
-	{
-		*line = get_next_line(fd2);
-		free(*line);
-	}
-	*line = get_next_line(fd2);
-}
-
-void	ck_invalid_map(int *err, int fd2, t_map **map, t_pos **p)
-{
-	char	*line;
-	char 	**mapdata;
-	int		j;
-
-	j = 0;
-	mapdata = malloc(sizeof(char *) * ((*map)->mapy + 1));
-	before_map_line(fd2, (*map)->line_map_begin, &line);
-	while (line && *err == 0)
-	{
-		del_nl(&line);
-		mapdata[j] = line;
-		*err = setup_pos_mapx(mapdata, j, map, p);
-		j++;
-		line = get_next_line(fd2);
-	}
-	mapdata[j] = NULL;
-	(*map)->map_original = mapdata;
-	if ((*p)->p_pos->x == -1 && (*p)->p_pos->y == -1)
-		*err = 5;
-	if(line)
-		free(line);
-	close(fd2);
 }

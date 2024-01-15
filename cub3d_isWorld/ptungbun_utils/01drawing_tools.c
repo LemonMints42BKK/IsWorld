@@ -6,12 +6,12 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:27:31 by pnopjira          #+#    #+#             */
-/*   Updated: 2023/12/01 17:15:38 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:14:16 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
-#include "../game_setup.h"
+#include "../include/cub3d.h"
+#include "../include/game_setup.h"
 
 //Fountion to convert RGB values to a hexadecimal integer
 int     color3f(int r, int g, int b)
@@ -20,7 +20,7 @@ int     color3f(int r, int g, int b)
 }
 
 //a function that will mimic the behaviour of mlx_pixel_put but will simply be many times faster
-void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
+void	my_mlx_pixel_put(t_imgdata *data, int x, int y, unsigned int color)
 {
 	char	*dst;
     
@@ -28,14 +28,13 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 	*(unsigned int*)dst = color;
 }
 
-void	set_point(t_point *p,int x, int y, int s)
+void	set_point(t_coor *p, double x, double y)
 {
 	(*p).x = x;
 	(*p).y = y;
-	(*p).s = s;
 }
 
-void	print_player_charater(t_data *img, t_point p, unsigned int color)
+void	print_player_charater(t_imgdata *img, t_coor p, unsigned int color)
 {
 	int i;
 	int j;
@@ -43,11 +42,9 @@ void	print_player_charater(t_data *img, t_point p, unsigned int color)
 
 	i = 0;
 	j = 0;
-	s = p.s;
+	s = 1;
 	if (color == 0)
 		color = 0x0059515E;
-	if (s < 1)
-		s = 1;
 	while (j < s)
 	{
 		i = 0;
@@ -63,7 +60,7 @@ void	print_player_charater(t_data *img, t_point p, unsigned int color)
 	}
 }
 
-void	print_square_point(t_data *img, t_point p, unsigned int color)
+void	print_square_point(t_imgdata *img, t_coor p, unsigned int color)
 {
 	int i;
 	int j;
@@ -71,7 +68,7 @@ void	print_square_point(t_data *img, t_point p, unsigned int color)
 
 	i = 0;
 	j = 0;
-	s = p.s;
+	s = 1;
 	if (color == 0)
 		color = 0x0059515E;
 	if (s < 1)
@@ -84,7 +81,7 @@ void	print_square_point(t_data *img, t_point p, unsigned int color)
 	}
 }
 
-void    print_bg(t_data *img, t_point begin, t_point end, unsigned int color)
+void    print_bg(t_imgdata *img, t_coor begin, t_coor end, unsigned int color)
 {
     int i;
     int j;
