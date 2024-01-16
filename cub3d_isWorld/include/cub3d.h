@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 12:35:26 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:23:23 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	print_map_original(char **map_original, t_map *map, t_player *p);
 int		mapsize(t_map *m, t_player *p);
 void	key_to_content(void **iden, char *key, char *content);
 //03map_setup
+int		set_main_struct(t_main	*main);
 int		set_vp(t_vp *vars);
 int		char_to_int_map(char **o_map, t_map *plan);
 int		ck_map_info(t_map *map);
@@ -107,6 +108,8 @@ void	cub3d_exit(t_main *main_struc);
 //get_next_line
 char	*get_next_line(int fd);
 //frame_setup
+void 	translate_rgb(char *str, t_color *color);
+unsigned int hexcode(t_frame *secen, char *key);
 int		init_frame(t_frame *scene);
 int		set_player(t_player *p, t_map *m);
 
@@ -117,8 +120,8 @@ void    minimap_init(t_vp *vars);
 int		display_minimap(t_main *main);
 int		display(t_main *main);
 //minimap
-void	draw_minimap(t_vp *vars, t_map **plan, t_coor *begin, t_coor *end);
-void	draw_player(t_vp *vars, t_map **plan, t_player **p);
+void	draw_minimap(t_vp *vars, t_map *plan, t_coor *begin, t_coor *end);
+void	draw_player(t_vp *vars, t_map *plan, t_player **p);
 void    minimap(t_vp *vars, unsigned int color);
 //game
 void	background(t_vp *vars, unsigned int color);

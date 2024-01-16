@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 11:23:10 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:12:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	mapsize(t_map *m, t_player *p)
 	(m->mapx >= 3 && m->mapy >= 3))
 	{
 		if (m->mapx <= 38 && m->mapy <= 38)
-			m->maps = 18;
+			m->minisize = 18;
 		else
 			return (EXIT_FAILURE);
 	}
@@ -77,11 +77,11 @@ int	mapsize(t_map *m, t_player *p)
 		if (m->mapx < 3 || m->mapy < 3)
 			return (EXIT_FAILURE);
 		else
-			m->maps = 36;
+			m->minisize = 36;
 	}
-	if (m->maps == 18)
+	if (m->minisize == 18)
 		p->psize = 6;
-	else if (m->maps == 36)
+	else if (m->minisize == 36)
 		p->psize = 12;
 	return (EXIT_SUCCESS);
 }

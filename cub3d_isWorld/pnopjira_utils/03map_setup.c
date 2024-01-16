@@ -6,11 +6,18 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 11:44:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:27:39 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+int	set_main_struct(t_main	*main)
+{
+	if(set_vp(main->viewport))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
 
 int set_vp(t_vp *vars)
 {
@@ -23,6 +30,7 @@ int set_vp(t_vp *vars)
 	minimap_init(vars);
 	return (EXIT_SUCCESS);
 }
+
 int	char_to_int_map(char **o_map, t_map *plan)
 {
 	int		**n_map;

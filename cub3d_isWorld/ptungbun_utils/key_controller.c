@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:26:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 12:31:04 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:46:36 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_wall_block(t_main *m, int index)
 	int			map_y;
 
 	p = m->player;
-	map = m->map->map;
+	map = m->map;
 	if (index == 0)
 	{
 		map_x = (int)(p->pos->x + p->dir.x * MOVE_SPEED);
@@ -81,7 +81,7 @@ void	move_forward_or_back(t_main *m, int key)
 	while(i < N_RAY)
 	{
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], m->map->map, p);
+		perform_dda(&ray[i], m->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
@@ -109,7 +109,7 @@ void	turn_left_or_right(t_main *m, int key)
 		ray[i].raydir.y = p->dir.y + p->cam_plane.y * ray[i].lcpd;
 		get_step_ray_dist_n_ray_width(m->wall_strip_width, &ray[i], 1);
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], m->map->map, p);
+		perform_dda(&ray[i], m->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}

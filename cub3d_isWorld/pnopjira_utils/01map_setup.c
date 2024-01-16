@@ -6,22 +6,28 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 12:40:26 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 14:44:35 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_main_struct(t_main *main_struc)
+void	init_main_struct(t_main *main)
 {
-	main_struc->viewport = NULL;
-	main_struc->map = NULL;
-	main_struc->player = NULL;
-	main_struc->ray = NULL;
-	main_struc->wall_strip_width = 0;
-	main_struc->cur_time = 0;
-	main_struc->old_time = 0;
-	main_struc->on_minimap = 1; // 1 = on, 0 = off and display just wall
+	main->viewport = NULL;
+	main->filemap = NULL;
+	main->player = NULL;
+	main->ray = NULL;
+	main->map = NULL;
+	main->wall_strip_width = 0;
+	main->floor_color = 0xFFFFFF;
+	main->ceiling_color = 0x000000;
+	main->tex_so = NULL;
+	main->tex_no = NULL;
+	main->tex_we = NULL;
+	main->tex_ea = NULL;
+	main->one_player = false;
+	main->on_minimap = 1;
 }
 
 int	is_invalid_input(char *argv, t_main *main)
@@ -43,7 +49,10 @@ int	is_invalid_input(char *argv, t_main *main)
 		return (EXIT_FAILURE);
 	}
 	main->player = vars->scene->p;
-	main->map = vars->scene->map;
+	main->filemap = vars->scene->map;
+	main->map = vars->scene->map->map;
+	main->ceiling_color = vars->scene->ceiling_color;
+	main->floor_color = vars->scene->floor_color;
 	return (EXIT_SUCCESS);
 }
 

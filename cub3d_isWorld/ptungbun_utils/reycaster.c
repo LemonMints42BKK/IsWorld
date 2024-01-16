@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 12:38:09 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:28:08 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void    init_vars(t_vp *vars)
     t_frame *scene;
          
     img = (*vars).bgimg;
-    scene = (*vars).scene;
-    scene->bgc = 0x0034495E; 
+    scene = (*vars).scene; 
     img->img = mlx_new_image((*vars).mlx, scene->w, scene->h);
     img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);
 }
@@ -32,7 +31,7 @@ void    minimap_init(t_vp *vars)
 
     map = (*vars).scene->map; 
     img = (*vars).mini_img;
-    img->img = mlx_new_image((*vars).mlx, map->mapx * map->maps, map->mapy * map->maps);
+    img->img = mlx_new_image((*vars).mlx, map->mapx * map->minisize, map->mapy * map->minisize);
     img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->endian);    
 }
 
@@ -41,13 +40,14 @@ int    display_minimap(t_main *main)
 	t_vp *vars;
 	
 	vars = (*main).viewport;
-	background(vars, (*vars).scene->bgc);
+	background(vars, (*vars).scene->floor_color);
     minimap(vars, 0xCCBFC9CA);
     return (0);
 }
 
 int    display(t_main *main)
 {
+	(void)main;
 	//cub3d_render(main, main->viewport); // SEGV on unknown address 0x00000000005c (pc 0x00010c6b7fad bp 0x7ffee3551cc0 sp 0x7ffee3551ae0 T0)
     return (0);
 }

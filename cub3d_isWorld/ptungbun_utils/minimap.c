@@ -13,7 +13,7 @@
 #include "../include/cub3d.h"
 #include "../include/game_setup.h"
 
-void	draw_minimap(t_vp *vars, t_map **plan, t_coor *begin, t_coor *end)
+void	draw_minimap(t_vp *vars, t_map *plan, t_coor *begin, t_coor *end)
 {
 	int x;
     int y;    
@@ -23,20 +23,20 @@ void	draw_minimap(t_vp *vars, t_map **plan, t_coor *begin, t_coor *end)
 	x = 0;
     y = 0;
 	(void)vars; //
-	while (y < (*plan)->mapy) 
+	while (y < plan->mapy) 
     {
         x = 0;
-        while (x < (*plan)->mapx)
+        while (x < plan->mapx)
         {
-            xo = x * (*plan)->maps;
-            yo = y * (*plan)->maps;
+            xo = x * plan->minisize;
+            yo = y * plan->minisize;
             set_point(begin, xo +1 , yo + 1);
-            set_point(end, xo + (*plan)->maps -1 , yo + (*plan)->maps -1);
-            if ((*plan)->map[y][x] == 1)
+            set_point(end, xo + plan->minisize -1 , yo + plan->minisize -1);
+            if (plan->map[y][x] == 1)
                 print_bg((*vars).mini_img, *begin, *end, 0x66FFFFFF);
-            else if ((*plan)->map[y][x] == 0)
+            else if (plan->map[y][x] == 0)
                 print_bg((*vars).mini_img, *begin, *end, 0x66000000);
-            else if ((*plan)->map[y][x] == -1)
+            else if (plan->map[y][x] == -1)
                 print_bg((*vars).mini_img, *begin, *end, 0x66AEB6BF );
             x++;
         }
@@ -44,7 +44,7 @@ void	draw_minimap(t_vp *vars, t_map **plan, t_coor *begin, t_coor *end)
     }
 }
 
-void	draw_player(t_vp *vars, t_map **plan, t_player **p)
+void	draw_player(t_vp *vars, t_map *plan, t_player **p)
 {
 	t_coor py;
 	int x;
@@ -52,10 +52,10 @@ void	draw_player(t_vp *vars, t_map **plan, t_player **p)
 
 	x = 0;
     y = 0;
-	while (y < (*plan)->mapy) 
+	while (y < plan->mapy) 
     {
         x = 0;
-        while (x < (*plan)->mapx)
+        while (x < plan->mapx)
         {
 			if ((x+1) == (*p)->map_x && (y+1) == (*p)->map_y)
         	{   
@@ -80,12 +80,12 @@ void    minimap(t_vp *vars, unsigned int color)
     pos = (*vars).scene->p;
 
     set_point(&begin, 0, 0);
-    set_point(&end, map->mapx * map->maps, map->mapy * map->maps);
+    set_point(&end, map->mapx * map->minisize, map->mapy * map->minisize);
     print_bg((*vars).mini_img, begin, end, color);
 
-	draw_minimap(vars, &map, &begin, &end);
+	draw_minimap(vars, map, &begin, &end);
 
-	draw_player(vars, &map, &pos);
+	draw_player(vars, map, &pos);
 	
     mlx_put_image_to_window((*vars).mlx, (*vars).win, (*vars).mini_img->img, 10, 10);  
 }

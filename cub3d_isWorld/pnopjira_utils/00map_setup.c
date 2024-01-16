@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 10:59:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:11:23 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_plan(t_map *plan)
 	(*plan).map_original = NULL;
 	(*plan).mapx = 0;
 	(*plan).mapy = 0;
-	(*plan).maps = 0;
+	(*plan).minisize = 0;
 	(*plan).map = NULL;
 }
 

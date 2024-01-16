@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:23:53 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/15 11:47:41 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 08:45:44 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_ray(t_main *main_struc)
 		ray[i].raydir.y = p->dir.y + p->cam_plane.y * ray[i].lcpd;
 		get_step_ray_dist_n_ray_width(main_struc->wall_strip_width, &ray[i], 1);
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], main_struc->map->map, p);
+		perform_dda(&ray[i], main_struc->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
