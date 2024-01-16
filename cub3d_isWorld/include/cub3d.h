@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:23:23 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:55:40 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ void	before_map_line(int fd2, int map_begin, char **line);
 void	ck_invalid_map(int *err, int fd2, t_map *map, t_player *p);
 void	print_map_original(char **map_original, t_map *map, t_player *p);
 int		mapsize(t_map *m, t_player *p);
-void	key_to_content(void **iden, char *key, char *content);
+void	key_to_content(t_list *iden, char *key, char *content);
 //03map_setup
 int		set_main_struct(t_main	*main);
+void	get_textures_path(t_main *main);
 int		set_vp(t_vp *vars);
 int		char_to_int_map(char **o_map, t_map *plan);
 int		ck_map_info(t_map *map);
-void	print_new_map(int ***map, int j, int i); //for test
 //check_dataformat
 int		init_content(t_list *iden, char **dst, char **src, char *key);
 int		ck_no_so_we_ea(char *tmp, t_list *iden);
@@ -115,7 +115,7 @@ int		set_player(t_player *p, t_map *m);
 
 /*ptungbun_utils*/
 //reycaster
-void	init_vars(t_vp *vars);
+void	bg_init(t_vp *vars);
 void    minimap_init(t_vp *vars);
 int		display_minimap(t_main *main);
 int		display(t_main *main);

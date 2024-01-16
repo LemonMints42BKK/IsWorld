@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:12:00 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:02:19 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	print_map_original(char **map_original, t_map *map, t_player *p)
 	show_map = map_original;
 	while (*show_map)
 		printf("%s\n", *(show_map++));
-	printf("px: %d, py: %d dir:%c\n", p->map_x, p->map_y, p->D);
-	printf("mapx: %d, mapy: %d\n", map->mapx, map->mapy);
+	printf("player >>> px: %d, py: %d dir:%c\n", p->map_x, p->map_y, p->D);
+	printf("map >>> mapx: %d, mapy: %d\n", map->mapx, map->mapy);
 }
 
 int	mapsize(t_map *m, t_player *p)
@@ -86,11 +86,11 @@ int	mapsize(t_map *m, t_player *p)
 	return (EXIT_SUCCESS);
 }
 
-void	key_to_content(void **iden, char *key, char *content)
+void	key_to_content(t_list *iden, char *key, char *content)
 {
 	t_list	*tmp;
 
-	tmp = *iden;
+	tmp = iden;
 	while (tmp)
 	{
 		if (ft_strncmp(tmp->key, key, ft_strlen(key)) == 0)

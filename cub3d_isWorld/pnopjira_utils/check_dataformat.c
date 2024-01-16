@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 11:15:17 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:55:13 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	init_content(t_list *iden, char **dst, char **src, char *key)
 		if (invalid_color_code(*dst))
 			return (free(*src), EXIT_FAILURE);
 	}
-	key_to_content((void *)iden, key, *dst);
+	key_to_content(iden, key, *dst);
 	free(*src);
 	return (EXIT_SUCCESS);
 }

@@ -6,14 +6,14 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:28:08 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:22:31 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 #include "../include/game_setup.h"
 
-void    init_vars(t_vp *vars)
+void    bg_init(t_vp *vars)
 {
     t_imgdata  *img;
     t_frame *scene;

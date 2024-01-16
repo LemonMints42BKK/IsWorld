@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:11:23 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:01:15 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,15 @@ void	init_player(t_player *player)
 
 void	init_scene(t_frame *scene)
 {
-	(*scene).map = malloc(sizeof(t_map) * 1);
-	(*scene).map->iden = malloc(sizeof(t_list) * 1);
-	(*scene).p = malloc(sizeof(t_player) *1);
-	init_plan((*scene).map);
-	init_player((*scene).p);
-	iden_list(&(*scene).map->iden);
+	t_list	*tmp;
+
+	tmp = NULL;
+	scene->map = malloc(sizeof(t_map) * 1);
+	scene->p = malloc(sizeof(t_player) *1);
+	if (scene->map == NULL || scene->p == NULL)
+		return ;
+	init_plan(scene->map);
+	init_player(scene->p);
+	iden_list(&tmp);
+	scene->map->iden = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:08:14 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:09:19 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,34 @@ void	show_main_struct(t_main *main)
 		// 	printf("\t\tbpp: %d\n", main->viewport->mini_img->bpp);
 		// 	printf("\t\tllen: %d\n", main->viewport->mini_img->llen);
 		// 	printf("\t\tendian: %d\n", main->viewport->mini_img->endian);
-		printf("\tscene: %p\n", main->viewport->scene);
+		//printf("\tscene: %p\n", main->viewport->scene);
 			// printf("\t\tscreen width: %d\n", main->viewport->scene->w);
 			// printf("\t\tscreen height: %d\n", main->viewport->scene->h);
 			// printf("\t\tfloor color: %x\n", main->viewport->scene->floor_color);
 			// printf("\t\tceiling color: %x\n", main->viewport->scene->ceiling_color);
-			// printf("\t\tp player: %p\n", main->viewport->scene->p);
-			// 	printf("\t\t\tmap_x: %p\n", main->viewport->scene->p->map_x);
-			// 	printf("\t\t\tmap_y: %p\n", main->viewport->scene->p->map_y);
-			// 	printf("\t\t\tpos: %p\n", main->viewport->scene->p->pos);
-			// 		printf("\t\t\t\tx: %f\n", main->viewport->scene->p->pos->x);
-			// 		printf("\t\t\t\ty: %f\n", main->viewport->scene->p->pos->y);
-			// 	printf("\t\t\tdir: %p\n", &main->viewport->scene->p->dir);
-			// 		printf("\t\t\t\tx: %f\n", main->viewport->scene->p->dir.x);
-			// 		printf("\t\t\t\ty: %f\n", main->viewport->scene->p->dir.y);
-			// 	printf("\t\t\tcam_plane: %p\n", &main->viewport->scene->p->cam_plane);
-			// 		printf("\t\t\t\tx: %f\n", main->viewport->scene->p->cam_plane.x);
-			// 		printf("\t\t\t\ty: %f\n", main->viewport->scene->p->cam_plane.y);
-			// 	printf("\t\t\tone_player: %d\n", main->viewport->scene->p->one_player);
-			// 	printf("\t\t\tD: %c\n", main->viewport->scene->p->D);
-			// 	printf("\t\t\tpsize: %d\n", main->viewport->scene->p->psize);
+			printf("\t\tp player: %p\n", main->viewport->scene->p);
+				printf("\t\t\tmap_x: %d\n", main->viewport->scene->p->map_x);
+				printf("\t\t\tmap_y: %d\n", main->viewport->scene->p->map_y);
+				printf("\t\t\tpos: %p\n", main->viewport->scene->p->pos);
+					printf("\t\t\t\tx: %f\n", main->viewport->scene->p->pos->x);
+					printf("\t\t\t\ty: %f\n", main->viewport->scene->p->pos->y);
+				printf("\t\t\tdir: %p\n", &main->viewport->scene->p->dir);
+					printf("\t\t\t\tx: %f\n", main->viewport->scene->p->dir.x);
+					printf("\t\t\t\ty: %f\n", main->viewport->scene->p->dir.y);
+				printf("\t\t\tcam_plane: %p\n", &main->viewport->scene->p->cam_plane);
+					printf("\t\t\t\tx: %f\n", main->viewport->scene->p->cam_plane.x);
+					printf("\t\t\t\ty: %f\n", main->viewport->scene->p->cam_plane.y);
+				printf("\t\t\tone_player: %d\n", main->viewport->scene->p->one_player);
+				printf("\t\t\tD: %c\n", main->viewport->scene->p->D);
+				printf("\t\t\tpsize: %d\n", main->viewport->scene->p->psize);
 			// printf("filemap: %p\n", main->filemap);
-			// 	printf("\tiden: %p\n", main->filemap->iden);
-			// 	t_list *ptr = main->filemap->iden->next;
-			// 	while (ptr)
-			// 	{
-			// 		printf("\t\t%s %s\n", ptr->key, ptr->content);
-			// 		ptr = ptr->next;
-			// 	}
+				// printf("\tiden: %p\n", main->filemap->iden);
+				// t_list *ptr = main->filemap->iden;	
+				// while (ptr)
+				// {
+				// 	printf("\t\t%s %s\n", ptr->key, ptr->content);
+				// 	ptr = ptr->next;
+				// }
 			// 	printf("\tmap size x: %d\n", main->filemap->mapx);
 			// 	printf("\tmap size y: %d\n", main->filemap->mapy);
 			// 	printf("\tminimap size: %d\n", main->filemap->minisize);
@@ -136,8 +136,6 @@ int	main(int argc, char **argv)
 		return (cub3d_exit(&main_struc), EXIT_FAILURE);
 	if (set_main_struct(&main_struc))
 		return (cub3d_exit(&main_struc), EXIT_FAILURE);
-	main_struc.wall_strip_width = main_struc.viewport->bgimg->llen \
-	 / (N_RAY - 1);
 	raycaster_loop(&main_struc);
 	return (EXIT_SUCCESS);
 }

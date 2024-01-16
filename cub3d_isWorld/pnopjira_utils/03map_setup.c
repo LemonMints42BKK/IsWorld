@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:27:39 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:06:45 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,35 @@ int	set_main_struct(t_main	*main)
 {
 	if(set_vp(main->viewport))
 		return (EXIT_FAILURE);
+	main->filemap = main->viewport->scene->map;
+	main->player = main->viewport->scene->p;
+	//main->ray = ;
+	main->map = main->viewport->scene->map->map;
+	main->wall_strip_width = main->viewport->bgimg->llen / N_RAY;
+	main->floor_color = main->viewport->scene->floor_color;
+	main->ceiling_color = main->viewport->scene->ceiling_color;
+	get_textures_path(main);	
+	main->one_player = main->viewport->scene->p->one_player;
 	return (EXIT_SUCCESS);
+}
+
+void get_textures_path(t_main *main)
+{
+	t_list *ptr;
+	
+	ptr = main->filemap->iden;
+	while (ptr)
+	{
+		if (ft_strncmp(ptr->key, "NO", 1) == 0)
+			main->tex_no = ptr->content;
+		else if (ft_strncmp(ptr->key, "SO", 1) == 0)
+			main->tex_so = ptr->content;
+		else if (ft_strncmp(ptr->key, "WE", 1) == 0)
+			main->tex_we = ptr->content;
+		else if (ft_strncmp(ptr->key, "EA", 1) == 0)
+			main->tex_ea = ptr->content;
+		ptr = ptr->next;
+	}
 }
 
 int set_vp(t_vp *vars)
@@ -26,7 +54,7 @@ int set_vp(t_vp *vars)
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->scene->w, \
 	vars->scene->h, "isWorld-cub3D");
-	init_vars(vars);
+	bg_init(vars);
 	minimap_init(vars);
 	return (EXIT_SUCCESS);
 }
@@ -83,24 +111,4 @@ int	ck_map_info(t_map *map)
 		(map->mapy)++;
 	}
 	return (EXIT_SUCCESS);
-}
-
-//for test
-void print_new_map(int ***map, int j, int i)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y < j)
-	{
-		x = 0;
-		while (x < i)
-		{
-			printf("%d,", (*map)[y][x]);
-			x++;
-		}
-		y++;
-		printf("\n");
-	}
 }

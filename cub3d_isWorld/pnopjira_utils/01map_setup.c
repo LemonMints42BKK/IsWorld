@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 14:44:35 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 18:26:31 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	is_invalid_input(char *argv, t_main *main)
 {
 	t_vp		*vars;
 
-	(*main).viewport = (t_vp*)malloc(sizeof(t_vp));
-	vars = (*main).viewport;
-	vars->scene = (t_frame*)malloc(sizeof(t_frame));
-	vars->bgimg = (t_imgdata*)malloc(sizeof(t_imgdata));
-	vars->mini_img = (t_imgdata*)malloc(sizeof(t_imgdata));
+	main->viewport = (t_vp*)malloc(sizeof(t_vp) * 1);
+	vars = main->viewport;
+	vars->scene = (t_frame*)malloc(sizeof(t_frame) * 1);
+	vars->bgimg = (t_imgdata*)malloc(sizeof(t_imgdata) * 1);
+	vars->mini_img = (t_imgdata*)malloc(sizeof(t_imgdata) *1);
 	if (vars == NULL || vars->scene == NULL || vars->bgimg == NULL || \
 	vars->mini_img == NULL)
 		return (EXIT_FAILURE);
@@ -48,11 +48,6 @@ int	is_invalid_input(char *argv, t_main *main)
 		free_scene(&vars->scene);
 		return (EXIT_FAILURE);
 	}
-	main->player = vars->scene->p;
-	main->filemap = vars->scene->map;
-	main->map = vars->scene->map->map;
-	main->ceiling_color = vars->scene->ceiling_color;
-	main->floor_color = vars->scene->floor_color;
 	return (EXIT_SUCCESS);
 }
 
