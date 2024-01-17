@@ -28,10 +28,10 @@ void	draw_minimap(t_vp *vars, t_map *plan, t_coor *begin, t_coor *end)
         x = 0;
         while (x < plan->mapx)
         {
-            xo = x * plan->minisize;
-            yo = y * plan->minisize;
+            xo = x * plan->mapsize;
+            yo = y * plan->mapsize;
             set_point(begin, xo +1 , yo + 1);
-            set_point(end, xo + plan->minisize -1 , yo + plan->minisize -1);
+            set_point(end, xo + plan->mapsize -1 , yo + plan->mapsize -1);
             if (plan->map[y][x] == 1)
                 print_bg((*vars).mini_img, *begin, *end, 0x66FFFFFF);
             else if (plan->map[y][x] == 0)
@@ -80,12 +80,9 @@ void    minimap(t_vp *vars, unsigned int color)
     pos = (*vars).scene->p;
 
     set_point(&begin, 0, 0);
-    set_point(&end, map->mapx * map->minisize, map->mapy * map->minisize);
+    set_point(&end, map->mapx * map->mapsize, map->mapy * map->mapsize);
     print_bg((*vars).mini_img, begin, end, color);
-
 	draw_minimap(vars, map, &begin, &end);
-
 	draw_player(vars, map, &pos);
-	
     mlx_put_image_to_window((*vars).mlx, (*vars).win, (*vars).mini_img->img, 10, 10);  
 }

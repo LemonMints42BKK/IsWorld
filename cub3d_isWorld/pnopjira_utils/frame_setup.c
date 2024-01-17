@@ -6,21 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:38:38 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 15:13:39 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/16 23:55:31 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	set_player(t_player *p, t_map *m)
-{
-	p->pos = malloc(sizeof(t_coor));
-	if (!p->pos)
-		return (EXIT_FAILURE);
-	p->pos->x = ((p->map_x + 1) * m->minisize) - (m->minisize / 2);
-	p->pos->y = ((p->map_y + 1) * m->minisize) - (m->minisize / 2);
-	return (EXIT_SUCCESS);
-}
 
 void translate_rgb(char *str, t_color *color)
 {
@@ -64,7 +54,7 @@ unsigned int hexcode(t_frame *secen, char *key)
 	return (color3f(color.r, color.g, color.b));
 }
 
-int	init_frame(t_frame *scene)
+int	set_scene(t_frame *scene)
 {
 	scene->w = WINDOW_WIDTH;
 	scene->h = WINDOW_HEIGHT;
@@ -72,6 +62,5 @@ int	init_frame(t_frame *scene)
 	scene->floor_color = hexcode(scene, "F");
 	if (mapsize(scene->map, scene->p))
 		return (4);
-	set_player(scene->p, scene->map);  //set player position on map;
 	return (EXIT_SUCCESS);
 }

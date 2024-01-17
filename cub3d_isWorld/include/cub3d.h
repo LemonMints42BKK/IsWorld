@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 18:55:40 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:03:53 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@
 # define WINDOW_WIDTH 1440
 # define WINDOW_HEIGHT 810
 # define PI 3.141592654
+# define FOV 90
 # define N_RAY 300
 # define MOVE_SPEED 0.02
 
@@ -99,7 +100,6 @@ int		invalid_filepath(char *maps_path, char *path, char *format);
 int		invalid_color_code(char *rgb);
 int		ck_identify(int *err, t_list *iden);
 int		before_map(t_map *map, int *err);
-
 //free_allocated
 void	del(void *lst);
 void	free_scene(t_frame **scene);
@@ -110,8 +110,12 @@ char	*get_next_line(int fd);
 //frame_setup
 void 	translate_rgb(char *str, t_color *color);
 unsigned int hexcode(t_frame *secen, char *key);
-int		init_frame(t_frame *scene);
-int		set_player(t_player *p, t_map *m);
+int		set_scene(t_frame *scene);
+//player_setup
+void	find_player_pos(t_map *mapfile, t_player *p);
+void	find_player_on_map(t_map *mapfile, t_player *p);
+void	begin_dir_of_player(t_main *main, char D);
+void	camera_plane_of_player(t_main *main, char D);
 
 /*ptungbun_utils*/
 //reycaster
@@ -124,7 +128,7 @@ void	draw_minimap(t_vp *vars, t_map *plan, t_coor *begin, t_coor *end);
 void	draw_player(t_vp *vars, t_map *plan, t_player **p);
 void    minimap(t_vp *vars, unsigned int color);
 //game
-void	background(t_vp *vars, unsigned int color);
+void	background(t_vp *vars);
 //key_controller
 int		bottons(int keycode, t_main *main);
 //01drawing_tools
@@ -137,7 +141,7 @@ int     color3f(int r, int g, int b);
 //init_ray_data.c
 void	init_ray(t_main *main_struc);
 void	get_first_step_ray_dist(t_ray *ray, t_player *p);
-void	perform_dda(t_ray *ray, int **map, t_player *p);
+void	perform_dda(t_ray *ray, t_map *filemap, t_player *p);
 void	cal_ray_projection_dist_n_wall_hight(t_ray *ray);
 void	get_step_ray_dist_n_ray_width(int wall_strip_width, t_ray *ray, int is_init);
 //bresenham.c

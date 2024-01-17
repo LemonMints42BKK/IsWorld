@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 14:57:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:39:49 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ typedef struct s_coor //coordinate
 
 typedef struct s_ray
 {
-	t_coor	raydir; //ray coordinate on camera plane
-	double	rdx; //initial step x ray distance + total step rdx
-	double	rdy; //initial step y ray distance + total step rdy
-	double	step_rdx; //step x ray distance
-	double	step_rdy; //step y ray distance
-	double	lcpd; //local_cam_plane_dist
-	int		step_side_x; // the indicator to define step in x direction
-	int		step_side_y; // the indicator to define step in y direction
-	bool	wall_hit_side; // if hit N or S wall_hit_side = 0, if hit E or W wall_hit_side = 1
-	double	proj_dist; // project distance from camera
-	int		wall_hight; // wall hight distance
-	int		wall_y_start; // start from top
-	int		wall_y_end; // end at bottom
-	int		wall_x_start; // start from left
-	int		wall_x_end; // end at right
-	int		index;
+	t_coor	raydir; //Xray coordinate on camera plane
+	double	rdx; //X initial step x ray distance + total step rdx
+	double	rdy; //X initial step y ray distance + total step rdy
+	double	step_rdx; //X step x ray distance
+	double	step_rdy; //X step y ray distance
+	double	lcpd; //X local_cam_plane_dist
+	int		step_side_x; //X the indicator to define step in x direction
+	int		step_side_y; //X the indicator to define step in y direction
+	bool	wall_hit_side; //X if hit N or S wall_hit_side = 0, if hit E or W wall_hit_side = 1
+	double	proj_dist; //X project distance from camera
+	int		wall_hight; //X wall hight distance
+	int		wall_y_start; //X start from top
+	int		wall_y_end; //X end at bottom
+	int		wall_x_start; //X  start from left
+	int		wall_x_end; //X end at right
+	int		index; //X
 }	t_ray;
 
 typedef struct s_imgdata
@@ -66,7 +66,7 @@ typedef struct s_map
 	char	**map_original; //
 	int		mapx; //
 	int		mapy; //
-	int 	minisize; //
+	int 	mapsize; //
 	int		**map; //
 }	t_map;
 
@@ -75,8 +75,8 @@ typedef struct s_player
 	int		map_x; //x position in map //
 	int		map_y; //y position in map //
 	t_coor	*pos; //position of player in coordinate system //
-	t_coor	dir; //direction of player //
-	t_coor	cam_plane; //the coordinate of the center of the camera plane //
+	t_coor	*dir; //direction of player //
+	t_coor	*cam_plane; //the coordinate of the center of the camera plane //
 	bool	one_player; //ok
 	char	D; //ok
 	int		psize; //ok

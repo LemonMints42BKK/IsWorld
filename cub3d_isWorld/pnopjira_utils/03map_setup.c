@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 19:06:45 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:03:27 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int	set_main_struct(t_main	*main)
 		return (EXIT_FAILURE);
 	main->filemap = main->viewport->scene->map;
 	main->player = main->viewport->scene->p;
+	find_player_pos(main->filemap, main->player);
+	begin_dir_of_player(main, main->player->D);
+	camera_plane_of_player(main, main->player->D);
 	//main->ray = ;
 	main->map = main->viewport->scene->map->map;
 	main->wall_strip_width = main->viewport->bgimg->llen / N_RAY;
@@ -49,7 +52,7 @@ void get_textures_path(t_main *main)
 
 int set_vp(t_vp *vars)
 {
-	if (explicit_error(init_frame(vars->scene)))
+	if (explicit_error(set_scene(vars->scene)))
 	 	return (EXIT_FAILURE);
 	vars->mlx = mlx_init();
 	vars->win = mlx_new_window(vars->mlx, vars->scene->w, \

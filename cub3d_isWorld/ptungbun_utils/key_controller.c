@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:26:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 08:46:36 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:35:40 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ int	is_wall_block(t_main *m, int index)
 	map = m->map;
 	if (index == 0)
 	{
-		map_x = (int)(p->pos->x + p->dir.x * MOVE_SPEED);
-		map_y = (int)(p->pos->y + p->dir.y * MOVE_SPEED);
+		map_x = (int)(p->pos->x + p->dir->x * MOVE_SPEED);
+		map_y = (int)(p->pos->y + p->dir->y * MOVE_SPEED);
 	}
 	if (index == 1)
 	{
-		map_x = (int)(p->pos->x - p->dir.x * MOVE_SPEED);
-		map_y = (int)(p->pos->y - p->dir.y * MOVE_SPEED);
+		map_x = (int)(p->pos->x - p->dir->x * MOVE_SPEED);
+		map_y = (int)(p->pos->y - p->dir->y * MOVE_SPEED);
 	}
-	printf("pos.x = %f\n", p->pos->x + p->dir.x * MOVE_SPEED);
-	printf("pos.y = %f\n", p->pos->y + p->dir.y * MOVE_SPEED);
+	printf("pos.x = %f\n", p->pos->x + p->dir->x * MOVE_SPEED);
+	printf("pos.y = %f\n", p->pos->y + p->dir->y * MOVE_SPEED);
 	printf("map_x = %d\n", map_x);
 	printf("map_y = %d\n", map_y);
 	printf("map = %d\n", map[map_y][map_x]);
@@ -52,15 +52,15 @@ void	move(t_main *m, int key)
 	p = m->player;
 	if (key == KEY_W && !is_wall_block(m, 0))
 	{
-		p->pos->x += p->dir.x * MOVE_SPEED;
-		p->pos->y += p->dir.y * MOVE_SPEED;
+		p->pos->x += p->dir->x * MOVE_SPEED;
+		p->pos->y += p->dir->y * MOVE_SPEED;
 		p->map_x = (int)p->pos->x;
 		p->map_y = (int)p->pos->y;
 	}
 	else if (key == KEY_S && !is_wall_block(m, 1))
 	{
-		p->pos->x -= p->dir.x * MOVE_SPEED;
-		p->pos->y -= p->dir.y * MOVE_SPEED;
+		p->pos->x -= p->dir->x * MOVE_SPEED;
+		p->pos->y -= p->dir->y * MOVE_SPEED;
 		p->map_x = (int)p->pos->x;
 		p->map_y = (int)p->pos->y;
 	}
@@ -81,7 +81,7 @@ void	move_forward_or_back(t_main *m, int key)
 	while(i < N_RAY)
 	{
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], m->map, p);
+		perform_dda(&ray[i], m->filemap, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
@@ -105,11 +105,11 @@ void	turn_left_or_right(t_main *m, int key)
 	i = 0;
 	while(i < N_RAY)
 	{
-		ray[i].raydir.x = p->dir.x + p->cam_plane.x * ray[i].lcpd;
-		ray[i].raydir.y = p->dir.y + p->cam_plane.y * ray[i].lcpd;
+		ray[i].raydir.x = p->dir->x + p->cam_plane->x * ray[i].lcpd;
+		ray[i].raydir.y = p->dir->y + p->cam_plane->y * ray[i].lcpd;
 		get_step_ray_dist_n_ray_width(m->wall_strip_width, &ray[i], 1);
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], m->map, p);
+		perform_dda(&ray[i], m->filemap, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}

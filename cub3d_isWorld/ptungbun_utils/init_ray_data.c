@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:23:53 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/16 08:45:44 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:38:55 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,19 @@ void	init_ray(t_main *main_struc)
 	t_player	*p;
 
 	ray = malloc(sizeof(t_ray) * N_RAY);
+	if (!ray)
+		return ;
 	p = main_struc->player;
 	i = 0;
 	while(i < N_RAY)
 	{
 		ray[i].index = i;
 		ray[i].lcpd = 2 * ((double)i / (N_RAY - 1)) - 1;
-		ray[i].raydir.x = p->dir.x + p->cam_plane.x * ray[i].lcpd;
-		ray[i].raydir.y = p->dir.y + p->cam_plane.y * ray[i].lcpd;
+		ray[i].raydir.x = p->dir->x + p->cam_plane->x * ray[i].lcpd;
+		ray[i].raydir.y = p->dir->y + p->cam_plane->y * ray[i].lcpd;
 		get_step_ray_dist_n_ray_width(main_struc->wall_strip_width, &ray[i], 1);
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], main_struc->map, p);
+		perform_dda(&ray[i], main_struc->filemap, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
@@ -87,13 +89,16 @@ void	get_first_step_ray_dist(t_ray *ray, t_player *p)
 	}
 }
 
-void	perform_dda(t_ray *ray, int **map, t_player *p)
+void	perform_dda(t_ray *ray, t_map *filemap, t_player *p)
 {
 	int	map_x;
 	int	map_y;
+	int **map;
 
-	map_x = (int)p->pos->x;
-	map_y = (int)p->pos->y;
+	map = filemap->map;
+	find_player_on_map(filemap, p);
+	map_x = p->map_x;
+	map_y = p->map_y;
 	while(map[map_y][map_x] <= 0)
 	{
 		if(ray->rdx < ray->rdy)

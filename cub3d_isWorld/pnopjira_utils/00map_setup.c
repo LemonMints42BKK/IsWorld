@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 19:01:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 09:56:08 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,30 @@ void	iden_list(t_list **iden)
 
 void	init_plan(t_map *plan)
 {
-	(*plan).iden = NULL;
-	(*plan).map_begin = false;
-	(*plan).line_map_begin = 0;
-	(*plan).map_original = NULL;
-	(*plan).mapx = 0;
-	(*plan).mapy = 0;
-	(*plan).minisize = 0;
-	(*plan).map = NULL;
+	plan->iden = NULL;
+	plan->map_begin = false;
+	plan->line_map_begin = 0;
+	plan->map_original = NULL;
+	plan->mapx = 0;
+	plan->mapy = 0;
+	plan->mapsize = 0;
+	plan->map = NULL;
 }
 
 void	init_player(t_player *player)
 {
-	(*player).pos = (t_coor*)malloc(sizeof(t_coor) * 1);
-	(*player).map_x = -1;
-	(*player).map_y = -1;
-	(*player).dir.x = 0;
-	(*player).dir.y = 0;
-	(*player).cam_plane.x = 0;
-	(*player).cam_plane.y = 0;
-	(*player).one_player = false;
-	(*player).D = 'N';
-	(*player).psize = 1;
+	
+	if (!player->pos)
+		return;
+	player->map_x = -1;
+	player->map_y = -1;
+	player->dir->x = 0;
+	player->dir->y = 1;
+	player->cam_plane->x = 0.66;
+	player->cam_plane->y = 0;
+	player->one_player = false;
+	player->D = 'N';
+	player->psize = 1;
 }
 
 void	init_scene(t_frame *scene)
@@ -73,8 +75,11 @@ void	init_scene(t_frame *scene)
 	t_list	*tmp;
 
 	tmp = NULL;
-	scene->map = malloc(sizeof(t_map) * 1);
-	scene->p = malloc(sizeof(t_player) *1);
+	scene->map =(t_map *) malloc(sizeof(t_map) * 1);
+	scene->p =(t_player*) malloc(sizeof(t_player) *1);
+	scene->p->pos = (t_coor*)malloc(sizeof(t_coor) * 1);
+	scene->p->dir = (t_coor*)malloc(sizeof(t_coor) * 1);
+	scene->p->cam_plane = (t_coor*)malloc(sizeof(t_coor) * 1);
 	if (scene->map == NULL || scene->p == NULL)
 		return ;
 	init_plan(scene->map);
