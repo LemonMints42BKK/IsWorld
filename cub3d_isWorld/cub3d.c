@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 23:21:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 00:20:39 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ void	show_main_struct(t_main *main)
 				printf("\t\ty: %f\n", ptr->raydir.y);
 				printf("\tstep_rdx: %f\n", ptr->step_rdx);
 				printf("\tstep_rdy: %f\n", ptr->step_rdy);
-				printf("\twall_x_start: %d\n", ptr->wall_x_start);
-				printf("\twall_x_end: %d\n", ptr->wall_x_end);
+				printf("\ttex_x: %d\n", ptr->tex_x);
 				printf("\tstep_side_x: %d\n", ptr->step_side_x);
 				printf("\tstep_side_y: %d\n", ptr->step_side_y);
 				printf("\trdx: %f\n", ptr->rdx);
@@ -128,9 +127,8 @@ int	raycaster_loop(t_main *main)
 
 	vars = (*main).viewport;
 	init_ray(main);
-	printf("after init_ray\n");
-	//show_main_struct(main);
-	// cub3d_render(main, main->viewport);
+	show_main_struct(main);
+	//cub3d_render(main, main->viewport);
 	// mlx_hook(vars->win, 17, 0, cub3d_exit, main);
 	// mlx_hook(vars->win, 2, 0, bottons, main);
 	// mlx_loop(vars->mlx);

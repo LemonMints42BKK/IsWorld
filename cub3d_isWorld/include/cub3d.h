@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 22:56:19 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 00:17:58 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	key_to_content(t_list *iden, char *key, char *content);
 //03map_setup
 int		set_main_struct(t_main	*main);
 void	get_textures_path(t_main *main);
-int		set_vp(t_vp *vars);
+int		set_vp(t_main *main);
 int		char_to_int_map(char **o_map, t_map *plan);
 int		ck_map_info(t_map *map);
 //check_dataformat
@@ -119,6 +119,7 @@ void	camera_plane_of_player(t_main *main, char D);
 //reycaster
 void	bg_init(t_vp *vars);
 void    minimap_init(t_vp *vars);
+t_imgdata	get_tex_image(t_vp *vp, char *path, int *w, int *h);
 int		display_minimap(t_main *main);
 int		display(t_main *main);
 //minimap
@@ -138,19 +139,26 @@ void	my_mlx_pixel_put(t_imgdata *data, int x, int y, unsigned int color);
 int     color3f(int r, int g, int b);
 //init_ray_data.c
 void	init_ray(t_main *main_struc);
+void	get_step_ray_dist(t_ray *ray);
 void	get_first_step_ray_dist(t_ray *ray, t_player *p);
 void	perform_dda(t_ray *ray, int **map, t_player *p);
 void	cal_ray_projection_dist_n_wall_hight(t_ray *ray);
-void	get_step_ray_dist_n_ray_width(int wall_strip_width, t_ray *ray, int is_init);
+//void	get_step_ray_dist_n_ray_width(int wall_strip_width, t_ray *ray, int is_init);
 //bresenham.c
 void	bresenham_x(t_imgdata *img, int *x, int *y, int color);
 void	imgpixelput(t_imgdata *img, int x, int y, int color);
 void	bresenham_y(t_imgdata *img, int *x, int *y, int color);
 void	drawline(t_imgdata *img, int *x, int *y, int color);
 //cube3d_render.c
+void	get_y(t_ray ray, int *y1, int *y2, int index);
 void	cub3d_render(t_main *main_struc, t_vp *vp);
 //rotate.c
 void	rotate(t_main *main_struc, double degree);
+//draw_wall.c
+void	ray_on_wall_pos_cal(t_main *ms, t_ray *ray, t_player *p);
+int		get_tex_color(t_imgdata *tex_img, int x, int y);
+t_imgdata	*get_texture(t_ray *ray, t_vp *vp);
+void	draw_wall(t_main *ms ,int x, int *y, t_ray *ray);
 
 #endif
 

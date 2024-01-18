@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 12:39:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 00:04:26 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ typedef struct s_ray
 	int		wall_hight; //X wall hight distance
 	int		wall_y_start; //X start from top
 	int		wall_y_end; //X end at bottom
-	int		wall_x_start; //X  start from left
-	int		wall_x_end; //X end at right
+	// int		wall_x_start; //X  start from left
+	// int		wall_x_end; //X end at right
+	int		tex_x; //X texture x coordinate
 	int		index; //X
 }	t_ray;
 
@@ -97,7 +98,13 @@ typedef struct s_viewport /*t_mlx -> t_vp*/
 	void		*mlx; //mlx_init()
 	void		*win; //mlx_new_window()
 	t_imgdata	*bgimg;  //
-	t_imgdata	*mini_img; 
+	t_imgdata	*mini_img;
+	
+	t_imgdata	tex_so_img;
+	t_imgdata	tex_we_img;
+	t_imgdata	tex_ea_img;
+	t_imgdata	tex_no_img; 
+	
 	t_frame 	*scene; 
 }	t_vp;
 
@@ -115,6 +122,10 @@ typedef struct s_main
 	char		*tex_we; //
 	char		*tex_ea; //
 	char		*tex_no; //
+
+	int			tex_width;
+	int			tex_hight;
+	
 	bool		one_player; //
 	bool		on_minimap; //
 }	t_main;	
@@ -122,7 +133,7 @@ typedef struct s_main
 // typedef struct s_main
 // {
 // 	t_vp		viewport;
-// 	t_image		mini_map; //->viewport.mini_img // unused
+// 	t_imgdata		mini_map; //->viewport.mini_img // unused
 // 	int			**map; //->map->map
 // 	int			wall_strip_width;
 // 	t_player	*player;

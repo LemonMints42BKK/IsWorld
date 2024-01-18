@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 10:03:27 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 00:18:59 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,26 @@
 
 int	set_main_struct(t_main	*main)
 {
-	if(set_vp(main->viewport))
+	if(set_vp(main))
 		return (EXIT_FAILURE);
 	main->filemap = main->viewport->scene->map;
 	main->player = main->viewport->scene->p;
 	find_player_pos(main->filemap, main->player);
 	begin_dir_of_player(main, main->player->D);
 	camera_plane_of_player(main, main->player->D);
-	//main->ray = ;
 	main->map = main->viewport->scene->map->map;
 	main->wall_strip_width = main->viewport->bgimg->llen / N_RAY;
 	main->floor_color = main->viewport->scene->floor_color;
 	main->ceiling_color = main->viewport->scene->ceiling_color;
-	get_textures_path(main);	
+	get_textures_path(main);
+	main->viewport->tex_so_img = get_tex_image(main->viewport ,main->tex_so , \
+	&main->tex_width, &main->tex_hight);
+	main->viewport->tex_no_img = get_tex_image(main->viewport ,main->tex_no , \
+	&main->tex_width, &main->tex_hight);
+	main->viewport->tex_we_img = get_tex_image(main->viewport ,main->tex_we , \
+	&main->tex_width, &main->tex_hight);
+	main->viewport->tex_ea_img = get_tex_image(main->viewport ,main->tex_ea , \
+	&main->tex_width, &main->tex_hight);	
 	main->one_player = main->viewport->scene->p->one_player;
 	return (EXIT_SUCCESS);
 }
@@ -50,15 +57,15 @@ void get_textures_path(t_main *main)
 	}
 }
 
-int set_vp(t_vp *vars)
+int set_vp(t_main *main)
 {
-	if (explicit_error(set_scene(vars->scene)))
+	if (explicit_error(set_scene(main->viewport->scene)))
 	 	return (EXIT_FAILURE);
-	vars->mlx = mlx_init();
-	vars->win = mlx_new_window(vars->mlx, vars->scene->w, \
-	vars->scene->h, "isWorld-cub3D");
-	bg_init(vars);
-	minimap_init(vars);
+	main->viewport->mlx = mlx_init();
+	main->viewport->win = mlx_new_window(main->viewport->mlx, main->viewport->scene->w, \
+	main->viewport->scene->h, "isWorld-cub3D");
+	bg_init(main->viewport);
+	minimap_init(main->viewport);
 	return (EXIT_SUCCESS);
 }
 

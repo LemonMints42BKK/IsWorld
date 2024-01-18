@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:26:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 22:58:21 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/18 23:54:48 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,8 @@ int	is_wall_block(t_main *m, int index)
 		map_x = (int)(p->pos->x - p->dir->x * MOVE_SPEED);
 		map_y = (int)(p->pos->y - p->dir->y * MOVE_SPEED);
 	}
-	printf("pos.x = %f\n", p->pos->x + p->dir->x * MOVE_SPEED);
-	printf("pos.y = %f\n", p->pos->y + p->dir->y * MOVE_SPEED);
-	printf("map_x = %d\n", map_x);
-	printf("map_y = %d\n", map_y);
-	printf("map = %d\n", map[map_y][map_x]);
 	if (map[map_y][map_x] > 0)
-	{
-		printf("hit_the_wall\n");
 		return (1);
-	}
 	return (0);
 }
 
@@ -83,6 +75,10 @@ void	move_forward_or_back(t_main *m, int key)
 		get_first_step_ray_dist(&ray[i], p);
 		perform_dda(&ray[i], m->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
+		ray_on_wall_pos_cal(m, &ray[i], p);
+		// get_first_step_ray_dist(&ray[i], p);
+		// perform_dda(&ray[i], m->map, p);
+		// cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
 	ft_bzero(vp->bgimg->addr, WINDOW_WIDTH * WINDOW_HEIGHT * vp->bgimg->bpp / 8);
@@ -107,10 +103,15 @@ void	turn_left_or_right(t_main *m, int key)
 	{
 		ray[i].raydir.x = p->dir->x + p->cam_plane->x * ray[i].lcpd;
 		ray[i].raydir.y = p->dir->y + p->cam_plane->y * ray[i].lcpd;
-		get_step_ray_dist_n_ray_width(m->wall_strip_width, &ray[i], 1);
+		// get_step_ray_dist_n_ray_width(m->wall_strip_width, &ray[i], 1);
+		// get_first_step_ray_dist(&ray[i], p);
+		// perform_dda(&ray[i], m->map, p);
+		// cal_ray_projection_dist_n_wall_hight(&ray[i]);
+		get_step_ray_dist(&ray[i]);
 		get_first_step_ray_dist(&ray[i], p);
 		perform_dda(&ray[i], m->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
+		ray_on_wall_pos_cal(m, &ray[i], p);
 		i++;
 	}
 	ft_bzero(m->viewport->bgimg->addr, WINDOW_WIDTH * WINDOW_HEIGHT * m->viewport->bgimg->bpp / 8);

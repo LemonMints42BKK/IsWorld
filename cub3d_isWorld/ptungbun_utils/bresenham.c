@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:52:12 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/14 19:44:08 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/18 23:06:39 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	imgpixelput(t_imgdata *img, int x, int y, int color)
 	wh = WINDOW_HEIGHT;
 	if (x > 0 && x <= ww && y > 0 && y <= wh)
 	{
-		pixel = img->addr + (y * img->llen+ x * (img->bpp / 8));
+		pixel = img->addr + (y * img->llen + x * (img->bpp / 8));
 		*(unsigned int *)pixel = color;
 	}
 }
