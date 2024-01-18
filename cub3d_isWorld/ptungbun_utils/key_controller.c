@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 21:26:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 12:35:40 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 22:58:21 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	move_forward_or_back(t_main *m, int key)
 	while(i < N_RAY)
 	{
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], m->filemap, p);
+		perform_dda(&ray[i], m->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
@@ -109,7 +109,7 @@ void	turn_left_or_right(t_main *m, int key)
 		ray[i].raydir.y = p->dir->y + p->cam_plane->y * ray[i].lcpd;
 		get_step_ray_dist_n_ray_width(m->wall_strip_width, &ray[i], 1);
 		get_first_step_ray_dist(&ray[i], p);
-		perform_dda(&ray[i], m->filemap, p);
+		perform_dda(&ray[i], m->map, p);
 		cal_ray_projection_dist_n_wall_hight(&ray[i]);
 		i++;
 	}
@@ -128,8 +128,8 @@ int	bottons(int keycode, t_main *main)
    if (keycode == KEY_ESC)
    {
       printf(RED"\'ESC\' to Exit\n"RESET);
-      free_on_exit(main->viewport);
-	   exit(0);
+	  if (!cub3d_exit(main))
+		exit(0);
    }
    else if (keycode == KEY_M)
 	{

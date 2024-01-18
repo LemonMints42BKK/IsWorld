@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 18:26:31 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 22:56:52 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	is_invalid_input(char *argv, t_main *main)
 	init_scene(vars->scene);
 	if (check_invalid_filedata(argv, vars->scene->map, vars->scene->p))
 	{
-		free_scene(&vars->scene);
+		free_scene(vars->scene);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:38:38 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 23:55:31 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 23:17:38 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void translate_rgb(char *str, t_color *color)
 		free(rgb[i]);
 		i++;
 	}
+	free(rgb);
 }
 
 unsigned int hexcode(t_frame *secen, char *key)

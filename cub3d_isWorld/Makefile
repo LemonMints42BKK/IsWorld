@@ -6,13 +6,14 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2024/01/16 14:11:14 by pnopjira         ###   ########.fr        #
+#    Updated: 2024/01/17 22:53:16 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    	= cub3d
 CC      	= gcc
-CFLAGS  	= -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS  	= -Wall -Wextra -Werror -g
+#CFLAGS  	= -Wall -Wextra -Werror -fsanitize=address -g
 
 BUILD_DIR   = build/
 INCS_DIR    = includes

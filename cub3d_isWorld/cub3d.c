@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 13:08:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 23:21:15 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,11 @@ int	raycaster_loop(t_main *main)
 	vars = (*main).viewport;
 	init_ray(main);
 	printf("after init_ray\n");
-	show_main_struct(main);
-	mlx_hook(vars->win, 17, 0, free_on_exit, vars);
-	mlx_hook(vars->win, 2, 0, bottons, main);
-	if (main->on_minimap == 0)
-    	mlx_loop_hook(vars->mlx, display_minimap, main);
-	else
-		mlx_loop_hook(vars->mlx, display, main);
-	mlx_loop(vars->mlx);
+	//show_main_struct(main);
+	// cub3d_render(main, main->viewport);
+	// mlx_hook(vars->win, 17, 0, cub3d_exit, main);
+	// mlx_hook(vars->win, 2, 0, bottons, main);
+	// mlx_loop(vars->mlx);
 	return (0);
 }
 

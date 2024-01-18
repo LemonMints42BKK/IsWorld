@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:42:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/14 21:24:34 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 23:15:43 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,41 @@ void	del(void *lst)
 	tmp->content = NULL;
 }
 
-void	free_scene(t_frame **scene)
+void	free_scene(t_frame *scene)
 {
 	t_frame	*s;
 	int		i;
 	
 	i = 0;
-	s = *scene;
+	s = scene;
 	ft_lstclear(&s->map->iden, del);
 	if (s->map->map_original)
 		while (s->map->map_original[i])
 			free(s->map->map_original[i++]);
+	i = 0;
+	if (s->map->map)
+		while (s->map->map[i])
+			free(s->map->map[i++]);
 	free(s->map);
+	free(s->p->pos);
+	free(s->p->dir);
+	free(s->p->cam_plane);
 	free(s->p);
 	s->map = NULL;
 	s->p = NULL;
 }
 
-int	free_on_exit(t_vp *vars)
+int	cub3d_exit(t_main *main_struc)
 {
-	mlx_destroy_image((*vars).mlx, (*vars).bgimg->img);
-	mlx_destroy_image((*vars).mlx, (*vars).mini_img->img);
-	mlx_destroy_window((*vars).mlx, (*vars).win);
-	free_scene(&(*vars).scene);
-	exit(0);
-}
+	t_vp *vp;
 
-void	cub3d_exit(t_main *main_struc)
-{
-	(void)main_struc;
-	exit(0);
+	vp = main_struc->viewport;
+	mlx_destroy_image( vp->mlx, vp->bgimg->img);
+	mlx_destroy_image(vp->mlx, vp->mini_img->img);
+	mlx_destroy_window(vp->mlx, vp->win);
+	if (vp->scene)
+		free_scene(vp->scene);
+	if (main_struc->ray)
+		free(main_struc->ray);
+	return (0);
 }

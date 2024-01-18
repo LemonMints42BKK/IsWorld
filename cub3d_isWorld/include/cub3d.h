@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 13:03:53 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 22:56:19 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,8 @@ int		ck_identify(int *err, t_list *iden);
 int		before_map(t_map *map, int *err);
 //free_allocated
 void	del(void *lst);
-void	free_scene(t_frame **scene);
-int		free_on_exit(t_vp *vars);
-void	cub3d_exit(t_main *main_struc);
+void	free_scene(t_frame *scene);
+int		cub3d_exit(t_main *main_struc);
 //get_next_line
 char	*get_next_line(int fd);
 //frame_setup
@@ -113,7 +112,6 @@ unsigned int hexcode(t_frame *secen, char *key);
 int		set_scene(t_frame *scene);
 //player_setup
 void	find_player_pos(t_map *mapfile, t_player *p);
-void	find_player_on_map(t_map *mapfile, t_player *p);
 void	begin_dir_of_player(t_main *main, char D);
 void	camera_plane_of_player(t_main *main, char D);
 
@@ -141,7 +139,7 @@ int     color3f(int r, int g, int b);
 //init_ray_data.c
 void	init_ray(t_main *main_struc);
 void	get_first_step_ray_dist(t_ray *ray, t_player *p);
-void	perform_dda(t_ray *ray, t_map *filemap, t_player *p);
+void	perform_dda(t_ray *ray, int **map, t_player *p);
 void	cal_ray_projection_dist_n_wall_hight(t_ray *ray);
 void	get_step_ray_dist_n_ray_width(int wall_strip_width, t_ray *ray, int is_init);
 //bresenham.c

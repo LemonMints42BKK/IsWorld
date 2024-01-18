@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 13:07:30 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/17 21:55:43 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int    display_minimap(t_main *main)
 
 int    display(t_main *main)
 {
-	t_vp *vars;
+	// t_vp *vars;
 	
-	vars = (*main).viewport;
-	background(vars);
+	// vars = (*main).viewport;
+	// background(vars);
 	cub3d_render(main, main->viewport);
     return (0);
 }
