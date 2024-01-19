@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 00:18:59 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:18:47 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	set_main_struct(t_main	*main)
 	begin_dir_of_player(main, main->player->D);
 	camera_plane_of_player(main, main->player->D);
 	main->map = main->viewport->scene->map->map;
-	main->wall_strip_width = main->viewport->bgimg->llen / N_RAY;
+	main->wall_strip_width = main->viewport->bgimg->llen / WINDOW_WIDTH;
 	main->floor_color = main->viewport->scene->floor_color;
 	main->ceiling_color = main->viewport->scene->ceiling_color;
 	get_textures_path(main);

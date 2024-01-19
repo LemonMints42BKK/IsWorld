@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 22:56:52 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:22:49 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	init_main_struct(t_main *main)
 	main->tex_ea = NULL;
 	main->one_player = false;
 	main->on_minimap = 1;
+	main->tex_width = TEX_WIDTH;
+	main->tex_hight = TEX_HIGHT;
 }
 
 int	is_invalid_input(char *argv, t_main *main)

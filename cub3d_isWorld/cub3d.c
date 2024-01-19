@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 19:34:04 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:18:04 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	show_main_struct(t_main *main)
 	printf("ray: %p\n", main->ray);
 		t_ray *ptr = main->ray;
 		int i = 0;
-		while (i < N_RAY)
+		while (i < WINDOW_WIDTH)
 		{
 			if( i == 0 || i == 74 || i == 149)
 			{

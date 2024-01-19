@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:09:46 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 22:38:29 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:20:22 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void begin_dir_of_player(t_main *main, char D)
 	{
 		dir->x = 0;
 		if (D == 'N')
-			dir->y = 1;
-		else
 			dir->y = -1;
+		else
+			dir->y = 1;
 	}
 	else if (D == 'E' || D == 'W')
 	{
 		dir->y = 0;
 		if (D == 'E')
-			dir->x = 1;
-		else
 			dir->x = -1;
+		else
+			dir->x = 1;
 	}
 	else
 		return ;

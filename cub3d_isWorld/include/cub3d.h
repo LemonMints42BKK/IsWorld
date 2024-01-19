@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 19:36:43 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 23:30:45 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@
 // # define KEY_ESC 65307
 
 # define WINDOW_WIDTH 1440
-# define WINDOW_HEIGHT 810
+# define WINDOW_HEIGHT 832
 # define PI 3.141592654
 # define FOV 90
-# define N_RAY 300
-# define MOVE_SPEED 0.02
+# define MOVE_SPEED 0.1
+# define TEX_WIDTH 64
+# define TEX_HIGHT 64
 
 /*cub3d*/
 int		check_invalid_filedata(char *maps_path, t_map *map, t_player  *p);
@@ -143,7 +144,6 @@ void	get_step_ray_dist(t_ray *ray);
 void	get_first_step_ray_dist(t_ray *ray, t_player *p);
 void	perform_dda(t_ray *ray, int **map, t_player *p);
 void	cal_ray_projection_dist_n_wall_hight(t_ray *ray);
-//void	get_step_ray_dist_n_ray_width(int wall_strip_width, t_ray *ray, int is_init);
 //bresenham.c
 void	bresenham_x(t_imgdata *img, int *x, int *y, int color);
 void	imgpixelput(t_imgdata *img, int x, int y, int color);
