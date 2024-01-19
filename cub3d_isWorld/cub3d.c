@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 00:20:39 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:34:04 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,57 @@ void	show_main_struct(t_main *main)
 			// printf("\t\tscreen height: %d\n", main->viewport->scene->h);
 			// printf("\t\tfloor color: %x\n", main->viewport->scene->floor_color);
 			// printf("\t\tceiling color: %x\n", main->viewport->scene->ceiling_color);
-			printf("p player: %p\n", main->viewport->scene->p);
-				printf("\tmap_x: %d\n", main->viewport->scene->p->map_x);
-				printf("\tmap_y: %d\n", main->viewport->scene->p->map_y);
-				printf("\tpos: %p\n", main->viewport->scene->p->pos);
-					printf("\t\tx: %f\n", main->viewport->scene->p->pos->x);
-					printf("\t\ty: %f\n", main->viewport->scene->p->pos->y);
-				printf("\tdir: %p\n", &main->viewport->scene->p->dir);
-					printf("\t\tx: %f\n", main->viewport->scene->p->dir->x);
-					printf("\t\ty: %f\n", main->viewport->scene->p->dir->y);
-				printf("\tcam_plane: %p\n", &main->viewport->scene->p->cam_plane);
-					printf("\t\tx: %f\n", main->viewport->scene->p->cam_plane->x);
-					printf("\t\ty: %f\n", main->viewport->scene->p->cam_plane->y);
-				printf("\tone_player: %d\n", main->viewport->scene->p->one_player);
-				printf("\tD: %c\n", main->viewport->scene->p->D);
-				printf("\tpsize: %d\n", main->viewport->scene->p->psize);
-			 printf("filemap: %p\n", main->filemap);
-				// printf("\tiden: %p\n", main->filemap->iden);
-				// t_list *ptr = main->filemap->iden;	
-				// while (ptr)
-				// {
-				// 	printf("\t\t%s %s\n", ptr->key, ptr->content);
-				// 	ptr = ptr->next;
-				// }
-				printf("\tmapx: %d\n", main->filemap->mapx);
-				printf("\tmapy: %d\n", main->filemap->mapy);
-				printf("\tmapsize: %d\n", main->filemap->mapsize);
+		printf("\ttex_so_img: %p\n", &main->viewport->tex_so_img);
+			printf("\t\timg: %p\n", main->viewport->tex_so_img.img);
+			printf("\t\taddr: %p\n", main->viewport->tex_so_img.addr);
+			printf("\t\tbpp: %d\n", main->viewport->tex_so_img.bpp);
+			printf("\t\tllen: %d\n", main->viewport->tex_so_img.llen);
+			printf("\t\tendian: %d\n", main->viewport->tex_so_img.endian);
+		printf("\ttex_no_img: %p\n", &main->viewport->tex_no_img);
+			printf("\t\timg: %p\n", main->viewport->tex_no_img.img);
+			printf("\t\taddr: %p\n", main->viewport->tex_no_img.addr);
+			printf("\t\tbpp: %d\n", main->viewport->tex_no_img.bpp);
+			printf("\t\tllen: %d\n", main->viewport->tex_no_img.llen);
+			printf("\t\tendian: %d\n", main->viewport->tex_no_img.endian);
+		printf("\ttex_we_img: %p\n", &main->viewport->tex_we_img);
+			printf("\t\timg: %p\n", main->viewport->tex_we_img.img);
+			printf("\t\taddr: %p\n", main->viewport->tex_we_img.addr);
+			printf("\t\tbpp: %d\n", main->viewport->tex_we_img.bpp);
+			printf("\t\tllen: %d\n", main->viewport->tex_we_img.llen);
+			printf("\t\tendian: %d\n", main->viewport->tex_we_img.endian);
+		printf("\ttex_ea_img: %p\n", &main->viewport->tex_ea_img);
+			printf("\t\timg: %p\n", main->viewport->tex_ea_img.img);
+			printf("\t\taddr: %p\n", main->viewport->tex_ea_img.addr);
+			printf("\t\tbpp: %d\n", main->viewport->tex_ea_img.bpp);
+			printf("\t\tllen: %d\n", main->viewport->tex_ea_img.llen);
+			printf("\t\tendian: %d\n", main->viewport->tex_ea_img.endian);
+					
+	printf("p player: %p\n", main->viewport->scene->p);
+		printf("\tmap_x: %d\n", main->viewport->scene->p->map_x);
+		printf("\tmap_y: %d\n", main->viewport->scene->p->map_y);
+		printf("\tpos: %p\n", main->viewport->scene->p->pos);
+				printf("\t\tx: %f\n", main->viewport->scene->p->pos->x);
+				printf("\t\ty: %f\n", main->viewport->scene->p->pos->y);
+		printf("\tdir: %p\n", &main->viewport->scene->p->dir);
+				printf("\t\tx: %f\n", main->viewport->scene->p->dir->x);
+				printf("\t\ty: %f\n", main->viewport->scene->p->dir->y);
+		printf("\tcam_plane: %p\n", &main->viewport->scene->p->cam_plane);
+				printf("\t\tx: %f\n", main->viewport->scene->p->cam_plane->x);
+				printf("\t\ty: %f\n", main->viewport->scene->p->cam_plane->y);
+		printf("\tone_player: %d\n", main->viewport->scene->p->one_player);
+		printf("\tD: %c\n", main->viewport->scene->p->D);
+		printf("\tpsize: %d\n", main->viewport->scene->p->psize);
+	printf("filemap: %p\n", main->filemap);
+		// printf("\tiden: %p\n", main->filemap->iden);
+			// t_list *ptr = main->filemap->iden;	
+			// while (ptr)
+			// {
+			// 	printf("\t\t%s %s\n", ptr->key, ptr->content);
+			// 	ptr = ptr->next;
+			// }
+		printf("\tmapx: %d\n", main->filemap->mapx);
+		printf("\tmapy: %d\n", main->filemap->mapy);
+		printf("\tmapsize: %d\n", main->filemap->mapsize);
 	printf("int **map: %p\n", main->map);
 		for (int i = 0; i < main->filemap->mapy; i++) {
 			for (int j = 0; j < main->filemap->mapx; j++) {
@@ -107,8 +132,7 @@ void	show_main_struct(t_main *main)
 			}
 			i++;
 			ptr++;
-		}
-		
+		}	
 	printf("wall_strip_width: %d\n", main->wall_strip_width);
 	printf("floor color: %x\n", main->floor_color);
 	printf("ceiling color: %x\n", main->ceiling_color);
@@ -127,11 +151,10 @@ int	raycaster_loop(t_main *main)
 
 	vars = (*main).viewport;
 	init_ray(main);
-	show_main_struct(main);
-	//cub3d_render(main, main->viewport);
-	// mlx_hook(vars->win, 17, 0, cub3d_exit, main);
-	// mlx_hook(vars->win, 2, 0, bottons, main);
-	// mlx_loop(vars->mlx);
+	cub3d_render(main, main->viewport);
+	mlx_hook(vars->win, 17, 0, cub3d_exit, main);
+	mlx_hook(vars->win, 2, 0, bottons, main);
+	mlx_loop(vars->mlx);
 	return (0);
 }
 

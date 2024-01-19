@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 00:17:58 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:36:43 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@
 /*cub3d*/
 int		check_invalid_filedata(char *maps_path, t_map *map, t_player  *p);
 int		raycaster_loop(t_main *main);
-
+void	show_main_struct(t_main *main);
 /*pnopjira_utils*/
 //00map_setup
 int		rd_mapdata(char *maps_path, t_map *map, t_player *p);

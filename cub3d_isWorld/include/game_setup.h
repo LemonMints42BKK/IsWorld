@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 00:04:26 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 19:26:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ typedef struct s_viewport /*t_mlx -> t_vp*/
 	t_imgdata	*mini_img;
 	
 	t_imgdata	tex_so_img;
+	t_imgdata	tex_no_img;
 	t_imgdata	tex_we_img;
 	t_imgdata	tex_ea_img;
-	t_imgdata	tex_no_img; 
-	
+	 
 	t_frame 	*scene; 
 }	t_vp;
 

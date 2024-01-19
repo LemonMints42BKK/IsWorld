@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:46:33 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/18 23:07:55 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:19:21 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,18 @@ void	cub3d_render(t_main *ms, t_vp *vp)
 	int		i;
 
 	i = 0;
+	//show_main_struct(ms);
+	printf("start render\n");
 	while(i < WINDOW_WIDTH)
 	{
 		x[0] = i;
 		x[1] = i;
-		get_y(ms->ray[i], &y[0], &y[1], 0);
-		drawline(vp->bgimg, x, y, ms->ceiling_color);
+		// get_y(ms->ray[i], &y[0], &y[1], 0);
+		// drawline(vp->bgimg, x, y, ms->ceiling_color);
 		get_y(ms->ray[i], &y[0], &y[1], 1);
 		draw_wall(ms, i, y, &ms->ray[i]);
-		get_y(ms->ray[i], &y[0], &y[1], 2);
-		drawline(vp->bgimg, x, y, ms->floor_color);
+		//get_y(ms->ray[i], &y[0], &y[1], 2);
+		//drawline(vp->bgimg, x, y, ms->floor_color);
 		i++;
 	}
 	mlx_put_image_to_window(vp->mlx, vp->win, vp->bgimg->img, 0, 0);

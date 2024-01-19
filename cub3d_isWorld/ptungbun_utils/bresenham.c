@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:52:12 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/18 23:06:39 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:04:51 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ void	drawline(t_imgdata *img, int *x, int *y, int color)
 
 	dx = abs(x[0] - x[1]);
 	dy = abs(y[0] - y[1]);
+	printf("dx = %d, dy = %d\n", dx, dy);
+	printf("x[0] = %d, x[1] = %d\n", x[0], x[1]);
+	printf("y[0] = %d, y[1] = %d\n", y[0], y[1]);
 	if (dx > dy)
 	{
 		if (x[0] > x[1])
@@ -114,6 +117,9 @@ void	drawline(t_imgdata *img, int *x, int *y, int color)
 	{
 		if (y[0] > y[1])
 			swap(x, y);
+		printf("after swap\n");
+		printf("x[0] = %d, x[1] = %d\n", x[0], x[1]);
+		printf("y[0] = %d, y[1] = %d\n", y[0], y[1]);
 		bresenham_y(&(*img), x, y, color);
 	}
 }
