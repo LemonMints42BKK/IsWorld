@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 14:46:33 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/19 23:31:12 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:55:13 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	cub3d_render(t_main *ms, t_vp *vp)
 	int		i;
 
 	i = 0;
-	//show_main_struct(ms);
 	printf("start render\n");
 	while(i < WINDOW_WIDTH)
 	{

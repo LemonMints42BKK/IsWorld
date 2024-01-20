@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/16 18:55:13 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:38:01 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@ int	init_content(t_list *iden, char **dst, char **src, char *key)
 
 	str = ft_strtrim(*src, key);
 	*dst = ft_strtrim(str, " ");
-	free(str);
+	free(str); 
 	if (!ft_strncmp(key, "NO", 2) || !ft_strncmp(key, "SO", 2) || \
 	!ft_strncmp(key, "WE", 2) || !ft_strncmp(key, "EA", 2))
 	{
 		if (invalid_filepath(*dst, "./textures/", ".xpm"))
-			return (free(*src), EXIT_FAILURE);
+			return (free(*src), *src = NULL, EXIT_FAILURE);
 	}
 	else if (!ft_strncmp(key, "F", 1) || !ft_strncmp(key, "C", 1))
 	{
 		if (invalid_color_code(*dst))
-			return (free(*src), EXIT_FAILURE);
+			return (free(*src), *src = NULL, EXIT_FAILURE);
 	}
 	key_to_content(iden, key, *dst);
 	free(*src);
+	src = NULL;
 	return (EXIT_SUCCESS);
 }
 
@@ -95,7 +96,7 @@ void	ck_data_format(char *tmp, int *err, t_map *map)
 		*err = -1;
 }
 
-void	ck_invalid_data(int *err, int fd1, t_map *map)
+void	ck_invalid_iden(int *err, int fd1, t_map *map)
 {
 	char	*line;
 	char	*tmp;

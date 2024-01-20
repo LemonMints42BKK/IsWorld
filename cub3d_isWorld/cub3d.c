@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 23:18:04 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 04:39:35 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	show_main_struct(t_main *main)
 			printf("\t\tbpp: %d\n", main->viewport->bgimg->bpp);
 			printf("\t\tllen: %d\n", main->viewport->bgimg->llen);
 			printf("\t\tendian: %d\n", main->viewport->bgimg->endian);
-		// printf("\tmini_img: %p\n", main->viewport->mini_img);
-		// 	printf("\t\timg: %p\n", main->viewport->mini_img->img);
-		// 	printf("\t\taddr: %p\n", main->viewport->mini_img->addr);
-		// 	printf("\t\tbpp: %d\n", main->viewport->mini_img->bpp);
-		// 	printf("\t\tllen: %d\n", main->viewport->mini_img->llen);
-		// 	printf("\t\tendian: %d\n", main->viewport->mini_img->endian);
-		//printf("\tscene: %p\n", main->viewport->scene);
-			// printf("\t\tscreen width: %d\n", main->viewport->scene->w);
-			// printf("\t\tscreen height: %d\n", main->viewport->scene->h);
-			// printf("\t\tfloor color: %x\n", main->viewport->scene->floor_color);
-			// printf("\t\tceiling color: %x\n", main->viewport->scene->ceiling_color);
+		printf("\tmini_img: %p\n", main->viewport->mini_img);
+			printf("\t\timg: %p\n", main->viewport->mini_img->img);
+			printf("\t\taddr: %p\n", main->viewport->mini_img->addr);
+			printf("\t\tbpp: %d\n", main->viewport->mini_img->bpp);
+			printf("\t\tllen: %d\n", main->viewport->mini_img->llen);
+			printf("\t\tendian: %d\n", main->viewport->mini_img->endian);
+		printf("\tscene: %p\n", main->viewport->scene);
+			printf("\t\tscreen width: %d\n", main->viewport->scene->w);
+			printf("\t\tscreen height: %d\n", main->viewport->scene->h);
+			printf("\t\tfloor color: %x\n", main->viewport->scene->floor_color);
+			printf("\t\tceiling color: %x\n", main->viewport->scene->ceiling_color);
 		printf("\ttex_so_img: %p\n", &main->viewport->tex_so_img);
 			printf("\t\timg: %p\n", main->viewport->tex_so_img.img);
 			printf("\t\taddr: %p\n", main->viewport->tex_so_img.addr);
@@ -87,53 +87,58 @@ void	show_main_struct(t_main *main)
 		printf("\tD: %c\n", main->viewport->scene->p->D);
 		printf("\tpsize: %d\n", main->viewport->scene->p->psize);
 	printf("filemap: %p\n", main->filemap);
-		// printf("\tiden: %p\n", main->filemap->iden);
-			// t_list *ptr = main->filemap->iden;	
-			// while (ptr)
-			// {
-			// 	printf("\t\t%s %s\n", ptr->key, ptr->content);
-			// 	ptr = ptr->next;
-			// }
-		printf("\tmapx: %d\n", main->filemap->mapx);
-		printf("\tmapy: %d\n", main->filemap->mapy);
-		printf("\tmapsize: %d\n", main->filemap->mapsize);
-	printf("int **map: %p\n", main->map);
-		for (int i = 0; i < main->filemap->mapy; i++) {
-			for (int j = 0; j < main->filemap->mapx; j++) {
-				printf("%d ", main->map[i][j]);
+	if (main->filemap)
+	{
+			// printf("\tiden: %p\n", main->filemap->iden);
+				// t_list *ptr = main->filemap->iden;	
+				// while (ptr)
+				// {
+				// 	printf("\t\t%s %s\n", ptr->key, ptr->content);
+				// 	ptr = ptr->next;
+				// }
+			printf("\tmapx: %d\n", main->filemap->mapx);
+			printf("\tmapy: %d\n", main->filemap->mapy);
+			printf("\tmapsize: %d\n", main->filemap->mapsize);
+		printf("int **map: %p\n", main->map);
+			for (int i = 0; i < main->filemap->mapy; i++) {
+				for (int j = 0; j < main->filemap->mapx; j++) {
+					printf("%d ", main->map[i][j]);
+				}
+				printf("\n");
 			}
-			printf("\n");
-		}
+	}
 	printf("ray: %p\n", main->ray);
-		t_ray *ptr = main->ray;
-		int i = 0;
-		while (i < WINDOW_WIDTH)
-		{
-			if( i == 0 || i == 74 || i == 149)
+	if (main->ray)
+	{
+			t_ray *ptr = main->ray;
+			int i = 0;
+			while (i < WINDOW_WIDTH)
 			{
-				printf("\tindex: %d\n", ptr->index);
-				printf("\tlcpd: %f\n", ptr->lcpd);
-				printf("\traydir: %p\n", &ptr->raydir);
-				printf("\t\tx: %f\n", ptr->raydir.x);
-				printf("\t\ty: %f\n", ptr->raydir.y);
-				printf("\tstep_rdx: %f\n", ptr->step_rdx);
-				printf("\tstep_rdy: %f\n", ptr->step_rdy);
-				printf("\ttex_x: %d\n", ptr->tex_x);
-				printf("\tstep_side_x: %d\n", ptr->step_side_x);
-				printf("\tstep_side_y: %d\n", ptr->step_side_y);
-				printf("\trdx: %f\n", ptr->rdx);
-				printf("\trdy: %f\n", ptr->rdy);
-				printf("\twall_hit_side: %d\n", ptr->wall_hit_side);
-				printf("\tproj_dist: %f\n", ptr->proj_dist);
-				printf("\twall_hight: %d\n", ptr->wall_hight);
-				printf("\twall_y_start: %d\n", ptr->wall_y_start);
-				printf("\twall_y_end: %d\n", ptr->wall_y_end);
-				printf ("\n");
+				if( i == 0 || i == 74 || i == 149)
+				{
+					printf("\tindex: %d\n", ptr->index);
+					printf("\tlcpd: %f\n", ptr->lcpd);
+					printf("\traydir: %p\n", &ptr->raydir);
+					printf("\t\tx: %f\n", ptr->raydir.x);
+					printf("\t\ty: %f\n", ptr->raydir.y);
+					printf("\tstep_rdx: %f\n", ptr->step_rdx);
+					printf("\tstep_rdy: %f\n", ptr->step_rdy);
+					printf("\ttex_x: %d\n", ptr->tex_x);
+					printf("\tstep_side_x: %d\n", ptr->step_side_x);
+					printf("\tstep_side_y: %d\n", ptr->step_side_y);
+					printf("\trdx: %f\n", ptr->rdx);
+					printf("\trdy: %f\n", ptr->rdy);
+					printf("\twall_hit_side: %d\n", ptr->wall_hit_side);
+					printf("\tproj_dist: %f\n", ptr->proj_dist);
+					printf("\twall_hight: %d\n", ptr->wall_hight);
+					printf("\twall_y_start: %d\n", ptr->wall_y_start);
+					printf("\twall_y_end: %d\n", ptr->wall_y_end);
+					printf ("\n");
+				}
+				i++;
+				ptr++;
 			}
-			i++;
-			ptr++;
-		}	
-	printf("wall_strip_width: %d\n", main->wall_strip_width);
+	}	
 	printf("floor color: %x\n", main->floor_color);
 	printf("ceiling color: %x\n", main->ceiling_color);
 	printf("SO: %s\n", main->tex_so);
@@ -141,7 +146,6 @@ void	show_main_struct(t_main *main)
 	printf("WE: %s\n", main->tex_we);
 	printf("EA: %s\n", main->tex_ea);
 	printf("one_player: %d\n", main->one_player);
-	printf("on_minimap: %d\n", main->on_minimap);
 	printf("\n");
 }
 
@@ -162,14 +166,15 @@ int	main(int argc, char **argv)
 {
 	t_main	main_struc;
 	
+	(void)argv;
 	init_main_struct(&main_struc);
 	if (argc != 2)
 		return (perror(GREEN"USED: ./cud3d maps/<filename>.cub"RESET), \
 		EXIT_FAILURE);
 	if(is_invalid_input(argv[1], &main_struc))
-		return (cub3d_exit(&main_struc), EXIT_FAILURE);
+	 	return (cub3d_exit(&main_struc), EXIT_FAILURE);
 	if (set_main_struct(&main_struc))
 		return (cub3d_exit(&main_struc), EXIT_FAILURE);
 	raycaster_loop(&main_struc);
-	return (EXIT_SUCCESS);
+	return (cub3d_exit(&main_struc), EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 23:30:45 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 02:23:52 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int		init_content(t_list *iden, char **dst, char **src, char *key);
 int		ck_no_so_we_ea(char *tmp, t_list *iden);
 int		ck_f_c_color(char *tmp, t_list *iden);
 void	ck_data_format(char *tmp, int *err, t_map *map);
-void	ck_invalid_data(int *err, int fd1, t_map *map);
+void	ck_invalid_iden(int *err, int fd1, t_map *map);
 //check_invalid
 int		explicit_error(int stage);
 int		invalid_filepath(char *maps_path, char *path, char *format);

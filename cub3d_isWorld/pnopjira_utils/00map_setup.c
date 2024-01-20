@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 09:56:08 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 02:24:26 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	rd_mapdata(char *maps_path, t_map *map, t_player *p)
 	err = 1;
 	fd1 = open(maps_path, O_RDONLY);
 	fd2 = open(maps_path, O_RDONLY);
-	ck_invalid_data(&err, fd1, map);
+	ck_invalid_iden(&err, fd1, map);
 	if (err == 0)
 		ck_invalid_map(&err, fd2, map, p);
 	if (err == 0)
@@ -57,7 +57,7 @@ void	init_plan(t_map *plan)
 void	init_player(t_player *player)
 {
 	
-	if (!player->pos)
+	if (!player->pos || !player->dir || !player->cam_plane)
 		return;
 	player->map_x = -1;
 	player->map_y = -1;

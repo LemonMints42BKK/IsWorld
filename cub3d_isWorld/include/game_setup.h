@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 19:26:00 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:28:33 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,87 +61,67 @@ typedef struct s_imgdata
 
 typedef struct s_map
 {
-	t_list	*iden; //
-	bool	map_begin; //
-	int		line_map_begin; //
-	char	**map_original; //
-	int		mapx; //
-	int		mapy; //
-	int 	mapsize; //
-	int		**map; //
+	t_list	*iden;//
+	bool	map_begin;
+	int		line_map_begin;
+	char	**map_original;
+	int		mapx;
+	int		mapy;
+	int 	mapsize;
+	int		**map;
 }	t_map;
 
 typedef struct s_player
 {
-	int		map_x; //x position in map //
-	int		map_y; //y position in map //
-	t_coor	*pos; //position of player in coordinate system //
-	t_coor	*dir; //direction of player //
-	t_coor	*cam_plane; //the coordinate of the center of the camera plane //
-	bool	one_player; //ok
-	char	D; //ok
-	int		psize; //ok
+	int		map_x;
+	int		map_y;
+	t_coor	*pos;//
+	t_coor	*dir;//
+	t_coor	*cam_plane;//
+	bool	one_player;
+	char	D;
+	int		psize;
 }	t_player;
 
 typedef struct s_frame
 {
-	int				w;//width
-	int				h;//height
-	unsigned int	floor_color; //floor color
-	unsigned int	ceiling_color; //ceiling color
-	t_player		*p;//player position //
-	t_map			*map; //
+	int				w;
+	int				h;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
+	t_player		*p;//
+	t_map			*map;//
 }	t_frame; 
 
 typedef struct s_viewport /*t_mlx -> t_vp*/
 {
-	void		*mlx; //mlx_init()
-	void		*win; //mlx_new_window()
-	t_imgdata	*bgimg;  //
-	t_imgdata	*mini_img;
-	
+	void		*mlx;
+	void		*win;
+	t_imgdata	*bgimg;//
+	t_imgdata	*mini_img;//
 	t_imgdata	tex_so_img;
 	t_imgdata	tex_no_img;
 	t_imgdata	tex_we_img;
-	t_imgdata	tex_ea_img;
-	 
-	t_frame 	*scene; 
+	t_imgdata	tex_ea_img;	 
+	t_frame 	*scene;// 
 }	t_vp;
 
 typedef struct s_main
 {
-	t_vp 		*viewport; 
-	t_map		*filemap;
-	t_player	*player; 
-	t_ray		*ray;
-	int			**map;
-	int			wall_strip_width; 
-	unsigned int	floor_color; //
-	unsigned int	ceiling_color; //
-	char		*tex_so; //
-	char		*tex_we; //
-	char		*tex_ea; //
-	char		*tex_no; //
-
-	int			tex_width;
-	int			tex_hight;
-	
-	bool		one_player; //
-	bool		on_minimap; //
+	t_vp 			*viewport;//
+	t_map			*filemap;
+	t_player		*player;
+	t_ray			*ray;
+	int				**map;
+	unsigned int	floor_color;
+	unsigned int	ceiling_color;
+	char			*tex_so;
+	char			*tex_we;
+	char			*tex_ea;
+	char			*tex_no;
+	bool			one_player;
+	int				tex_width;
+	int				tex_hight;
 }	t_main;	
-
-// typedef struct s_main
-// {
-// 	t_vp		viewport;
-// 	t_imgdata		mini_map; //->viewport.mini_img // unused
-// 	int			**map; //->map->map
-// 	int			wall_strip_width;
-// 	t_player	*player;
-// 	t_ray		*ray;
-// 	double		cur_time;
-// 	double		old_time;
-// 	bool		one_player; //->player->one_player
-// 	int			ms; //->player->ms
-// }	t_main;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/15 10:39:05 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:56:11 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,16 @@ int	invalid_filepath(char *maps_path, char *path, char *format)
 	return (0);
 }
 
+void	free_color(char **color)
+{
+	int	i;
+
+	i = 0;
+	while (color[i])
+		free(color[i++]);
+	free(color);
+}
+
 int	invalid_color_code(char *rgb)
 {
 	char	**color;
@@ -69,16 +79,16 @@ int	invalid_color_code(char *rgb)
 	while (color[i])
 		i++;
 	if (i != 3)
-		return (EXIT_FAILURE);
+		return (free_color(color), EXIT_FAILURE);
 	else if (ft_strlen(rgb) < 5)
-		return (EXIT_FAILURE);
+		return (free_color(color), EXIT_FAILURE);
 	else if (ft_atoi(color[0]) > 255 || ft_atoi(color[0]) < 0)
-		return (EXIT_FAILURE);
+		return (free_color(color), EXIT_FAILURE);
 	else if (ft_atoi(color[1]) > 255 || ft_atoi(color[1]) < 0)
-		return (EXIT_FAILURE);
+		return (free_color(color), EXIT_FAILURE);
 	else if (ft_atoi(color[2]) > 255 || ft_atoi(color[2]) < 0)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (free_color(color), EXIT_FAILURE);
+	return (free_color(color), EXIT_SUCCESS);
 }
 
 int	ck_identify(int *err, t_list *iden)

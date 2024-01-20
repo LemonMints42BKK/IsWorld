@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/17 09:56:39 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 03:34:27 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ void	key_to_content(t_list *iden, char *key, char *content)
 			if (tmp->content)
 				free(tmp->content);
 			tmp->content = ft_strdup(content);
+			free(content);
 			return ;
 		}
 		tmp = tmp->next;

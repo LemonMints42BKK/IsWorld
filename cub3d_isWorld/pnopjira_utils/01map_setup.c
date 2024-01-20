@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 20:01:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/19 23:22:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/20 22:44:37 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_main_struct(t_main *main)
 	main->player = NULL;
 	main->ray = NULL;
 	main->map = NULL;
-	main->wall_strip_width = 0;
 	main->floor_color = 0xFFFFFF;
 	main->ceiling_color = 0x000000;
 	main->tex_so = NULL;
@@ -27,9 +26,17 @@ void	init_main_struct(t_main *main)
 	main->tex_we = NULL;
 	main->tex_ea = NULL;
 	main->one_player = false;
-	main->on_minimap = 1;
 	main->tex_width = TEX_WIDTH;
 	main->tex_hight = TEX_HIGHT;
+}
+
+void init_imgdata(t_imgdata *bgimg)
+{
+	bgimg->img = NULL;
+	bgimg->addr = NULL;
+	bgimg->bpp = 0;
+	bgimg->llen = 0;
+	bgimg->endian = 0;
 }
 
 int	is_invalid_input(char *argv, t_main *main)
@@ -38,6 +45,8 @@ int	is_invalid_input(char *argv, t_main *main)
 
 	main->viewport = (t_vp*)malloc(sizeof(t_vp) * 1);
 	vars = main->viewport;
+	vars->mlx = NULL;
+	vars->win = NULL;
 	vars->scene = (t_frame*)malloc(sizeof(t_frame) * 1);
 	vars->bgimg = (t_imgdata*)malloc(sizeof(t_imgdata) * 1);
 	vars->mini_img = (t_imgdata*)malloc(sizeof(t_imgdata) *1);
@@ -45,11 +54,10 @@ int	is_invalid_input(char *argv, t_main *main)
 	vars->mini_img == NULL)
 		return (EXIT_FAILURE);
 	init_scene(vars->scene);
+	init_imgdata(vars->bgimg);
+	init_imgdata(vars->mini_img);
 	if (check_invalid_filedata(argv, vars->scene->map, vars->scene->p))
-	{
-		free_scene(vars->scene);
 		return (EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }
 
