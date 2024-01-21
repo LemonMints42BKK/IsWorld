@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:42:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/21 04:37:28 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 11:28:00 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ void	del(void *lst)
 	free(tmp->content);
 	tmp->key = NULL;
 	tmp->content = NULL;
+}
+
+void	free_int_map(int **tab,int mapy)
+{
+	int j;
+
+	j = 0;
+	while (j < mapy)
+		free(tab[j++]);
+	free(tab);
 }
 
 void	free_map(t_map *map)
@@ -40,11 +50,7 @@ void	free_map(t_map *map)
 		free(map->map_original);
 	}
 	if (map->map)
-	{
-		while (j < map->mapy)
-			free(map->map[j++]);
-		free(map->map);
-	}
+		free_int_map(map->map, map->mapy);
 }
 
 void	free_player(t_player *p)

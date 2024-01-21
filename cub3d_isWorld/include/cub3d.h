@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/21 02:23:52 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 11:28:51 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,18 @@ int		setup_pos_mapx(char **mapdata, int j, t_map *map, t_player *p);
 //02map_setup
 void	before_map_line(int fd2, int map_begin, char **line);
 void	ck_invalid_map(int *err, int fd2, t_map *map, t_player *p);
-void	print_map_original(char **map_original, t_map *map, t_player *p);
+void	print_map_original(char **map_original);
 int		mapsize(t_map *m, t_player *p);
 void	key_to_content(t_list *iden, char *key, char *content);
 //03map_setup
 int		set_main_struct(t_main	*main);
 void	get_textures_path(t_main *main);
 int		set_vp(t_main *main);
+int		allocated_map_int(int ***map, int mapy, int mapx);
 int		char_to_int_map(char **o_map, t_map *plan);
 int		ck_map_info(t_map *map);
+//04map_setup
+void	ck_closed_walls(int *err, t_map *map, t_player *p);
 //check_dataformat
 int		init_content(t_list *iden, char **dst, char **src, char *key);
 int		ck_no_so_we_ea(char *tmp, t_list *iden);
@@ -103,6 +106,7 @@ int		ck_identify(int *err, t_list *iden);
 int		before_map(t_map *map, int *err);
 //free_allocated
 void	del(void *lst);
+void	free_int_map(int **tab,int mapy);
 void	free_scene(t_frame *scene);
 int		cub3d_exit(t_main *main_struc);
 //get_next_line

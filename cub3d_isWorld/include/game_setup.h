@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/20 21:28:33 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 09:29:22 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_map
 {
 	t_list	*iden;//
 	bool	map_begin;
+	bool	close_map;
 	int		line_map_begin;
 	char	**map_original;
 	int		mapx;

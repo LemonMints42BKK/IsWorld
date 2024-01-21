@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/21 03:34:27 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 10:27:12 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ck_invalid_map(int *err, int fd2, t_map *map, t_player *p)
 	j = 0;
 	mapdata = (char **)malloc(sizeof(char *) * (map->mapy + 1));
 	before_map_line(fd2, map->line_map_begin, &line);
-	while (line && *err == 0)
+	while (line && err != 0)
 	{
 		del_nl(&line);
 		mapdata[j] = line;
@@ -44,22 +44,18 @@ void	ck_invalid_map(int *err, int fd2, t_map *map, t_player *p)
 	}
 	mapdata[j] = NULL;
 	map->map_original = mapdata;
-	if (p->map_x == -1 && p->map_y== -1)
-		*err = 5;
 	if(line)
 		free(line);
 	close(fd2);
 }
 
-void	print_map_original(char **map_original, t_map *map, t_player *p)
+void	print_map_original(char **map_original)
 {
 	char	**show_map;
 
 	show_map = map_original;
 	while (*show_map)
 		printf("%s\n", *(show_map++));
-	printf("player >>> px: %d, py: %d dir:%c\n", p->map_x, p->map_y, p->D);
-	printf("map >>> mapx: %d, mapy: %d\n", map->mapx, map->mapy);
 }
 
 int	mapsize(t_map *m, t_player *p)

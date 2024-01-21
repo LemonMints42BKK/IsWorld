@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/21 02:24:26 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 10:28:34 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,13 @@ int	rd_mapdata(char *maps_path, t_map *map, t_player *p)
 	if (err == 0)
 		err = char_to_int_map(map->map_original, map);
 	if (err == 0)
-		print_map_original(map->map_original, map, p);
+		ck_closed_walls(&err, map, p);
+	if (err == 0)
+	{
+		print_map_original(map->map_original);
+		printf("map >>> mapx: %d, mapy: %d\n", map->mapx, map->mapy);
+		printf("player >>> px: %d, py: %d dir:%c\n", p->map_x, p->map_y, p->D);
+	}
 	return (err);
 }
 
@@ -46,6 +52,7 @@ void	init_plan(t_map *plan)
 {
 	plan->iden = NULL;
 	plan->map_begin = false;
+	plan->close_map = true;
 	plan->line_map_begin = 0;
 	plan->map_original = NULL;
 	plan->mapx = 0;

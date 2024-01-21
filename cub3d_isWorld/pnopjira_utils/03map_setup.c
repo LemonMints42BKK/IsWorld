@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:53:43 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/20 21:18:41 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/21 11:20:06 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,25 @@ int set_vp(t_main *main)
 	return (EXIT_SUCCESS);
 }
 
+int	allocated_map_int(int ***map, int mapy, int mapx)
+{
+	int		y;
+	int		**n_map;
+	
+	y = 0;
+	n_map = (int **)malloc(sizeof(int *) * mapy);
+	if (n_map == NULL)
+		return (EXIT_FAILURE);
+	while (y < mapy)
+	{
+		n_map[y++] = (int *)malloc(sizeof(int) * mapx);
+		if (n_map[y - 1] == NULL)
+			return (EXIT_FAILURE);
+	}
+	*map = n_map;
+	return (EXIT_SUCCESS);	
+}
+
 int	char_to_int_map(char **o_map, t_map *plan)
 {
 	int		**n_map;
@@ -77,11 +96,7 @@ int	char_to_int_map(char **o_map, t_map *plan)
 	int x;
 
 	y = 0;
-	n_map = (int **)malloc(sizeof(int *) * j);
-	while (y < j)
-		n_map[y++] = (int *)malloc(sizeof(int) * i);
-		
-	y = 0;
+	allocated_map_int(&n_map, j, i);	
 	while(y < j)
 	{	
 		x = 0;
